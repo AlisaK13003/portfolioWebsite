@@ -13,16 +13,16 @@ const SoftwareProject: React.FC<SoftwareProjectProps> = ({ image, color, name, g
   return (
     <div className="relative group w-full h-full sm:w-[298px] sm:h-[360px]">
       {image ? (
-        <img src={image} alt={name} className="object-cover rounded-[20px] w-full h-full" />
+        <img src={image} alt={name} className="object-cover rounded-[20px]" />
       ) : (
-        <div className="rounded-[20px] w-full h-full" style={{ backgroundColor: color }}></div>
+        <div className="object-cover rounded-[20px]" style={{ backgroundColor: color }}></div>
       )}
       <div className="overlay-transition bg-accent bg-opacity-75 text-white py-4 px-4 group-hover:rounded-[20px]">
-        <div className="flex flex-col justify-end h-full">
+        <div className="flex">
           <span className="text-lg font-semibold text-left fade-text">{name}</span>
-          <div className="button-transition flex flex-col gap-8">
-            <a href={githubLink} target="_blank" rel="noopener noreferrer" className="bg-secondary px-4 py-2 text-white rounded-[30px] tsukimi-rounded-medium w-full text-center">GitHub Repo</a>
-            <a href={liveDemoLink} target="_blank" rel="noopener noreferrer" className="bg-secondary px-6 py-2 text-white rounded-[30px] tsukimi-rounded-medium w-full text-center">Live Demo</a>
+          <div className="">
+            <a href={githubLink} target="_blank" rel="noopener noreferrer" className="bg-secondary text-white px-4 py-2 rounded-[30px] tsukimi-rounded-medium hover:bg-secondary text-center">GitHub Repo</a>
+            <a href={liveDemoLink} target="_blank" rel="noopener noreferrer" className="bg-secondary text-white px-4 py-2 rounded-[30px] tsukimi-rounded-medium hover:bg-secondary text-center">Live Demo</a>
           </div>
         </div>
       </div>

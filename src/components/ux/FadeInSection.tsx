@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import '../index.css';
+import '../../index.css';
 
 interface FadeInSectionProps {
   children: ReactNode;

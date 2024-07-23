@@ -33,14 +33,14 @@ const Header: React.FC = () => {
         <div className="flex space-x-8">
           <a
             href="#home"
-            className="bg-secondary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
+            className="bg-primary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
             onClick={handleClick}
           >
             Home
           </a>
           <a
             href="#about"
-            className="bg-secondary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
+            className="bg-primary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
             onClick={handleClick}
           >
             About
@@ -48,21 +48,21 @@ const Header: React.FC = () => {
 
           <a
             href="#portfolio"
-            className="bg-secondary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
+            className="bg-primary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
             onClick={handleClick}
           >
             Portfolio
           </a>
           <a
             href="#blogs"
-            className="bg-secondary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
+            className="bg-primary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
             onClick={handleClick}
           >
             Blogs
           </a>
           <a
             href="#contact"
-            className="bg-secondary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
+            className="bg-primary text-black px-3 py-2 rounded-[30px] hover:bg-primary hover:text-white transition duration-200"
             onClick={handleClick}
           >
             Contact

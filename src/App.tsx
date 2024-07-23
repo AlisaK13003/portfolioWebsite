@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import FadeInSection from './components/FadeInSection';
+import FadeInSection from './components/ux/FadeInSection';
+import { BackgroundBeams } from './components/ux/BackgroundBeams';
 import { Hero, AboutMe, Portfolio, Blogs, ContactMe } from './pages/home/index'; // Importing from the combined components file
 
 const App: React.FC = () => {
@@ -12,6 +13,7 @@ const App: React.FC = () => {
         <Hero />
       </FadeInSection>
       <FadeInSection>
+      
         <AboutMe />
       </FadeInSection>
       <FadeInSection>

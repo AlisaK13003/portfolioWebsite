@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import SoftwareProject from '../../components/SoftwareProject';
+import DesignProject from '../../components/DesignProject';
 import designImage1 from '../../assets/bwPhoto2.jpg'; // Replace with actual design paths
 import designImage2 from '../../assets/bwPhoto.webp';
 import swirlImage from '../../assets/swirl3.svg'; // Import the swirl image
+import { BackgroundBeams } from '../../components/ux/BackgroundBeams';
 
 const Portfolio: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('software');
@@ -12,7 +14,7 @@ const Portfolio: React.FC = () => {
   };
 
   return (
-    <section id="portfolio" className="py-16 tsukimi-rounded-regular">
+    <section id="portfolio" className="py-16 tsukimi-rounded-regular mb-16">
       <div className="container mx-auto">
         <h2 className="text-4xl font-bold mb-4 text-center text-accent">Portfolio</h2>
         <div className="flex justify-center mb-8">
@@ -41,86 +43,33 @@ const Portfolio: React.FC = () => {
           {activeCategory === 'software' ? (
             <>
               <SoftwareProject
-                color="black"
+                color="#C1BFAB"
                 name="Pokemon EV Tracker"
                 githubLink="https://github.com/your-github-repo"
                 liveDemoLink="https://your-live-demo-link.com"
               />
               <SoftwareProject
-                image={designImage1}
+                color="#C1BFAB"
                 name="Identify that Rock!"
                 githubLink="https://github.com/your-github-repo"
                 liveDemoLink="https://your-live-demo-link.com"
               />
               <SoftwareProject
-                image={designImage1}
+                color="#C1BFAB"
                 name="Matryx"
                 githubLink="https://github.com/your-github-repo"
                 liveDemoLink="https://your-live-demo-link.com"
               />
               <SoftwareProject
-                image={designImage1}
+                color="#C1BFAB"
                 name="Password Database"
-                githubLink="https://github.com/your-github-repo"
-                liveDemoLink="https://your-live-demo-link.com"
-              />
-              <SoftwareProject
-                image={designImage1}
-                name="Identify that Rock!"
-                githubLink="https://github.com/your-github-repo"
-                liveDemoLink="https://your-live-demo-link.com"
-              />
-              <SoftwareProject
-                image={designImage1}
-                name="Identify that Rock!"
-                githubLink="https://github.com/your-github-repo"
-                liveDemoLink="https://your-live-demo-link.com"
-              />      
-              <SoftwareProject
-                image={designImage2}
-                name="Identify that Rock!"
-                githubLink="https://github.com/your-github-repo"
-                liveDemoLink="https://your-live-demo-link.com"
-              />
-              <SoftwareProject
-                image={designImage1}
-                name="Identify that Rock!"
-                githubLink="https://github.com/your-github-repo"
-                liveDemoLink="https://your-live-demo-link.com"
-              />
-              <SoftwareProject
-                image={designImage1}
-                name="Identify that Rock!"
                 githubLink="https://github.com/your-github-repo"
                 liveDemoLink="https://your-live-demo-link.com"
               />
             </>
           ) : (
             <>
-              <SoftwareProject
-                image={designImage1}
-                name="Design 1"
-                githubLink="#"
-                liveDemoLink="#"
-              />
-              <SoftwareProject
-                image={designImage1}
-                name="Design 2"
-                githubLink="#"
-                liveDemoLink="#"
-              />
-              <SoftwareProject
-                image={designImage1}
-                name="Design 3"
-                githubLink="#"
-                liveDemoLink="#"
-              />
-              <SoftwareProject
-                image={designImage1}
-                name="Design 4"
-                githubLink="#"
-                liveDemoLink="#"
-              />
+
             </>
           )}
         </div>

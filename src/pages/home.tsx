@@ -8,6 +8,7 @@ import ContactMe from './home/ContactMe';
 const Home: React.FC = () => {
   return (
     <main className="">
+      
       <Hero />
       <AboutMe />
       <Portfolio />
