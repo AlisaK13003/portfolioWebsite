@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import aboutPhoto from '../../assets/bwPhoto.webp'; // Adjust the path and filename
 import decoration from '../../assets/swirl2.svg'; // New image
+import sparkles from '../../assets/sparkles.svg'; // Import the new sparkles image
 
 const About: React.FC = () => {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -25,14 +26,19 @@ const About: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-16">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-secondary">About Me</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white">About Me</h2>
           <p className="text-base md:text-lg lg:text-xl mb-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem euismod, facilisis erat at, ultricies lorem. 
             Nullam ac commodo urna. Suspendisse potenti. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia 
             curae; Aenean vitae nunc vehicula, posuere eros a, fermentum nulla.
           </p>
-          <p className="text-base md:text-lg lg:text-xl font-bold text-secondary">
-            Interests: <span className="font-normal text-white">gaming, architecture, rocks & minerals, astronomy.</span>
+          <p className="text-base md:text-lg lg:text-xl font-bold text-secondary flex items-center">
+            <img 
+              src={sparkles} 
+              alt="Sparkles" 
+              className="inline-block w-6 h-6 mr-2 align-middle" // Adjust size and position
+            />
+            Interests: <span className="font-normal text-white ml-2">gaming, architecture, rocks & minerals, astronomy.</span>
           </p>
         </div>
       </div>

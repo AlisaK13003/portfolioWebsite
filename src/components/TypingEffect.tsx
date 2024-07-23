@@ -14,9 +14,10 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ className, style }) => {
     if (typingRef.current) {
       new TypeIt(typingRef.current, {
         strings: ["Alisa Katsionova."],
-        speed: 50,
+        speed: 75,
         waitUntilVisible: true,
         breakLines: false,
+        startDelay: 1400,
       }).go();
     }
   }, []);

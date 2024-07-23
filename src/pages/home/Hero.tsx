@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
   return (
     <section id='home' className="bg-primary text-black flex flex-col items-center justify-center tsukimi-rounded-regular text-center relative min-h-screen">
       <img src={dividingSwirl} alt="My SVG" className="absolute top-16 w-24 h-auto py-2" />
-      <img src={profilePhoto} alt="Profile" className="w-[25vh] h-[25vh] mb-16 rounded-full" />
+      <img src={profilePhoto} alt="Profile" className="w-[25vh] h-[25vh] mb-16 rounded-full object-cover" />
       <div className="flex flex-wrap justify-center items-center text-6xl tsukimi-rounded-regular mt-8 mb-4">
         <span>Hi, my name is&nbsp;</span>
         <span onClick={handleClick} className="cursor-pointer inline-block">

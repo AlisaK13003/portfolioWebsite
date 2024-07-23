@@ -1,13 +1,28 @@
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './pages/home';
+import FadeInSection from './components/FadeInSection';
+import { Hero, AboutMe, Portfolio, Blogs, ContactMe } from './pages/home/index'; // Importing from the combined components file
 
 const App: React.FC = () => {
   return (
-    <div className="">
+    <div>
       <Header />
-      <Home />
+      <FadeInSection>
+        <Hero />
+      </FadeInSection>
+      <FadeInSection>
+        <AboutMe />
+      </FadeInSection>
+      <FadeInSection>
+        <Portfolio />
+      </FadeInSection>
+      <FadeInSection>
+        <Blogs />
+      </FadeInSection>
+      <FadeInSection>
+        <ContactMe />
+      </FadeInSection>
       <Footer />
     </div>
   );

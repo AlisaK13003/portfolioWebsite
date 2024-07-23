@@ -10,6 +10,19 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      transitionDuration: {
+        '2000': '2000ms',
+      },
+      
+      height: {
+        'full': '100%',
+      },
+      borderRadius: {
+        '20px': '20px',
+      },
+      padding: {
+        '4': '1rem',
+      },
       size: {
         'screen-25': '25vh',
         'screen-50': '50vh',
@@ -32,6 +45,13 @@ module.exports = {
           },
         },
       },
+    },
+  },
+  variants: {
+    extend: {
+      height: ['group-hover'],
+      borderRadius: ['group-hover'],
+      padding: ['group-hover'],
     },
   },
   plugins: [

@@ -59,16 +59,14 @@ const InfiniteMovingBlogs: React.FC<InfiniteMovingBlogsProps> = ({
 
   const getSpeed = () => {
     if (containerRef.current) {
-      let duration = '40s';
-      if (speed === 'slow') duration = '10s';
-      containerRef.current.style.setProperty('--animation-duration', duration);
+      speed = 'slow';
     }
   };
 
   return (
     <div
       ref={containerRef}
-      className={`relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] ${className}`}
+      className={`relative z-20 max-w-7xl mx-auto overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] ${className}`}
     >
       <ul
         ref={scrollerRef}
