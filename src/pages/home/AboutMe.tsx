@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import aboutPhoto from '../../assets/bwPhoto.webp'; // Adjust the path and filename
+import aboutPhoto from '../../assets/aboutMe_photo.jpg'; // Adjust the path and filename
 import decoration from '../../assets/swirl2.svg'; // New image
 import sparkles from '../../assets/sparkles.svg'; // Import the new sparkles image
 

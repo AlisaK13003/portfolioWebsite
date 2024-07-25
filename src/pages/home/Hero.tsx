@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import TypingEffect from '../../components/ux/TypingEffect';
 import dividingSwirl from '../../assets/swirl3.svg'; // Correct the path
-import profilePhoto from '../../assets/bwPhoto.webp'; // Adjust the path and filename
+import profilePhoto from '../../assets/hero_photo.jpg'; // Adjust the path and filename
 import { BackgroundBeams } from '../../components/ux/BackgroundBeams'; // Import BackgroundBeams
 
 const Hero: React.FC = () => {
