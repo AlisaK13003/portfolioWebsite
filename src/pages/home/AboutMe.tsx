@@ -28,9 +28,13 @@ const About: React.FC = () => {
         <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white">About Me</h2>
           <p className="text-base md:text-lg lg:text-xl mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem euismod, facilisis erat at, ultricies lorem. 
-            Nullam ac commodo urna. Suspendisse potenti. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia 
-            curae; Aenean vitae nunc vehicula, posuere eros a, fermentum nulla.
+            I am a frontend developer specializing in React and aiming to break into the UI/UX design
+            and engineering industry. I have way too many interests in a variety of fields that allow
+            me to be creative in my craft and plays a role in my adaptability. I would also love to talk to you
+            about them!
+            <br/>
+            <br/>
+            p.s. this developer is lazy and has no finished projects yet. lots of ideas though, so stay tuned!
           </p>
           <p className="text-base md:text-lg lg:text-xl font-bold text-secondary flex items-center">
             <img 
