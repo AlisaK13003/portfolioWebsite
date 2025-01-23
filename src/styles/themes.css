@@ -1,0 +1,19 @@
+/* Default Dark Theme */
+:root {
+    --color-background: #2d2231; /* Dark background */
+    --color-border: #090203; /* Dark table outlines, minimal details */
+    --color-primary-text: #db73a0; /* Text for headers, paragraphs, table content */
+    --color-secondary-text: #f3f6f8; /* Secondary text, headers */
+    --color-accent: #9fa2a5; /* Buttons, some paragraphs */
+    --color-highlight: #f3ffb8; /* Underlining or emphasizing text */
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --color-background: #efe9f4; /* Light background */
+    --color-border: #444444; /* Light table outlines, minimal details */
+    --color-primary-text: #d47a8f; /* Text for headers, paragraphs, table content */
+    --color-secondary-text: #212121; /* Secondary text, headers */
+    --color-accent: #cccccc; /* Buttons, some paragraphs */
+    --color-highlight: #fff9c4; /* Underlining or emphasizing text */
+}

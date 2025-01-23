@@ -1,0 +1,5 @@
+/* globals.css */
+
+body {
+    background-color: var(--color-background);
+}
