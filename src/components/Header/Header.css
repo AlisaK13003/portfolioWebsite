@@ -1,0 +1,44 @@
+
+.header {
+    padding-top: 32px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: relative;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.logo-cell {
+    font-family: "Smooch Sans", sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--color-primary-text);
+    position: relative;
+}
+
+.logo-cell::before {
+    content: "";
+    position: absolute;
+    right: -40%;
+    height: 50%;
+    top: 50%;
+    width: 1px;
+    background-color: var(--color-border);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    color: var(--color-primary-text);
+    text-decoration: none;
+    font-family: "Poiret One", sans-serif;
+    font-size: 36px;
+    position: relative;
+}
+
+.nav-item:hover {
+    color: var(--color-border); 
+}

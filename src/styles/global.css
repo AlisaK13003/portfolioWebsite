@@ -1,4 +1,6 @@
 /* globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Smooch+Sans:wght@400;500;600&display=swap');
+
 
 body {
     background-color: var(--color-background);
