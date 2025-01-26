@@ -1,20 +1,26 @@
-import React from "react";
-import './Header.css';
+import React, { useState } from "react";
+import ThemeToggle from "../ui/themeToggle";
+import "./Header.css";
 
 const Header = () => {
-  return (
-    <div class="header">
-    <div class="logo-cell">
-        alisa katsionova
-    </div>
-    <nav class="nav">
-        <a href="#home" class="nav-item">home</a>
-        <a href="#about" class="nav-item">about</a>
-        <a href="#career" class="nav-item">career</a>
-        <a href="#contact" class="nav-item">contact</a>
-    </nav>
-    </div>
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.setAttribute("data-theme", isDarkMode ? "light" : "dark");
+  };
+
+  return (
+    <header className="header">
+      <div className="logo-cell">alisa katsionova</div>
+      <nav className="nav">
+        <a href="#home" className="nav-item">home</a>
+        <a href="#about" className="nav-item">about</a>
+        <a href="#career" className="nav-item">career</a>
+        <a href="#contact" className="nav-item">contact</a>
+        <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+      </nav>
+    </header>
   );
 };
 
