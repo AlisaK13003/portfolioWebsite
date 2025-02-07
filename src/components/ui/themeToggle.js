@@ -1,11 +1,17 @@
-import "@theme-toggles/react/css/Classic.css";
-import { Classic } from "@theme-toggles/react";
+import React from 'react';
+import './ThemeToggle.css';
+import IonIcon from '@reacticons/ionicons';
+import { sunny, moon } from 'ionicons/icons';
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ onClick }) => {
   return (
-    <div className="theme-toggle-container">
-      <Classic className="theme-toggle-icon" duration={750} />
-    </div>
+    <label>
+      <input type="checkbox" onChange={onClick} />
+      <IonIcon name="sunny" className="sun" icon={sunny} />
+      <IonIcon name="moon" className="moon" icon={moon} />
+      <span className="toggle"></span>
+      <span className="animateBg"></span>
+    </label>
   );
 };
 
