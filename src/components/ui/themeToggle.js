@@ -1,4 +1,3 @@
-// components/ThemeToggle/ThemeToggle.js
 import React from 'react';
 import './ThemeToggle.css';
 import IonIcon from '@reacticons/ionicons';
@@ -10,8 +9,6 @@ const ThemeToggle = ({ onClick, isDarkMode }) => {
       <input type="checkbox" onChange={onClick} checked={isDarkMode} />
       <IonIcon name="moon" className="moon" icon={moon} />
       <IonIcon name="sunny" className="sun" icon={sunny} />
-      <span className="toggle"></span>
-      <span className="animateBg"></span>
     </label>
   );
 };

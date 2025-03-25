@@ -1,21 +1,45 @@
-// Header.js
-import React from "react";
+import React, { useState } from "react";
 import ThemeToggle from "../ui/ThemeToggle";
 import "./Header.css";
 
 const Header = ({ toggleTheme, isDarkMode }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="header">
-      <div className="logo-cell">alisa katsionova</div>
-      <div className="right-cell">
-        <nav className="nav">
-          <a href="#home" className="nav-item">home</a>
-          <a href="#about" className="nav-item">about</a>
-          <a href="#career" className="nav-item">career</a>
-          <a href="#contact" className="nav-item">contact</a>
-        </nav>
-        <div className="nav-separator" />
-        <div className="toggle-cell">
+    <header className="navbar-container">
+      <div className="navbar-left">
+        <div className="navbar-title">alisa katsionova</div>
+        <div className="divider" /> {/* Divider should go right here */}
+
+        <div className="left-controls">
+          <div className="mobile-toggle">
+            <ThemeToggle onClick={toggleTheme} isDarkMode={isDarkMode} />
+          </div>
+
+          <button
+            className="hamburger"
+            onClick={() => setIsMenuOpen(prev => !prev)}
+            aria-label="Toggle navigation"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+
+
+
+      <div className={`navbar-right ${isMenuOpen ? "open" : ""}`}>
+        <div className="nav-item">home</div>
+        <div className="divider" />
+        <div className="nav-item">about</div>
+        <div className="divider" />
+        <div className="nav-item">career</div>
+        <div className="divider" />
+        <div className="nav-item">contact</div>
+        <div className="divider" />
+
+        {/* ThemeToggle (desktop only) */}
+        <div className="nav-toggle">
           <ThemeToggle onClick={toggleTheme} isDarkMode={isDarkMode} />
         </div>
       </div>
