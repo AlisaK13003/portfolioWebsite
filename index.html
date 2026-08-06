@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Alisa's portfolio, built section by section with a cozy pixel-art style."
+    />
+    <title>Alisa's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-nav>
+      <nav class="portfolio-nav" aria-label="Primary navigation">
+        <img class="nav-board" src="assets/navbar.png" alt="" data-nav-board />
+        <button
+          class="lantern-toggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+          data-theme-toggle
+        ></button>
+
+        <div class="nav-links nav-links-desktop" data-node-id="9:9">
+          <a href="#home" aria-current="page">Home</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-mobile-row" data-node-id="265:44">
+          <a class="nav-title" href="#home" aria-current="page">Alisa's Portfolio</a>
+          <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+            <img src="assets/hamburgerIcon.png" alt="" />
+          </button>
+        </div>
+      </nav>
+
+      <button class="menu-backdrop" type="button" aria-label="Close navigation menu" data-menu-backdrop></button>
+      <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+        <img class="sidebar-board" src="assets/sidebar.png" alt="" />
+        <a href="#home" aria-current="page">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <section id="home" class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-copy" data-node-id="19:58">
+          <div class="hero-heading-group">
+            <h1 id="hero-title">Hi, I'm Alisa. I am a...</h1>
+            <p class="typewriter-line" aria-live="polite">
+              <span data-typewriter>Game Developer</span><span class="typewriter-cursor" aria-hidden="true"></span>
+            </p>
+          </div>
+
+          <p class="hero-intro">
+            Welcome to my little corner of the web. Take a look around and make yourself at home.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="resume-link"
+              href="assets/AlisaKatsionova_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Alisa's resume PDF"
+            >
+              <span>Resume</span>
+            </a>
+            <a
+              class="social-link social-github"
+              href="https://github.com/AlisaK13003"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <img src="assets/githubIcon.png" alt="" />
+            </a>
+            <a
+              class="social-link social-linkedin"
+              href="https://www.linkedin.com/in/alisa-katsionova/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <img src="assets/linkedinIcon.png" alt="" />
+            </a>
+            <a
+              class="social-link social-email"
+              href="mailto:alisakatsionova@gmail.com"
+              aria-label="Email Alisa"
+            >
+              <img src="assets/emailIcon.png" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-art" data-node-id="246:40">
+          <img src="assets/islandGirl.png" alt="Pixel-art girl sitting on a floating grassy island with a koi fish." />
+        </div>
+      </section>
+
+      <section id="projects" class="projects-section" aria-labelledby="projects-title" data-projects-section>
+        <button class="section-sign" type="button" aria-label="Swing projects sign" data-swing-sign>
+          <img src="assets/sign.png" alt="" />
+          <h2 id="projects-title">Projects</h2>
+        </button>
+
+        <div class="projects-grid" data-projects-grid>
+          <article class="project-card is-active" data-project-card>
+            <div class="project-island">
+              <img src="assets/island.png" alt="" />
+              <div class="project-island-content">
+                <h3>Sealbound</h3>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li>RPG Design</li>
+                  <li>Pixel Art</li>
+                  <li>Godot</li>
+                  <li>Narrative</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-note project-note-with-actions">
+              <p>A story-driven RPG about memory, sacrifice, and human connection</p>
+              <div class="project-actions project-actions-pair">
+                <a
+                  href="https://github.com/AlisaK13003/sealbound"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Sealbound on GitHub"
+                >
+                  GitHub
+                </a>
+                <button type="button" aria-label="Play Sealbound demo">Play Demo</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-project-card>
+            <div class="project-island">
+              <img src="assets/island.png" alt="" />
+              <div class="project-island-content">
+                <h3>MyCircles</h3>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li>Built App</li>
+                  <li>React Native</li>
+                  <li>Safety UX</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-note">
+              <p>Private, community-focused location sharing for safety and connection</p>
+            </div>
+          </article>
+
+          <article class="project-card" data-project-card>
+            <div class="project-island">
+              <img src="assets/island.png" alt="" />
+              <div class="project-island-content">
+                <h3>Sunny Days</h3>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li>Game Design</li>
+                  <li>Pixel Art</li>
+                  <li>Unity</li>
+                  <li>Systems</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-note project-note-with-actions">
+              <p>A cozy solarpunk farming sim about rebuilding and sustainability</p>
+              <div class="project-actions">
+                <button type="button" aria-label="Download Sunny Days app">Download App</button>
+                <button type="button" aria-label="View Sunny Days GitHub">GitHub</button>
+                <button type="button" aria-label="Visit Sunny Days site">Visit Site</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-project-card>
+            <div class="project-island">
+              <img src="assets/island.png" alt="" />
+              <div class="project-island-content">
+                <h3>Acorn</h3>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li>UX Audit</li>
+                  <li>AI Summary</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-note">
+              <p>Streamlined developer onboarding through AI-generated README summaries</p>
+            </div>
+          </article>
+
+          <article class="project-card" data-project-card>
+            <div class="project-island">
+              <img src="assets/island.png" alt="" />
+              <div class="project-island-content">
+                <h3>My Pantry Pal</h3>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li>Product UX</li>
+                  <li>Recipe Flow</li>
+                  <li>Figma</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-note">
+              <p>A digital pantry with expiration tracking and smart recipe suggestions</p>
+            </div>
+          </article>
+
+          <article class="project-card" data-project-card>
+            <div class="project-island">
+              <img src="assets/island.png" alt="" />
+              <div class="project-island-content">
+                <h3>Infolio</h3>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li>Dashboard UX</li>
+                  <li>Tracking Flow</li>
+                  <li>Figma</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-note">
+              <p>A digital pantry with expiration tracking and smart recipe suggestions</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="projects-carousel-controls" aria-label="Project carousel controls">
+          <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous project" data-project-prev>
+            <img src="assets/arrow.png" alt="" />
+          </button>
+          <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next project" data-project-next>
+            <img src="assets/arrow.png" alt="" />
+          </button>
+        </div>
+        <div class="project-dots" aria-label="Project carousel position" data-project-dots></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
