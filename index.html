@@ -55,6 +55,10 @@
       </div>
     </header>
 
+    <button class="butterfly-friend" type="button" aria-label="Play with butterfly" data-butterfly>
+      <span></span>
+    </button>
+
     <main class="site-main">
       <section id="home" class="hero-section" aria-labelledby="hero-title">
         <div class="hero-copy" data-node-id="19:58">
@@ -118,8 +122,9 @@
           <h2 id="projects-title">Projects</h2>
         </button>
 
-        <div class="projects-grid" data-projects-grid>
-          <article class="project-card is-active" data-project-card>
+        <div class="projects-carousel-shell">
+          <div class="projects-grid" data-projects-grid>
+            <article class="project-card is-active" data-project-card>
             <div class="project-island">
               <img src="assets/island.png" alt="" />
               <div class="project-island-content">
@@ -134,7 +139,7 @@
             </div>
             <div class="project-note project-note-with-actions">
               <p>A story-driven RPG about memory, sacrifice, and human connection</p>
-              <div class="project-actions project-actions-pair">
+              <div class="project-actions">
                 <a
                   href="https://github.com/AlisaK13003/sealbound"
                   target="_blank"
@@ -143,12 +148,11 @@
                 >
                   GitHub
                 </a>
-                <button type="button" aria-label="Play Sealbound demo">Play Demo</button>
               </div>
             </div>
-          </article>
+            </article>
 
-          <article class="project-card" data-project-card>
+            <article class="project-card" data-project-card>
             <div class="project-island">
               <img src="assets/island.png" alt="" />
               <div class="project-island-content">
@@ -160,12 +164,15 @@
                 </ul>
               </div>
             </div>
-            <div class="project-note">
+            <div class="project-note project-note-with-actions">
               <p>Private, community-focused location sharing for safety and connection</p>
+              <div class="project-actions">
+                <button type="button" aria-label="View MyCircles GitHub">GitHub</button>
+              </div>
             </div>
-          </article>
+            </article>
 
-          <article class="project-card" data-project-card>
+            <article class="project-card" data-project-card>
             <div class="project-island">
               <img src="assets/island.png" alt="" />
               <div class="project-island-content">
@@ -181,14 +188,12 @@
             <div class="project-note project-note-with-actions">
               <p>A cozy solarpunk farming sim about rebuilding and sustainability</p>
               <div class="project-actions">
-                <button type="button" aria-label="Download Sunny Days app">Download App</button>
                 <button type="button" aria-label="View Sunny Days GitHub">GitHub</button>
-                <button type="button" aria-label="Visit Sunny Days site">Visit Site</button>
               </div>
             </div>
-          </article>
+            </article>
 
-          <article class="project-card" data-project-card>
+            <article class="project-card" data-project-card>
             <div class="project-island">
               <img src="assets/island.png" alt="" />
               <div class="project-island-content">
@@ -199,12 +204,15 @@
                 </ul>
               </div>
             </div>
-            <div class="project-note">
+            <div class="project-note project-note-with-actions">
               <p>Streamlined developer onboarding through AI-generated README summaries</p>
+              <div class="project-actions">
+                <button type="button" aria-label="View Acorn GitHub">GitHub</button>
+              </div>
             </div>
-          </article>
+            </article>
 
-          <article class="project-card" data-project-card>
+            <article class="project-card" data-project-card>
             <div class="project-island">
               <img src="assets/island.png" alt="" />
               <div class="project-island-content">
@@ -216,12 +224,15 @@
                 </ul>
               </div>
             </div>
-            <div class="project-note">
+            <div class="project-note project-note-with-actions">
               <p>A digital pantry with expiration tracking and smart recipe suggestions</p>
+              <div class="project-actions">
+                <button type="button" aria-label="View My Pantry Pal GitHub">GitHub</button>
+              </div>
             </div>
-          </article>
+            </article>
 
-          <article class="project-card" data-project-card>
+            <article class="project-card" data-project-card>
             <div class="project-island">
               <img src="assets/island.png" alt="" />
               <div class="project-island-content">
@@ -233,21 +244,174 @@
                 </ul>
               </div>
             </div>
-            <div class="project-note">
+            <div class="project-note project-note-with-actions">
               <p>A digital pantry with expiration tracking and smart recipe suggestions</p>
+              <div class="project-actions">
+                <button type="button" aria-label="View Infolio GitHub">GitHub</button>
+              </div>
             </div>
-          </article>
+            </article>
+          </div>
+
+          <div class="projects-carousel-controls" aria-label="Project carousel controls">
+            <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous project" data-project-prev>
+              <img src="assets/arrow.png" alt="" />
+            </button>
+            <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next project" data-project-next>
+              <img src="assets/arrow.png" alt="" />
+            </button>
+          </div>
+          <div class="project-dots" aria-label="Project carousel position" data-project-dots></div>
+        </div>
+      </section>
+
+      <section id="experience" class="experience-section" aria-labelledby="experience-title">
+        <button class="section-sign" type="button" aria-label="Swing experience sign" data-swing-sign>
+          <img src="assets/sign.png" alt="" />
+          <h2 id="experience-title">Experience</h2>
+        </button>
+
+        <div class="experience-carousel-shell">
+          <div class="experience-list">
+            <article class="experience-card is-active" data-experience-card>
+              <img
+                class="experience-paper"
+                src="assets/experiencePaperUnfurled.png"
+                alt=""
+                data-unfurled-src="assets/experiencePaperUnfurled.png"
+                data-rolled-src="assets/experiencePaper.png"
+              />
+              <div class="experience-content">
+                <header class="experience-heading">
+                  <h3>Innovation43</h3>
+                  <p>Lead UI/UX Architect</p>
+                  <span>2025 - 2026</span>
+                </header>
+                <ul class="experience-points">
+                  <li>Led product vision and roadmap for B2B SaaS platform</li>
+                  <li>Designed user flows, wireframes, and prototypes to improve UX</li>
+                </ul>
+                <ul class="experience-tags" aria-label="Experience tags">
+                  <li>Site</li>
+                  <li>UI/UX</li>
+                  <li>Figma</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="experience-card" data-experience-card>
+              <img
+                class="experience-paper"
+                src="assets/experiencePaperUnfurled.png"
+                alt=""
+                data-unfurled-src="assets/experiencePaperUnfurled.png"
+                data-rolled-src="assets/experiencePaper.png"
+              />
+              <div class="experience-content">
+                <header class="experience-heading">
+                  <h3>Simblocks.io</h3>
+                  <p>Software Engineering Intern</p>
+                  <span>2024 - 2025</span>
+                </header>
+                <ul class="experience-points">
+                  <li>Led product vision and roadmap for B2B SaaS platform</li>
+                  <li>Designed user flows, wireframes, and prototypes to improve UX</li>
+                </ul>
+                <ul class="experience-tags" aria-label="Experience tags">
+                  <li>Site</li>
+                  <li>UI/UX</li>
+                  <li>Figma</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <div class="experience-carousel-controls" aria-label="Experience carousel controls">
+            <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous experience" data-experience-prev>
+              <img src="assets/arrow.png" alt="" />
+            </button>
+            <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next experience" data-experience-next>
+              <img src="assets/arrow.png" alt="" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about-section" aria-labelledby="about-title">
+        <button class="section-sign" type="button" aria-label="Swing about me sign" data-swing-sign>
+          <img src="assets/sign.png" alt="" />
+          <h2 id="about-title">About Me</h2>
+        </button>
+
+        <div class="about-intro">
+          <p>
+            Hi, I'm Alisa! I make games, design interfaces, and pour a lot of love into the little things-how
+            a button bounces, how a character feels to move, how a screen makes you feel at home. I care about
+            creating experiences that feel genuine and playful, with personality and heart.
+          </p>
+          <p>
+            I'm not interested in climbing any corporate ladders--just looking for a small team that cares as
+            much as I do.
+          </p>
+          <p>
+            If you like heartfelt projects, pixel art, or just wandering through chill spaces, you're in good
+            company.
+          </p>
+          <p>(P.S. Have you tried clicking on the butterflies?)</p>
         </div>
 
-        <div class="projects-carousel-controls" aria-label="Project carousel controls">
-          <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous project" data-project-prev>
-            <img src="assets/arrow.png" alt="" />
-          </button>
-          <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next project" data-project-next>
-            <img src="assets/arrow.png" alt="" />
-          </button>
+        <div class="about-carousel-shell">
+          <div class="about-card-list">
+            <article class="about-card is-active" data-about-card>
+              <div class="about-card-label">
+                <img src="assets/funFactsBoard.png" alt="" />
+                <h3>Fun Facts</h3>
+              </div>
+              <div class="about-card-paper">
+                <ul>
+                  <li>I'm learning violin and slowly getting less terrible at it.</li>
+                  <li>If I were an RPG character, I'd be a mildly unhinged assassin with a cat companion.</li>
+                  <li>My favorite Pokemon is Absol.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="about-card" data-about-card>
+              <div class="about-card-label">
+                <img src="assets/interestsBoard.png" alt="" />
+                <h3>Interests</h3>
+              </div>
+              <div class="about-card-paper">
+                <p>
+                  Pixel art, UI/UX, playing violin, studying architecture, gaming, singing, and discovering new
+                  music.
+                </p>
+              </div>
+            </article>
+
+            <article class="about-card" data-about-card>
+              <div class="about-card-label">
+                <img src="assets/currentlyBoard.png" alt="" />
+                <h3>Currently</h3>
+              </div>
+              <div class="about-card-paper">
+                <p>
+                  Working on a game called Sealbound and a real-world safety app, MyCircles. Scouting Unity,
+                  Unreal, and pixel animation to sharpen my game dev toolkit.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="about-carousel-controls" aria-label="About carousel controls">
+            <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous about card" data-about-prev>
+              <img src="assets/arrow.png" alt="" />
+            </button>
+            <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next about card" data-about-next>
+              <img src="assets/arrow.png" alt="" />
+            </button>
+          </div>
         </div>
-        <div class="project-dots" aria-label="Project carousel position" data-project-dots></div>
       </section>
     </main>
 
