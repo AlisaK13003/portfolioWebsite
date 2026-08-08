@@ -14,7 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" as="image" href="assets/islandGirl.webp" type="image/webp" fetchpriority="high" />
+    <link rel="stylesheet" href="styles.css?v=20260807-performance-pass" />
   </head>
   <body>
     <header class="site-header" data-nav>
@@ -112,7 +113,17 @@
         </div>
 
         <div class="hero-art" data-node-id="246:40">
-          <img src="assets/islandGirl.png" alt="Pixel-art girl sitting on a floating grassy island with a koi fish." />
+          <picture>
+            <source srcset="assets/islandGirl.webp" type="image/webp" />
+            <img
+              src="assets/islandGirl.png"
+              alt="Pixel-art girl sitting on a floating grassy island with a koi fish."
+              width="582"
+              height="581"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
         </div>
       </section>
 
@@ -124,9 +135,15 @@
 
         <div class="projects-carousel-shell">
           <div class="projects-grid" data-projects-grid>
-            <article class="project-card is-active" data-project-card>
-            <div class="project-island">
-              <img src="assets/island.png" alt="" />
+            <article
+              class="project-card is-active"
+              data-project-card
+              data-modal-image-folder="assets/sealbound"
+              data-modal-image-prefix="sealbound"
+              data-modal-image-extension="png"
+            >
+            <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
+              <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
                 <h3>Sealbound</h3>
                 <ul class="project-tags" aria-label="Project tags">
@@ -138,8 +155,9 @@
               </div>
             </div>
             <div class="project-note project-note-with-actions">
-              <p>A story-driven RPG about memory, sacrifice, and human connection</p>
+              <p>Project details coming soon.</p>
               <div class="project-actions">
+                <button type="button" aria-label="Play Sealbound demo">Play Demo</button>
                 <a
                   href="https://github.com/AlisaK13003/sealbound"
                   target="_blank"
@@ -153,10 +171,10 @@
             </article>
 
             <article class="project-card" data-project-card>
-            <div class="project-island">
-              <img src="assets/island.png" alt="" />
+            <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
+              <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
-                <h3>MyCircles</h3>
+                <h3>MyLoops</h3>
                 <ul class="project-tags" aria-label="Project tags">
                   <li>Built App</li>
                   <li>React Native</li>
@@ -165,16 +183,17 @@
               </div>
             </div>
             <div class="project-note project-note-with-actions">
-              <p>Private, community-focused location sharing for safety and connection</p>
+              <p>Project details coming soon.</p>
               <div class="project-actions">
-                <button type="button" aria-label="View MyCircles GitHub">GitHub</button>
+                <button type="button" aria-label="Visit MyLoops site">Visit Site</button>
+                <button type="button" aria-label="Download MyLoops app">Download App</button>
               </div>
             </div>
             </article>
 
             <article class="project-card" data-project-card>
-            <div class="project-island">
-              <img src="assets/island.png" alt="" />
+            <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
+              <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
                 <h3>Sunny Days</h3>
                 <ul class="project-tags" aria-label="Project tags">
@@ -186,35 +205,36 @@
               </div>
             </div>
             <div class="project-note project-note-with-actions">
-              <p>A cozy solarpunk farming sim about rebuilding and sustainability</p>
+              <p>Project details coming soon.</p>
               <div class="project-actions">
+                <button type="button" aria-label="Play Sunny Days demo">Play Demo</button>
                 <button type="button" aria-label="View Sunny Days GitHub">GitHub</button>
               </div>
             </div>
             </article>
 
             <article class="project-card" data-project-card>
-            <div class="project-island">
-              <img src="assets/island.png" alt="" />
+            <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
+              <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
-                <h3>Acorn</h3>
+                <h3>Celo</h3>
                 <ul class="project-tags" aria-label="Project tags">
-                  <li>UX Audit</li>
-                  <li>AI Summary</li>
+                  <li>Web App</li>
+                  <li>Product UX</li>
                 </ul>
               </div>
             </div>
             <div class="project-note project-note-with-actions">
-              <p>Streamlined developer onboarding through AI-generated README summaries</p>
+              <p>Project details coming soon.</p>
               <div class="project-actions">
-                <button type="button" aria-label="View Acorn GitHub">GitHub</button>
+                <button type="button" aria-label="Visit Celo site">Visit Site</button>
               </div>
             </div>
             </article>
 
             <article class="project-card" data-project-card>
-            <div class="project-island">
-              <img src="assets/island.png" alt="" />
+            <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
+              <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
                 <h3>My Pantry Pal</h3>
                 <ul class="project-tags" aria-label="Project tags">
@@ -225,16 +245,18 @@
               </div>
             </div>
             <div class="project-note project-note-with-actions">
-              <p>A digital pantry with expiration tracking and smart recipe suggestions</p>
+              <p>Project details coming soon.</p>
               <div class="project-actions">
+                <button type="button" aria-label="View My Pantry Pal Figma">Figma</button>
+                <button type="button" aria-label="Visit My Pantry Pal site">Visit Site</button>
                 <button type="button" aria-label="View My Pantry Pal GitHub">GitHub</button>
               </div>
             </div>
             </article>
 
             <article class="project-card" data-project-card>
-            <div class="project-island">
-              <img src="assets/island.png" alt="" />
+            <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
+              <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
                 <h3>Infolio</h3>
                 <ul class="project-tags" aria-label="Project tags">
@@ -245,9 +267,11 @@
               </div>
             </div>
             <div class="project-note project-note-with-actions">
-              <p>A digital pantry with expiration tracking and smart recipe suggestions</p>
+              <p>Project details coming soon.</p>
               <div class="project-actions">
                 <button type="button" aria-label="View Infolio GitHub">GitHub</button>
+                <button type="button" aria-label="View Infolio Figma">Figma</button>
+                <button type="button" aria-label="Visit Infolio site">Visit Site</button>
               </div>
             </div>
             </article>
@@ -255,10 +279,10 @@
 
           <div class="projects-carousel-controls" aria-label="Project carousel controls">
             <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous project" data-project-prev>
-              <img src="assets/arrow.png" alt="" />
+              <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
             <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next project" data-project-next>
-              <img src="assets/arrow.png" alt="" />
+              <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
           </div>
           <div class="project-dots" aria-label="Project carousel position" data-project-dots></div>
@@ -267,7 +291,7 @@
 
       <section id="experience" class="experience-section" aria-labelledby="experience-title">
         <button class="section-sign" type="button" aria-label="Swing experience sign" data-swing-sign>
-          <img src="assets/sign.png" alt="" />
+          <img src="assets/sign.png" alt="" loading="lazy" decoding="async" />
           <h2 id="experience-title">Experience</h2>
         </button>
 
@@ -280,6 +304,8 @@
                 alt=""
                 data-unfurled-src="assets/experiencePaperUnfurled.png"
                 data-rolled-src="assets/experiencePaper.png"
+                loading="lazy"
+                decoding="async"
               />
               <div class="experience-content">
                 <header class="experience-heading">
@@ -306,6 +332,8 @@
                 alt=""
                 data-unfurled-src="assets/experiencePaperUnfurled.png"
                 data-rolled-src="assets/experiencePaper.png"
+                loading="lazy"
+                decoding="async"
               />
               <div class="experience-content">
                 <header class="experience-heading">
@@ -328,10 +356,10 @@
 
           <div class="experience-carousel-controls" aria-label="Experience carousel controls">
             <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous experience" data-experience-prev>
-              <img src="assets/arrow.png" alt="" />
+              <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
             <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next experience" data-experience-next>
-              <img src="assets/arrow.png" alt="" />
+              <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
           </div>
         </div>
@@ -339,7 +367,7 @@
 
       <section id="about" class="about-section" aria-labelledby="about-title">
         <button class="section-sign" type="button" aria-label="Swing about me sign" data-swing-sign>
-          <img src="assets/sign.png" alt="" />
+          <img src="assets/sign.png" alt="" loading="lazy" decoding="async" />
           <h2 id="about-title">About Me</h2>
         </button>
 
@@ -363,10 +391,10 @@
         <div class="about-carousel-shell">
           <div class="about-card-list">
             <article class="about-card is-active" data-about-card>
-              <div class="about-card-label">
-                <img src="assets/funFactsBoard.png" alt="" />
+              <button class="about-card-label" type="button" aria-label="Shake Fun Facts sign" data-about-board>
+                <img src="assets/funFactsBoard.png" alt="" loading="lazy" decoding="async" />
                 <h3>Fun Facts</h3>
-              </div>
+              </button>
               <div class="about-card-paper">
                 <ul>
                   <li>I'm learning violin and slowly getting less terrible at it.</li>
@@ -377,10 +405,10 @@
             </article>
 
             <article class="about-card" data-about-card>
-              <div class="about-card-label">
-                <img src="assets/interestsBoard.png" alt="" />
+              <button class="about-card-label" type="button" aria-label="Shake Interests sign" data-about-board>
+                <img src="assets/interestsBoard.png" alt="" loading="lazy" decoding="async" />
                 <h3>Interests</h3>
-              </div>
+              </button>
               <div class="about-card-paper">
                 <p>
                   Pixel art, UI/UX, playing violin, studying architecture, gaming, singing, and discovering new
@@ -390,13 +418,13 @@
             </article>
 
             <article class="about-card" data-about-card>
-              <div class="about-card-label">
-                <img src="assets/currentlyBoard.png" alt="" />
+              <button class="about-card-label" type="button" aria-label="Shake Currently sign" data-about-board>
+                <img src="assets/currentlyBoard.png" alt="" loading="lazy" decoding="async" />
                 <h3>Currently</h3>
-              </div>
+              </button>
               <div class="about-card-paper">
                 <p>
-                  Working on a game called Sealbound and a real-world safety app, MyCircles. Scouting Unity,
+                  Working on a game called Sealbound and a real-world safety app, MyLoops. Scouting Unity,
                   Unreal, and pixel animation to sharpen my game dev toolkit.
                 </p>
               </div>
@@ -405,16 +433,82 @@
 
           <div class="about-carousel-controls" aria-label="About carousel controls">
             <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous about card" data-about-prev>
-              <img src="assets/arrow.png" alt="" />
+              <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
             <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next about card" data-about-next>
-              <img src="assets/arrow.png" alt="" />
+              <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
           </div>
         </div>
       </section>
+
+      <section id="contact" class="contact-section" aria-labelledby="contact-title">
+        <button class="section-sign" type="button" aria-label="Swing contact me sign" data-swing-sign>
+          <img src="assets/sign.png" alt="" loading="lazy" decoding="async" />
+          <h2 id="contact-title">Contact Me</h2>
+        </button>
+
+        <div class="contact-board">
+          <img src="assets/contactBoard.png" alt="" loading="lazy" decoding="async" />
+          <div class="contact-board-content">
+            <form class="contact-form" novalidate data-contact-form>
+              <input class="contact-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" />
+              <label class="contact-name-field">
+                <span>Name:</span>
+                <input type="text" name="name" autocomplete="name" required />
+              </label>
+              <label>
+                <span>Email:</span>
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+              <label class="contact-message-field">
+                <span>Message:</span>
+                <textarea name="message" rows="3" required></textarea>
+              </label>
+              <button type="submit">Send</button>
+              <p class="contact-form-status" aria-live="polite" data-contact-status></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Portfolio footer">
+        <div class="footer-sprite" aria-hidden="true" data-footer-sprite></div>
+        <button class="footer-well-button" type="button" aria-label="Raise water from the well" data-footer-well></button>
+        <p>Made with matcha and love <span aria-hidden="true">♥</span><br />Alisa's Portfolio</p>
+      </footer>
+
+      <div class="project-modal" aria-hidden="true" inert data-project-modal>
+        <button class="project-modal-backdrop" type="button" aria-label="Close project details" data-project-modal-close></button>
+        <article
+          class="project-modal-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-modal-title"
+          tabindex="-1"
+          data-project-modal-panel
+        >
+          <button class="project-modal-close" type="button" aria-label="Close project details" data-project-modal-close>
+            <img src="assets/exitButton.png" alt="" loading="lazy" decoding="async" />
+          </button>
+          <h2 id="project-modal-title" data-project-modal-title></h2>
+          <ul class="project-modal-tags" aria-label="Project tags" data-project-modal-tags></ul>
+          <div class="project-modal-image" data-project-modal-media>
+            <button class="project-modal-image-arrow project-modal-image-prev" type="button" aria-label="Previous image" data-project-modal-prev>
+              <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
+            </button>
+            <img src="assets/island.png" alt="" loading="lazy" decoding="async" data-project-modal-image />
+            <button class="project-modal-image-arrow project-modal-image-next" type="button" aria-label="Next image" data-project-modal-next>
+              <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
+            </button>
+          </div>
+          <div class="project-modal-image-dots" aria-label="Project image carousel" data-project-modal-image-dots></div>
+          <p data-project-modal-body></p>
+          <div class="project-modal-actions" data-project-modal-actions></div>
+        </article>
+      </div>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260807-performance-pass"></script>
   </body>
 </html>
