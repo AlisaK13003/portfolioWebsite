@@ -374,6 +374,8 @@ if (projectCards.length > 0) {
     0,
     projectCards.findIndex((card) => card.classList.contains("is-active")),
   );
+  let isProjectTransitioning = false;
+  let projectTransitionTimer = 0;
 
   function getProjectDirection(index) {
     const targetIndex = (index + projectCards.length) % projectCards.length;
@@ -391,17 +393,30 @@ if (projectCards.length > 0) {
     return forwardSteps < backwardSteps ? "forward" : "backward";
   }
 
-  function setActiveProject(index, direction = null) {
-    activeProjectIndex = (index + projectCards.length) % projectCards.length;
+  function setActiveProject(index, direction = null, force = false) {
+    const nextProjectIndex = (index + projectCards.length) % projectCards.length;
+
+    if (!force && nextProjectIndex === activeProjectIndex) {
+      return;
+    }
+
+    if (isProjectTransitioning) {
+      return;
+    }
+
+    isProjectTransitioning = Boolean(direction);
+    window.clearTimeout(projectTransitionTimer);
+
+    activeProjectIndex = nextProjectIndex;
     const previousProjectIndex =
       (activeProjectIndex - 1 + projectCards.length) % projectCards.length;
-    const nextProjectIndex = (activeProjectIndex + 1) % projectCards.length;
+    const followingProjectIndex = (activeProjectIndex + 1) % projectCards.length;
 
     projectCards.forEach((card, cardIndex) => {
       card.classList.remove("is-entering-forward", "is-entering-backward");
       card.classList.toggle("is-active", cardIndex === activeProjectIndex);
       card.classList.toggle("is-prev", cardIndex === previousProjectIndex);
-      card.classList.toggle("is-next", cardIndex === nextProjectIndex);
+      card.classList.toggle("is-next", cardIndex === followingProjectIndex);
     });
 
     if (direction) {
@@ -412,6 +427,10 @@ if (projectCards.length > 0) {
         );
       });
     }
+
+    projectTransitionTimer = window.setTimeout(() => {
+      isProjectTransitioning = false;
+    }, 320);
 
     dotButtons.forEach((button, buttonIndex) => {
       if (buttonIndex === activeProjectIndex) {
@@ -433,10 +452,12 @@ if (projectCards.length > 0) {
   projectCards.forEach((card) => {
     card.addEventListener("animationend", () => {
       card.classList.remove("is-entering-forward", "is-entering-backward");
+      isProjectTransitioning = false;
+      window.clearTimeout(projectTransitionTimer);
     });
   });
 
-  setActiveProject(activeProjectIndex);
+  setActiveProject(activeProjectIndex, null, true);
 }
 
 if (projectModal) {

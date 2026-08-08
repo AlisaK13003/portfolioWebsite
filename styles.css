@@ -530,19 +530,31 @@ a {
   display: none;
 }
 
-.project-card.is-active .project-island:hover,
-.project-card.is-active .project-island:focus-within,
-.project-card.is-prev .project-island:hover,
-.project-card.is-next .project-island:hover {
-  animation: island-float 900ms ease-in-out 2;
-}
-
 @media (hover: hover) and (pointer: fine) {
   .project-card.is-active .project-island:hover,
   .project-card.is-active .project-island:focus-within,
   .project-card.is-prev .project-island:hover,
   .project-card.is-next .project-island:hover {
-    animation-iteration-count: infinite;
+    animation: island-float 900ms ease-in-out infinite;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .project-island,
+  .carousel-arrow,
+  .project-dot {
+    touch-action: manipulation;
+  }
+
+  .project-island {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .project-card.is-active .project-island:hover,
+  .project-card.is-active .project-island:focus-within,
+  .project-card.is-prev .project-island:hover,
+  .project-card.is-next .project-island:hover {
+    animation: none;
   }
 }
 
