@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="preload" as="image" href="assets/islandGirl.webp" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="styles.css?v=20260807-panel-9slice" />
+    <link rel="stylesheet" href="styles.css?v=20260807-modal-js-fade" />
   </head>
   <body>
     <header class="site-header" data-nav>
@@ -141,6 +141,7 @@
               data-modal-image-folder="assets/sealbound"
               data-modal-image-prefix="sealbound"
               data-modal-image-extension="png"
+              data-modal-hide-tags
             >
             <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
               <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
@@ -167,6 +168,79 @@
                   GitHub
                 </a>
               </div>
+            </div>
+            <div class="project-modal-copy" hidden data-project-modal-copy>
+              <h3>Description</h3>
+              <ul class="project-modal-inline-tags project-modal-role-tags" aria-label="Sealbound description tags">
+                <li>2D RPG</li>
+                <li>Turn-Based Combat</li>
+                <li>Exploration</li>
+                <li>Character Bonds</li>
+              </ul>
+              <p>
+                Sealbound is a 2D pixel-art fantasy RPG centered around exploration, turn-based party combat,
+                character relationships, and narrative progression. Players explore the village of Hearthwyn and
+                surrounding dungeons, complete quests, build bonds with party members, and progress through a story
+                centered around restoring ancient Seals that hold the world together.
+              </p>
+              <h3>Tools</h3>
+              <ul class="project-modal-inline-tags" aria-label="Sealbound tools">
+                <li>Godot 4.6</li>
+                <li>GDScript</li>
+                <li>Git/GitHub</li>
+                <li>Jira</li>
+              </ul>
+              <p>
+                The game was developed in Godot using GDScript, with Git and GitHub for version control and Git LFS
+                for managing larger game assets. Jira was used to organize development into sprints, assign tasks,
+                track bugs, and keep milestones visible across the team.
+              </p>
+              <h3>Work Process</h3>
+              <ul class="project-modal-inline-tags" aria-label="Sealbound work process tags">
+                <li>Sprint Planning</li>
+                <li>Scope Management</li>
+                <li>Team Coordination</li>
+                <li>Iterative Development</li>
+              </ul>
+              <p>
+                Sealbound was developed by a five-person team over roughly six months. We began with a detailed game
+                design document defining the world, gameplay systems, characters, combat, progression, and overall
+                scope.
+              </p>
+              <p>
+                From there, I translated the design into actionable features and milestones, organized development
+                through Jira sprints, and coordinated implementation across programming, art, and level design.
+                Features were developed iteratively through dedicated Git branches, integration, playtesting,
+                debugging, and refinement.
+              </p>
+              <p>
+                The final prototype includes explorable environments, NPC schedules, branching dialogue, quests,
+                shops, dungeon progression, turn-based combat, party management, and a character Bond system that
+                connects relationships with gameplay progression.
+              </p>
+              <h3>My Role</h3>
+              <ul class="project-modal-inline-tags" aria-label="Sealbound role tags">
+                <li>Game Production</li>
+                <li>Game Design</li>
+                <li>Systems Design</li>
+                <li>Gameplay Programming</li>
+              </ul>
+              <p>
+                I served as the project's Game Producer, Designer, and Developer, overseeing both the creative
+                direction and production of the game.
+              </p>
+              <p>
+                I created the original game concept and design documentation, defined systems such as combat, quests,
+                character bonds, NPC behavior, progression, and dialogue, and managed the team's scope and development
+                schedule. I also contributed directly to implementation in Godot, particularly gameplay systems,
+                dialogue and narrative features, UI integration, debugging, and bringing separately developed systems
+                together into a playable build.
+              </p>
+              <p>
+                As producer, I maintained our Jira backlog and sprint plans, ran team meetings, tracked milestones and
+                blockers, coordinated responsibilities across the five-person team, and adjusted scope as development
+                progressed to ensure we could deliver a complete playable prototype.
+              </p>
             </div>
             </article>
 
@@ -503,12 +577,12 @@
             </button>
           </div>
           <div class="project-modal-image-dots" aria-label="Project image carousel" data-project-modal-image-dots></div>
-          <p data-project-modal-body></p>
+          <div class="project-modal-body" data-project-modal-body></div>
           <div class="project-modal-actions" data-project-modal-actions></div>
         </article>
       </div>
     </main>
 
-    <script src="script.js?v=20260807-nav-scroll-fix"></script>
+    <script src="script.js?v=20260807-modal-js-fade"></script>
   </body>
 </html>

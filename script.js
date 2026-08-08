@@ -480,25 +480,6 @@ if (projectCards.length > 0) {
       isProjectTransitioning = false;
       window.clearTimeout(projectTransitionTimer);
     });
-
-    const island = card.querySelector(".project-island");
-
-    island?.addEventListener("pointerdown", (event) => {
-      if (!event.pointerType || event.pointerType === "mouse" || isProjectTransitioning) {
-        return;
-      }
-
-      island.classList.remove("is-tap-floating");
-      window.requestAnimationFrame(() => {
-        island.classList.add("is-tap-floating");
-      });
-    });
-
-    island?.addEventListener("animationend", (event) => {
-      if (event.animationName === "island-float") {
-        island.classList.remove("is-tap-floating");
-      }
-    });
   });
 
   if ("ResizeObserver" in window && projectsGrid) {
@@ -517,7 +498,9 @@ if (projectModal) {
   let projectModalImages = [];
   let activeProjectModalImageIndex = 0;
   let projectModalImageTimer = 0;
+  let projectModalImageAnimation = null;
   const projectModalImageCache = new WeakMap();
+  const PROJECT_MODAL_IMAGE_FADE_MS = 240;
 
   function clearProjectModal() {
     if (projectModalActions) {
@@ -538,13 +521,7 @@ if (projectModal) {
     projectModalImageTimer = 0;
   }
 
-  function setProjectModalImage(index) {
-    if (!projectModalImage || projectModalImages.length === 0) {
-      return;
-    }
-
-    activeProjectModalImageIndex = (index + projectModalImages.length) % projectModalImages.length;
-    projectModalImage.src = projectModalImages[activeProjectModalImageIndex];
+  function updateProjectModalImageDots() {
     projectModalImageDots?.querySelectorAll("button").forEach((button, buttonIndex) => {
       if (buttonIndex === activeProjectModalImageIndex) {
         button.setAttribute("aria-current", "true");
@@ -552,6 +529,77 @@ if (projectModal) {
         button.removeAttribute("aria-current");
       }
     });
+  }
+
+  function finishProjectModalImageFade() {
+    projectModalImageAnimation?.cancel();
+    projectModalImageAnimation = null;
+
+    if (projectModalImage) {
+      projectModalImage.style.opacity = "";
+    }
+  }
+
+  function setProjectModalImage(index, options = {}) {
+    if (!projectModalImage || projectModalImages.length === 0) {
+      return;
+    }
+
+    const nextIndex = (index + projectModalImages.length) % projectModalImages.length;
+
+    if (nextIndex === activeProjectModalImageIndex && !options.force) {
+      updateProjectModalImageDots();
+      return;
+    }
+
+    const useAnimation =
+      options.animate &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!useAnimation) {
+      finishProjectModalImageFade();
+      activeProjectModalImageIndex = nextIndex;
+      projectModalImage.src = projectModalImages[activeProjectModalImageIndex];
+      updateProjectModalImageDots();
+      return;
+    }
+
+    finishProjectModalImageFade();
+    const fadeOut = projectModalImage.animate(
+      [{ opacity: 1 }, { opacity: 0 }],
+      { duration: PROJECT_MODAL_IMAGE_FADE_MS, easing: "ease-in-out", fill: "forwards" },
+    );
+    projectModalImageAnimation = fadeOut;
+
+    fadeOut.finished
+      .then(() => {
+        if (projectModalImageAnimation !== fadeOut) {
+          return;
+        }
+
+        activeProjectModalImageIndex = nextIndex;
+        projectModalImage.src = projectModalImages[activeProjectModalImageIndex];
+        updateProjectModalImageDots();
+
+        const fadeIn = projectModalImage.animate(
+          [{ opacity: 0 }, { opacity: 1 }],
+          { duration: PROJECT_MODAL_IMAGE_FADE_MS, easing: "ease-in-out", fill: "forwards" },
+        );
+        projectModalImageAnimation = fadeIn;
+
+        fadeIn.finished
+          .then(() => {
+            if (projectModalImageAnimation !== fadeIn) {
+              return;
+            }
+
+            projectModalImage.style.opacity = "1";
+            fadeIn.cancel();
+            projectModalImageAnimation = null;
+          })
+          .catch(() => {});
+      })
+      .catch(() => {});
   }
 
   function startProjectModalImageCarousel() {
@@ -562,12 +610,20 @@ if (projectModal) {
     }
 
     projectModalImageTimer = window.setInterval(() => {
-      setProjectModalImage(activeProjectModalImageIndex + 1);
+      setProjectModalImage(activeProjectModalImageIndex + 1, { animate: true, direction: 1 });
     }, 2600);
   }
 
-  function showProjectModalImage(index) {
-    setProjectModalImage(index);
+  function showProjectModalImage(index, direction) {
+    const nextIndex = (index + projectModalImages.length) % projectModalImages.length;
+    const inferredDirection =
+      direction ??
+      (nextIndex > activeProjectModalImageIndex ||
+      (activeProjectModalImageIndex === projectModalImages.length - 1 && nextIndex === 0)
+        ? 1
+        : -1);
+
+    setProjectModalImage(nextIndex, { animate: true, direction: inferredDirection });
     startProjectModalImageCarousel();
   }
 
@@ -632,9 +688,22 @@ if (projectModal) {
   async function openProjectModal(card, trigger) {
     const title = card.querySelector(".project-island h3")?.textContent?.trim() ?? "Project";
     const body = card.querySelector(".project-note p")?.textContent?.trim() ?? "";
+    const richBody = card.querySelector("[data-project-modal-copy]");
     const image = card.querySelector(".project-island > img");
     const actions = [...card.querySelectorAll(".project-actions a, .project-actions button")];
-    const tags = [...card.querySelectorAll(".project-tags li")].map((tag) => tag.textContent?.trim()).filter(Boolean);
+    const shouldHideModalTags = card.hasAttribute("data-modal-hide-tags");
+    const modalTags = card.dataset.modalTags
+      ?.split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean);
+    const tags =
+      shouldHideModalTags
+        ? []
+        : modalTags?.length
+        ? modalTags
+        : [...card.querySelectorAll(".project-tags li")]
+            .map((tag) => tag.textContent?.trim())
+            .filter(Boolean);
 
     lastProjectTrigger = trigger;
     const modalImages = await discoverProjectModalImages(card);
@@ -649,7 +718,11 @@ if (projectModal) {
     }
 
     if (projectModalBody) {
-      projectModalBody.textContent = body;
+      if (richBody) {
+        projectModalBody.innerHTML = richBody.innerHTML;
+      } else {
+        projectModalBody.textContent = body;
+      }
     }
 
     if (projectModalImage) {
@@ -667,7 +740,7 @@ if (projectModal) {
       projectModalImageDots?.append(button);
     });
 
-    setProjectModalImage(0);
+    setProjectModalImage(0, { force: true });
 
     actions.forEach((action) => {
       const modalAction = action.cloneNode(true);
@@ -685,6 +758,10 @@ if (projectModal) {
       tagItem.textContent = tag;
       projectModalTags?.append(tagItem);
     });
+
+    if (projectModalTags) {
+      projectModalTags.hidden = tags.length === 0;
+    }
 
     projectModal.classList.add("is-open");
     projectModal.setAttribute("aria-hidden", "false");
@@ -721,11 +798,11 @@ if (projectModal) {
   });
 
   projectModalPrev?.addEventListener("click", () => {
-    showProjectModalImage(activeProjectModalImageIndex - 1);
+    showProjectModalImage(activeProjectModalImageIndex - 1, -1);
   });
 
   projectModalNext?.addEventListener("click", () => {
-    showProjectModalImage(activeProjectModalImageIndex + 1);
+    showProjectModalImage(activeProjectModalImageIndex + 1, 1);
   });
 
   window.addEventListener("keydown", (event) => {
