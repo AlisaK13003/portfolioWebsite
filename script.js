@@ -474,6 +474,25 @@ if (projectCards.length > 0) {
       isProjectTransitioning = false;
       window.clearTimeout(projectTransitionTimer);
     });
+
+    const island = card.querySelector(".project-island");
+
+    island?.addEventListener("pointerdown", (event) => {
+      if (!event.pointerType || event.pointerType === "mouse" || isProjectTransitioning) {
+        return;
+      }
+
+      island.classList.remove("is-tap-floating");
+      window.requestAnimationFrame(() => {
+        island.classList.add("is-tap-floating");
+      });
+    });
+
+    island?.addEventListener("animationend", (event) => {
+      if (event.animationName === "island-float") {
+        island.classList.remove("is-tap-floating");
+      }
+    });
   });
 
   if ("ResizeObserver" in window && projectsGrid) {
