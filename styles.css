@@ -504,6 +504,11 @@ a {
   transform: translateX(-50%) scale(1);
 }
 
+.project-card.is-active.is-entering-forward,
+.project-card.is-active.is-entering-backward {
+  transition: opacity 220ms ease;
+}
+
 .project-card.is-active.is-entering-forward {
   animation: project-enter-forward 280ms ease-out;
 }

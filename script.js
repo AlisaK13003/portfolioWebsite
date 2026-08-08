@@ -427,22 +427,23 @@ if (projectCards.length > 0) {
     const previousProjectIndex =
       (activeProjectIndex - 1 + projectCards.length) % projectCards.length;
     const followingProjectIndex = (activeProjectIndex + 1) % projectCards.length;
+    const enteringClass =
+      direction === "forward"
+        ? "is-entering-forward"
+        : direction === "backward"
+          ? "is-entering-backward"
+          : "";
 
     projectCards.forEach((card, cardIndex) => {
       card.classList.remove("is-entering-forward", "is-entering-backward");
       card.classList.toggle("is-active", cardIndex === activeProjectIndex);
       card.classList.toggle("is-prev", cardIndex === previousProjectIndex);
       card.classList.toggle("is-next", cardIndex === followingProjectIndex);
-    });
 
-    if (direction) {
-      const activeCard = projectCards[activeProjectIndex];
-      window.requestAnimationFrame(() => {
-        activeCard.classList.add(
-          direction === "forward" ? "is-entering-forward" : "is-entering-backward",
-        );
-      });
-    }
+      if (enteringClass && cardIndex === activeProjectIndex) {
+        card.classList.add(enteringClass);
+      }
+    });
 
     projectTransitionTimer = window.setTimeout(() => {
       isProjectTransitioning = false;
