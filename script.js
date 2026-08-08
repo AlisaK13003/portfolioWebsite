@@ -7,6 +7,7 @@ const navBoard = document.querySelector("[data-nav-board]");
 const typewriterText = document.querySelector("[data-typewriter]");
 const butterfly = document.querySelector("[data-butterfly]");
 const projectCards = [...document.querySelectorAll("[data-project-card]")];
+const projectsGrid = document.querySelector("[data-projects-grid]");
 const projectPrev = document.querySelector("[data-project-prev]");
 const projectNext = document.querySelector("[data-project-next]");
 const projectDots = document.querySelector("[data-project-dots]");
@@ -377,6 +378,21 @@ if (projectCards.length > 0) {
   let isProjectTransitioning = false;
   let projectTransitionTimer = 0;
 
+  function updateProjectCarouselHeight() {
+    const activeCard = projectCards[activeProjectIndex];
+
+    if (!projectsGrid || !activeCard) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      projectsGrid.style.setProperty(
+        "--project-carousel-height",
+        `${Math.ceil(activeCard.scrollHeight)}px`,
+      );
+    });
+  }
+
   function getProjectDirection(index) {
     const targetIndex = (index + projectCards.length) % projectCards.length;
     const forwardSteps = (targetIndex - activeProjectIndex + projectCards.length) % projectCards.length;
@@ -439,6 +455,8 @@ if (projectCards.length > 0) {
         button.removeAttribute("aria-current");
       }
     });
+
+    updateProjectCarouselHeight();
   }
 
   projectPrev?.addEventListener("click", () => {
@@ -456,6 +474,14 @@ if (projectCards.length > 0) {
       window.clearTimeout(projectTransitionTimer);
     });
   });
+
+  if ("ResizeObserver" in window && projectsGrid) {
+    const projectHeightObserver = new ResizeObserver(updateProjectCarouselHeight);
+    projectCards.forEach((card) => projectHeightObserver.observe(card));
+  }
+
+  window.addEventListener("resize", updateProjectCarouselHeight);
+  window.addEventListener("load", updateProjectCarouselHeight);
 
   setActiveProject(activeProjectIndex, null, true);
 }

@@ -469,7 +469,8 @@ a {
   justify-items: center;
   width: 100%;
   max-width: 1120px;
-  min-height: calc((var(--project-card-width) * 1.11) + 54px);
+  min-height: max(calc((var(--project-card-width) * 1.11) + 54px), var(--project-carousel-height, 0px));
+  transition: min-height 220ms ease;
 }
 
 .project-card {
@@ -2162,7 +2163,7 @@ a {
     position: relative;
     display: block;
     width: 274px;
-    min-height: 220px;
+    min-height: max(220px, var(--project-carousel-height, 0px));
   }
 
   .project-card {
