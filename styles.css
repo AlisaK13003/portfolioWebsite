@@ -756,9 +756,11 @@ a {
   max-height: calc(100vh - 32px);
   justify-items: center;
   gap: 26px;
+  border: 16px solid transparent;
+  border-image: url("assets/panel9Slice.png") 16 fill / 16px / 0 stretch;
   padding: clamp(44px, 5.6vw, 76px);
   overflow: auto;
-  background: url("assets/aboutMe_backgroundHorizontal.png") center / 100% 100% no-repeat;
+  background: var(--main-yellow);
   color: #473c2c;
   image-rendering: pixelated;
   outline: none;
@@ -1249,8 +1251,10 @@ a {
   min-height: 384px;
   align-items: flex-start;
   justify-content: center;
+  border: 16px solid transparent;
+  border-image: url("assets/panel9Slice.png") 16 fill / 16px / 0 stretch;
   padding: 42px 28px;
-  background: url("assets/aboutMe_backgrounds.png") center / 100% 100% no-repeat;
+  background: var(--main-yellow);
   color: #473c2c;
   font-size: 1.5rem;
   line-height: 1.08;
@@ -2052,6 +2056,8 @@ a {
   .about-card-paper {
     width: 144px;
     min-height: 192px;
+    border-width: 8px;
+    border-image: url("assets/panel9Slice.png") 16 fill / 8px / 0 stretch;
     padding: 20px 14px;
     font-size: 1rem;
   }
