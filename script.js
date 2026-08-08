@@ -39,6 +39,7 @@ const swingSigns = [...document.querySelectorAll("[data-swing-sign]")];
 const navLinks = [...document.querySelectorAll('a[href^="#"]')];
 const sectionIds = ["home", "projects", "experience", "about", "contact"];
 const titles = ["Game Developer", "Software Engineer", "Project Manager", "UI/UX Designer"];
+let activeScrollAnimation = 0;
 const butterflyFollowDuration = 3200;
 const butterflyReturnMinSpeed = 180;
 const butterflyReturnMaxSpeed = 640;
@@ -258,6 +259,8 @@ function currentSectionFromHash() {
 }
 
 function smoothScrollToSection(section) {
+  window.cancelAnimationFrame(activeScrollAnimation);
+
   const startY = window.scrollY;
   const headerOffset = window.matchMedia("(max-width: 640px)").matches ? 84 : 190;
   const targetY = section.getBoundingClientRect().top + window.scrollY - headerOffset;
@@ -269,14 +272,17 @@ function smoothScrollToSection(section) {
     const progress = Math.min((now - startTime) / duration, 1);
     const easedProgress = 1 - Math.pow(1 - progress, 3);
 
-    window.scrollTo(0, startY + distance * easedProgress);
+    window.scrollTo({
+      top: startY + distance * easedProgress,
+      behavior: "auto",
+    });
 
     if (progress < 1) {
-      window.requestAnimationFrame(step);
+      activeScrollAnimation = window.requestAnimationFrame(step);
     }
   }
 
-  window.requestAnimationFrame(step);
+  activeScrollAnimation = window.requestAnimationFrame(step);
 }
 
 navLinks.forEach((link) => {
