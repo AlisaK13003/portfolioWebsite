@@ -5,7 +5,7 @@ const menuBackdrop = document.querySelector("[data-menu-backdrop]");
 const themeToggle = document.querySelector("[data-theme-toggle]");
 const navBoard = document.querySelector("[data-nav-board]");
 const typewriterText = document.querySelector("[data-typewriter]");
-const butterfly = document.querySelector("[data-butterfly]");
+const butterflies = [...document.querySelectorAll("[data-butterfly]")];
 const projectCards = [...document.querySelectorAll("[data-project-card]")];
 const projectsGrid = document.querySelector("[data-projects-grid]");
 const projectPrev = document.querySelector("[data-project-prev]");
@@ -18,6 +18,8 @@ const projectModalMedia = document.querySelector("[data-project-modal-media]");
 const projectModalImage = document.querySelector("[data-project-modal-image]");
 const projectModalPrev = document.querySelector("[data-project-modal-prev]");
 const projectModalNext = document.querySelector("[data-project-modal-next]");
+const projectModalProjectPrev = document.querySelector("[data-project-modal-project-prev]");
+const projectModalProjectNext = document.querySelector("[data-project-modal-project-next]");
 const projectModalImageDots = document.querySelector("[data-project-modal-image-dots]");
 const projectModalBody = document.querySelector("[data-project-modal-body]");
 const projectModalActions = document.querySelector("[data-project-modal-actions]");
@@ -27,9 +29,11 @@ const experienceCards = [...document.querySelectorAll("[data-experience-card]")]
 const experiencePapers = [...document.querySelectorAll("[data-unfurled-src][data-rolled-src]")];
 const experiencePrev = document.querySelector("[data-experience-prev]");
 const experienceNext = document.querySelector("[data-experience-next]");
+const experienceDots = document.querySelector("[data-experience-dots]");
 const aboutCards = [...document.querySelectorAll("[data-about-card]")];
 const aboutPrev = document.querySelector("[data-about-prev]");
 const aboutNext = document.querySelector("[data-about-next]");
+const aboutDots = document.querySelector("[data-about-dots]");
 const aboutBoards = [...document.querySelectorAll("[data-about-board]")];
 const contactForm = document.querySelector("[data-contact-form]");
 const contactStatus = document.querySelector("[data-contact-status]");
@@ -40,6 +44,7 @@ const navLinks = [...document.querySelectorAll('a[href^="#"]')];
 const sectionIds = ["home", "projects", "experience", "about", "contact"];
 const titles = ["Game Developer", "Software Engineer", "Project Manager", "UI/UX Designer"];
 let activeScrollAnimation = 0;
+let syncProjectCarouselToCard = () => {};
 const butterflyFollowDuration = 3200;
 const butterflyReturnMinSpeed = 180;
 const butterflyReturnMaxSpeed = 640;
@@ -67,7 +72,7 @@ function setTheme(theme) {
 
 setTheme(localStorage.getItem("portfolio-theme") === "dark" ? "dark" : "light");
 
-if (butterfly) {
+butterflies.forEach((butterfly) => {
   let butterflyOrigin = { x: 0, y: 0 };
   let butterflyPosition = { x: 0, y: 0 };
   let butterflyTarget = { x: 0, y: 0 };
@@ -76,6 +81,8 @@ if (butterfly) {
   let butterflyFrame = 0;
   let butterflyTimeout = 0;
   let butterflyReturnStartDistance = 0;
+  const butterflyHomeParent = butterfly.parentElement;
+  const butterflyHomeNextSibling = butterfly.nextElementSibling;
 
   function setButterflyPosition(x, y) {
     butterfly.style.setProperty("--butterfly-x", `${x}px`);
@@ -155,7 +162,10 @@ if (butterfly) {
 
     butterflyPosition = { x: 0, y: 0 };
     setButterflyPosition(0, 0);
-    butterfly.classList.remove("is-following", "is-facing-left", "is-facing-right");
+    butterflyHomeParent?.insertBefore(butterfly, butterflyHomeNextSibling);
+    butterfly.classList.remove("is-following", "is-page-flight", "is-facing-left", "is-facing-right");
+    butterfly.style.removeProperty("--butterfly-flight-left");
+    butterfly.style.removeProperty("--butterfly-flight-top");
     butterflyMode = "idle";
   }
 
@@ -178,6 +188,10 @@ if (butterfly) {
       x: rect.left + window.scrollX - butterflyPosition.x,
       y: rect.top + window.scrollY - butterflyPosition.y,
     };
+    butterfly.style.setProperty("--butterfly-flight-left", `${butterflyOrigin.x}px`);
+    butterfly.style.setProperty("--butterfly-flight-top", `${butterflyOrigin.y}px`);
+    butterfly.classList.add("is-page-flight");
+    document.body.append(butterfly);
     lastButterflyPointerX = event.pageX;
     butterfly.classList.add("is-facing-right");
     butterfly.classList.remove("is-facing-left");
@@ -205,7 +219,7 @@ if (butterfly) {
       returnButterflyHome(performance.now());
     }, butterflyFollowDuration);
   });
-}
+});
 
 function setMenuOpen(isOpen) {
   header?.classList.toggle("is-open", isOpen);
@@ -422,7 +436,7 @@ if (projectCards.length > 0) {
       return;
     }
 
-    if (isProjectTransitioning) {
+    if (isProjectTransitioning && !force) {
       return;
     }
 
@@ -466,6 +480,21 @@ if (projectCards.length > 0) {
     updateProjectCarouselHeight();
   }
 
+  syncProjectCarouselToCard = (card) => {
+    const targetIndex = projectCards.indexOf(card);
+
+    if (targetIndex < 0) {
+      return;
+    }
+
+    projectsGrid?.classList.add("is-syncing");
+    setActiveProject(targetIndex, null, true);
+    projectsGrid?.offsetWidth;
+    window.requestAnimationFrame(() => {
+      projectsGrid?.classList.remove("is-syncing");
+    });
+  };
+
   projectPrev?.addEventListener("click", () => {
     setActiveProject(activeProjectIndex - 1, "backward");
   });
@@ -495,6 +524,7 @@ if (projectCards.length > 0) {
 
 if (projectModal) {
   let lastProjectTrigger = null;
+  let activeProjectModalCard = null;
   let projectModalImages = [];
   let activeProjectModalImageIndex = 0;
   let projectModalImageTimer = 0;
@@ -705,7 +735,8 @@ if (projectModal) {
             .map((tag) => tag.textContent?.trim())
             .filter(Boolean);
 
-    lastProjectTrigger = trigger;
+    activeProjectModalCard = card;
+    lastProjectTrigger = trigger ?? card.querySelector("[data-project-modal-trigger]");
     const modalImages = await discoverProjectModalImages(card);
 
     stopProjectModalImageCarousel();
@@ -771,12 +802,27 @@ if (projectModal) {
     startProjectModalImageCarousel();
   }
 
+  function openAdjacentProjectModal(direction) {
+    if (!activeProjectModalCard || projectCards.length === 0) {
+      return;
+    }
+
+    const currentIndex = projectCards.indexOf(activeProjectModalCard);
+    const nextIndex = (currentIndex + direction + projectCards.length) % projectCards.length;
+    const nextCard = projectCards[nextIndex];
+    const nextTrigger = nextCard.querySelector("[data-project-modal-trigger]");
+
+    openProjectModal(nextCard, nextTrigger);
+  }
+
   function closeProjectModal() {
     stopProjectModalImageCarousel();
+    syncProjectCarouselToCard(activeProjectModalCard);
     projectModal.classList.remove("is-open");
     projectModal.setAttribute("aria-hidden", "true");
     projectModal.setAttribute("inert", "");
     document.body.style.overflow = "";
+    activeProjectModalCard = null;
     lastProjectTrigger?.focus();
   }
 
@@ -805,6 +851,14 @@ if (projectModal) {
     showProjectModalImage(activeProjectModalImageIndex + 1, 1);
   });
 
+  projectModalProjectPrev?.addEventListener("click", () => {
+    openAdjacentProjectModal(-1);
+  });
+
+  projectModalProjectNext?.addEventListener("click", () => {
+    openAdjacentProjectModal(1);
+  });
+
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && projectModal.classList.contains("is-open")) {
       closeProjectModal();
@@ -813,48 +867,151 @@ if (projectModal) {
 }
 
 if (experienceCards.length > 0) {
+  const experienceDotButtons = experienceCards.map((card, index) => {
+    const button = document.createElement("button");
+    button.className = "experience-dot";
+    button.type = "button";
+    button.setAttribute(
+      "aria-label",
+      `Show ${card.querySelector("h3")?.textContent ?? `experience ${index + 1}`}`,
+    );
+    button.addEventListener("click", () => {
+      const forwardSteps = (index - activeExperienceIndex + experienceCards.length) % experienceCards.length;
+      const backwardSteps = (activeExperienceIndex - index + experienceCards.length) % experienceCards.length;
+      setActiveExperience(index, forwardSteps <= backwardSteps ? "forward" : "backward");
+    });
+    experienceDots?.append(button);
+    return button;
+  });
+
   let activeExperienceIndex = Math.max(
     0,
     experienceCards.findIndex((card) => card.classList.contains("is-active")),
   );
+  let experienceTransitionTimer = 0;
 
-  function setActiveExperience(index) {
-    activeExperienceIndex = (index + experienceCards.length) % experienceCards.length;
+  function setActiveExperience(index, direction = null) {
+    const nextExperienceIndex = (index + experienceCards.length) % experienceCards.length;
+    const enteringClass =
+      direction === "forward"
+        ? "is-entering-forward"
+        : direction === "backward"
+          ? "is-entering-backward"
+          : "";
+
+    activeExperienceIndex = nextExperienceIndex;
+    window.clearTimeout(experienceTransitionTimer);
     experienceCards.forEach((card, cardIndex) => {
+      card.classList.remove("is-entering-forward", "is-entering-backward");
       card.classList.toggle("is-active", cardIndex === activeExperienceIndex);
+
+      if (enteringClass && cardIndex === activeExperienceIndex) {
+        card.classList.add(enteringClass);
+      }
     });
+
+    experienceDotButtons.forEach((button, buttonIndex) => {
+      if (buttonIndex === activeExperienceIndex) {
+        button.setAttribute("aria-current", "true");
+      } else {
+        button.removeAttribute("aria-current");
+      }
+    });
+
+    experienceTransitionTimer = window.setTimeout(() => {
+      experienceCards.forEach((card) => {
+        card.classList.remove("is-entering-forward", "is-entering-backward");
+      });
+    }, 280);
   }
 
+  experienceCards.forEach((card) => {
+    card.addEventListener("animationend", () => {
+      card.classList.remove("is-entering-forward", "is-entering-backward");
+      window.clearTimeout(experienceTransitionTimer);
+    });
+  });
+
   experiencePrev?.addEventListener("click", () => {
-    setActiveExperience(activeExperienceIndex - 1);
+    setActiveExperience(activeExperienceIndex - 1, "backward");
   });
 
   experienceNext?.addEventListener("click", () => {
-    setActiveExperience(activeExperienceIndex + 1);
+    setActiveExperience(activeExperienceIndex + 1, "forward");
   });
 
   setActiveExperience(activeExperienceIndex);
 }
 
 if (aboutCards.length > 0) {
+  const aboutDotButtons = aboutCards.map((card, index) => {
+    const button = document.createElement("button");
+    button.className = "about-dot";
+    button.type = "button";
+    button.setAttribute("aria-label", `Show ${card.querySelector("h3")?.textContent ?? `about card ${index + 1}`}`);
+    button.addEventListener("click", () => {
+      const forwardSteps = (index - activeAboutIndex + aboutCards.length) % aboutCards.length;
+      const backwardSteps = (activeAboutIndex - index + aboutCards.length) % aboutCards.length;
+      setActiveAbout(index, forwardSteps <= backwardSteps ? "forward" : "backward");
+    });
+    aboutDots?.append(button);
+    return button;
+  });
+
   let activeAboutIndex = Math.max(
     0,
     aboutCards.findIndex((card) => card.classList.contains("is-active")),
   );
+  let aboutTransitionTimer = 0;
 
-  function setActiveAbout(index) {
-    activeAboutIndex = (index + aboutCards.length) % aboutCards.length;
+  function setActiveAbout(index, direction = null) {
+    const nextAboutIndex = (index + aboutCards.length) % aboutCards.length;
+    const enteringClass =
+      direction === "forward"
+        ? "is-entering-forward"
+        : direction === "backward"
+          ? "is-entering-backward"
+          : "";
+
+    activeAboutIndex = nextAboutIndex;
+    window.clearTimeout(aboutTransitionTimer);
     aboutCards.forEach((card, cardIndex) => {
+      card.classList.remove("is-entering-forward", "is-entering-backward");
       card.classList.toggle("is-active", cardIndex === activeAboutIndex);
+
+      if (enteringClass && cardIndex === activeAboutIndex) {
+        card.classList.add(enteringClass);
+      }
     });
+
+    aboutDotButtons.forEach((button, buttonIndex) => {
+      if (buttonIndex === activeAboutIndex) {
+        button.setAttribute("aria-current", "true");
+      } else {
+        button.removeAttribute("aria-current");
+      }
+    });
+
+    aboutTransitionTimer = window.setTimeout(() => {
+      aboutCards.forEach((card) => {
+        card.classList.remove("is-entering-forward", "is-entering-backward");
+      });
+    }, 280);
   }
 
+  aboutCards.forEach((card) => {
+    card.addEventListener("animationend", () => {
+      card.classList.remove("is-entering-forward", "is-entering-backward");
+      window.clearTimeout(aboutTransitionTimer);
+    });
+  });
+
   aboutPrev?.addEventListener("click", () => {
-    setActiveAbout(activeAboutIndex - 1);
+    setActiveAbout(activeAboutIndex - 1, "backward");
   });
 
   aboutNext?.addEventListener("click", () => {
-    setActiveAbout(activeAboutIndex + 1);
+    setActiveAbout(activeAboutIndex + 1, "forward");
   });
 
   setActiveAbout(activeAboutIndex);

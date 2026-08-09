@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="preload" as="image" href="assets/islandGirl.webp" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="styles.css?v=20260807-modal-js-fade" />
+    <link rel="stylesheet" href="styles.css?v=20260809-project-modal-sync-silent" />
   </head>
   <body>
     <header class="site-header" data-nav>
@@ -62,6 +62,9 @@
 
     <main class="site-main">
       <section id="home" class="hero-section" aria-labelledby="hero-title">
+        <button class="decor-butterfly decor-butterfly-hero-ne" type="button" aria-label="Play with butterfly" data-butterfly>
+          <span></span>
+        </button>
         <div class="hero-copy" data-node-id="19:58">
           <div class="hero-heading-group">
             <h1 id="hero-title">Hi, I'm Alisa. I am a...</h1>
@@ -128,6 +131,9 @@
       </section>
 
       <section id="projects" class="projects-section" aria-labelledby="projects-title" data-projects-section>
+        <button class="decor-butterfly decor-butterfly-projects-east" type="button" aria-label="Play with butterfly" data-butterfly>
+          <span></span>
+        </button>
         <button class="section-sign" type="button" aria-label="Swing projects sign" data-swing-sign>
           <img src="assets/sign.png" alt="" />
           <h2 id="projects-title">Projects</h2>
@@ -156,7 +162,7 @@
               </div>
             </div>
             <div class="project-note project-note-with-actions">
-              <p>Project details coming soon.</p>
+              <p>A 2D pixel-art fantasy RPG about exploration, party combat, character bonds, and restoring ancient Seals.</p>
               <div class="project-actions">
                 <button type="button" aria-label="Play Sealbound demo">Play Demo</button>
                 <a
@@ -364,6 +370,9 @@
       </section>
 
       <section id="experience" class="experience-section" aria-labelledby="experience-title">
+        <button class="decor-butterfly decor-butterfly-experience-nw" type="button" aria-label="Play with butterfly" data-butterfly>
+          <span></span>
+        </button>
         <button class="section-sign" type="button" aria-label="Swing experience sign" data-swing-sign>
           <img src="assets/sign.png" alt="" loading="lazy" decoding="async" />
           <h2 id="experience-title">Experience</h2>
@@ -383,18 +392,18 @@
               />
               <div class="experience-content">
                 <header class="experience-heading">
-                  <h3>Innovation43</h3>
-                  <p>Lead UI/UX Architect</p>
-                  <span>2025 - 2026</span>
+                  <h3>Innovation 4 3veryone, LLC</h3>
+                  <p>UI/UX Lead, PM & Partner</p>
+                  <span>Jan. 2025 - Present</span>
                 </header>
                 <ul class="experience-points">
-                  <li>Led product vision and roadmap for B2B SaaS platform</li>
-                  <li>Designed user flows, wireframes, and prototypes to improve UX</li>
+                  <li>Led product design, frontend architecture, and priorities for MyLoops through launch</li>
+                  <li>Built responsive React, Next.js, and Firebase components to speed up implementation</li>
                 </ul>
                 <ul class="experience-tags" aria-label="Experience tags">
-                  <li>Site</li>
                   <li>UI/UX</li>
-                  <li>Figma</li>
+                  <li>React</li>
+                  <li>Product</li>
                 </ul>
               </div>
             </article>
@@ -411,18 +420,102 @@
               />
               <div class="experience-content">
                 <header class="experience-heading">
-                  <h3>Simblocks.io</h3>
+                  <h3>SimBlocks, LLC</h3>
                   <p>Software Engineering Intern</p>
-                  <span>2024 - 2025</span>
+                  <span>Jan. 2025 - May 2025</span>
                 </header>
                 <ul class="experience-points">
-                  <li>Led product vision and roadmap for B2B SaaS platform</li>
-                  <li>Designed user flows, wireframes, and prototypes to improve UX</li>
+                  <li>Refactored Windows-specific libraries into cross-platform CMake projects</li>
+                  <li>Automated Linux setup and validation scripts to improve engineer onboarding</li>
                 </ul>
                 <ul class="experience-tags" aria-label="Experience tags">
-                  <li>Site</li>
-                  <li>UI/UX</li>
+                  <li>CMake</li>
+                  <li>Linux</li>
+                  <li>Shell</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="experience-card" data-experience-card>
+              <img
+                class="experience-paper"
+                src="assets/experiencePaperUnfurled.png"
+                alt=""
+                data-unfurled-src="assets/experiencePaperUnfurled.png"
+                data-rolled-src="assets/experiencePaper.png"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="experience-content">
+                <header class="experience-heading">
+                  <h3>UCF Arboretum</h3>
+                  <p>Website & Teams Intern</p>
+                  <span>Jan. 2025 - May 2025</span>
+                </header>
+                <ul class="experience-points">
+                  <li>Improved internal Microsoft Power Apps and automated approval workflows</li>
+                  <li>Created Figma prototypes and helped clarify requirements with stakeholders</li>
+                </ul>
+                <ul class="experience-tags" aria-label="Experience tags">
+                  <li>Power Apps</li>
                   <li>Figma</li>
+                  <li>UX</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="experience-card" data-experience-card>
+              <img
+                class="experience-paper"
+                src="assets/experiencePaperUnfurled.png"
+                alt=""
+                data-unfurled-src="assets/experiencePaperUnfurled.png"
+                data-rolled-src="assets/experiencePaper.png"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="experience-content">
+                <header class="experience-heading">
+                  <h3>theCoderSchool</h3>
+                  <p>Coding Instructor</p>
+                  <span>Sep. 2023 - Apr. 2024</span>
+                </header>
+                <ul class="experience-points">
+                  <li>Mentored students ages 6-17 in game development and programming logic</li>
+                  <li>Used project-based lessons and coaching to build confidence and creativity</li>
+                </ul>
+                <ul class="experience-tags" aria-label="Experience tags">
+                  <li>Teaching</li>
+                  <li>Game Dev</li>
+                  <li>Mentoring</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="experience-card" data-experience-card>
+              <img
+                class="experience-paper"
+                src="assets/experiencePaperUnfurled.png"
+                alt=""
+                data-unfurled-src="assets/experiencePaperUnfurled.png"
+                data-rolled-src="assets/experiencePaper.png"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="experience-content">
+                <header class="experience-heading">
+                  <h3>USF CSE</h3>
+                  <p>ML Research Assistant</p>
+                  <span>Jun. 2023 - Aug. 2023</span>
+                </header>
+                <ul class="experience-points">
+                  <li>Benchmarked GPU-based algorithms with GAIVI and Slurm workflows</li>
+                  <li>Analyzed AI experiments with Python, TensorFlow, NumPy, and Pandas</li>
+                </ul>
+                <ul class="experience-tags" aria-label="Experience tags">
+                  <li>Python</li>
+                  <li>TensorFlow</li>
+                  <li>Slurm</li>
                 </ul>
               </div>
             </article>
@@ -436,10 +529,17 @@
               <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
           </div>
+          <div class="experience-dots" aria-label="Experience carousel position" data-experience-dots></div>
         </div>
       </section>
 
       <section id="about" class="about-section" aria-labelledby="about-title">
+        <button class="decor-butterfly decor-butterfly-about-gap" type="button" aria-label="Play with butterfly" data-butterfly>
+          <span></span>
+        </button>
+        <button class="decor-butterfly decor-butterfly-about-currently" type="button" aria-label="Play with butterfly" data-butterfly>
+          <span></span>
+        </button>
         <button class="section-sign" type="button" aria-label="Swing about me sign" data-swing-sign>
           <img src="assets/sign.png" alt="" loading="lazy" decoding="async" />
           <h2 id="about-title">About Me</h2>
@@ -513,10 +613,14 @@
               <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
           </div>
+          <div class="about-dots" aria-label="About carousel position" data-about-dots></div>
         </div>
       </section>
 
       <section id="contact" class="contact-section" aria-labelledby="contact-title">
+        <button class="decor-butterfly decor-butterfly-contact-west" type="button" aria-label="Play with butterfly" data-butterfly>
+          <span></span>
+        </button>
         <button class="section-sign" type="button" aria-label="Swing contact me sign" data-swing-sign>
           <img src="assets/sign.png" alt="" loading="lazy" decoding="async" />
           <h2 id="contact-title">Contact Me</h2>
@@ -547,6 +651,9 @@
       </section>
 
       <footer class="site-footer" aria-label="Portfolio footer">
+        <button class="decor-butterfly decor-butterfly-footer-house" type="button" aria-label="Play with butterfly" data-butterfly>
+          <span></span>
+        </button>
         <div class="footer-sprite" aria-hidden="true" data-footer-sprite></div>
         <button class="footer-well-button" type="button" aria-label="Raise water from the well" data-footer-well></button>
         <p>Made with matcha and love <span aria-hidden="true">♥</span><br />Alisa's Portfolio</p>
@@ -554,6 +661,12 @@
 
       <div class="project-modal" aria-hidden="true" inert data-project-modal>
         <button class="project-modal-backdrop" type="button" aria-label="Close project details" data-project-modal-close></button>
+        <button class="project-modal-project-arrow project-modal-project-prev" type="button" aria-label="Previous project" data-project-modal-project-prev>
+          <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
+        </button>
+        <button class="project-modal-project-arrow project-modal-project-next" type="button" aria-label="Next project" data-project-modal-project-next>
+          <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
+        </button>
         <article
           class="project-modal-panel"
           role="dialog"
@@ -583,6 +696,6 @@
       </div>
     </main>
 
-    <script src="script.js?v=20260807-modal-js-fade"></script>
+    <script src="script.js?v=20260809-project-modal-sync-silent"></script>
   </body>
 </html>

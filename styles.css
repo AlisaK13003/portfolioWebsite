@@ -84,6 +84,14 @@ a {
   transition: none;
 }
 
+.butterfly-friend.is-page-flight,
+.decor-butterfly.is-page-flight {
+  position: absolute;
+  top: var(--butterfly-flight-top);
+  left: var(--butterfly-flight-left);
+  z-index: 80;
+}
+
 .butterfly-friend.is-following span {
   background-image: url("assets/butterflySideSheet.png");
   background-size: 224px 42px;
@@ -101,6 +109,91 @@ a {
 .butterfly-friend:focus-visible {
   outline: 2px solid var(--warm-accent);
   outline-offset: 4px;
+}
+
+.decor-butterfly {
+  position: absolute;
+  --butterfly-front-sheet-width: 112px;
+  --butterfly-side-sheet-width: 224px;
+  z-index: 1;
+  display: block;
+  width: 56px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  image-rendering: pixelated;
+  transform: translate3d(var(--butterfly-x, 0px), var(--butterfly-y, 0px), 0);
+}
+
+.decor-butterfly span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("assets/butterflyFrontSheet.png") 0 0 / 112px 42px no-repeat;
+  image-rendering: pixelated;
+  animation: butterfly-front-flap 520ms steps(2) infinite;
+  pointer-events: none;
+}
+
+.decor-butterfly.is-following {
+  z-index: 6;
+  transition: none;
+}
+
+.decor-butterfly.is-following span {
+  background-image: url("assets/butterflySideSheet.png");
+  background-size: 224px 42px;
+  animation: butterfly-side-flap 520ms steps(4) infinite;
+}
+
+.decor-butterfly.is-following.is-facing-right span {
+  transform: scaleX(-1);
+}
+
+.decor-butterfly.is-following.is-facing-left span {
+  transform: scaleX(1);
+}
+
+.decor-butterfly:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 4px;
+}
+
+.decor-butterfly-hero-ne {
+  top: clamp(126px, 15vw, 178px);
+  left: clamp(57%, 61vw, 68%);
+}
+
+.decor-butterfly-projects-east {
+  top: clamp(160px, 19vw, 240px);
+  right: clamp(34px, 8vw, 124px);
+}
+
+.decor-butterfly-experience-nw {
+  top: clamp(78px, 8vw, 128px);
+  left: clamp(42px, 9vw, 142px);
+}
+
+.decor-butterfly-about-gap {
+  top: -76px;
+  left: clamp(34px, 8vw, 128px);
+}
+
+.decor-butterfly-about-currently {
+  top: clamp(396px, 34vw, 522px);
+  right: clamp(36px, 8vw, 120px);
+}
+
+.decor-butterfly-contact-west {
+  top: clamp(292px, 30vw, 442px);
+  left: clamp(32px, 7vw, 112px);
+}
+
+.decor-butterfly-footer-house {
+  top: -18%;
+  right: clamp(80px, 14vw, 220px);
 }
 
 @keyframes butterfly-front-flap {
@@ -239,14 +332,15 @@ a {
 }
 
 .hero-section {
+  position: relative;
   display: grid;
   width: 100%;
-  max-width: 1120px;
-  grid-template-columns: minmax(280px, 520px) minmax(300px, 520px);
+  max-width: 1320px;
+  grid-template-columns: minmax(280px, 560px) minmax(300px, 500px);
   align-items: center;
   justify-content: center;
   justify-items: center;
-  column-gap: clamp(48px, 7vw, 96px);
+  column-gap: clamp(104px, 9vw, 160px);
   margin-inline: auto;
   min-height: 708px;
   padding: 160px 48px 72px;
@@ -255,7 +349,7 @@ a {
 .hero-copy {
   display: flex;
   width: 100%;
-  max-width: 587px;
+  max-width: 620px;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -379,7 +473,7 @@ a {
 }
 
 .hero-art {
-  width: min(582px, 100%);
+  width: min(500px, 100%);
   max-width: 100%;
   justify-self: center;
 }
@@ -488,6 +582,11 @@ a {
   transition:
     opacity 220ms ease,
     transform 220ms ease;
+}
+
+.projects-grid.is-syncing,
+.projects-grid.is-syncing .project-card {
+  transition: none !important;
 }
 
 .project-card.is-active,
@@ -742,17 +841,53 @@ a {
   cursor: pointer;
 }
 
+.project-modal-project-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  width: 52px;
+  height: 64px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  image-rendering: pixelated;
+  place-items: center;
+  transform: translateY(-50%);
+  transition: transform 180ms ease;
+}
+
+.project-modal-project-arrow img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+.project-modal-project-prev {
+  left: max(10px, calc(50% - min(640px, calc((100vw - 32px) / 2)) - 68px));
+}
+
+.project-modal-project-next {
+  right: max(10px, calc(50% - min(640px, calc((100vw - 32px) / 2)) - 68px));
+  transform: translateY(-50%) scaleX(-1);
+}
+
 .project-modal-panel {
   position: relative;
   z-index: 1;
   display: grid;
   width: min(1280px, calc(100vw - 32px));
   max-height: calc(100vh - 32px);
+  box-sizing: border-box;
   justify-items: center;
   gap: 18px;
-  padding: clamp(44px, 5.6vw, 76px);
+  padding: clamp(24px, 3.8vw, 50px);
+  border: 26px solid transparent;
   overflow: auto;
-  background: url("assets/aboutMe_backgroundHorizontal.png") center / 100% 100% no-repeat;
+  background: transparent;
+  border-image: url("assets/aboutMe_backgroundHorizontal.png") 48 fill / 26px stretch;
   color: #473c2c;
   image-rendering: pixelated;
   outline: none;
@@ -787,7 +922,7 @@ a {
 
 .project-modal-image {
   position: relative;
-  width: min(760px, 82%);
+  width: min(640px, 72%);
   aspect-ratio: 16 / 9;
   display: grid;
   overflow: hidden;
@@ -865,6 +1000,11 @@ a {
   outline-offset: 3px;
 }
 
+.project-modal-project-arrow:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 3px;
+}
+
 .project-modal-image-dots {
   display: none;
   align-items: center;
@@ -897,11 +1037,13 @@ a {
     width: min(720px, calc(100vw - 18px));
     max-height: calc(100vh - 28px);
     gap: 12px;
-    padding: 28px 24px;
+    padding: 16px 14px;
+    border-width: 20px;
+    border-image-width: 20px;
   }
 
   .project-modal-image {
-    width: min(600px, calc(100vw - 112px));
+    width: min(520px, calc(100vw - 112px));
   }
 
   .project-modal-image-dots {
@@ -1018,6 +1160,10 @@ a {
   list-style: none;
 }
 
+.project-modal-actions {
+  gap: 24px;
+}
+
 .project-modal-actions a,
 .project-modal-actions button,
 .project-modal-tags li {
@@ -1088,7 +1234,7 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 48px;
-  padding: 64px 64px 96px;
+  padding: 64px 32px 96px;
   scroll-margin-top: 180px;
   content-visibility: auto;
   contain-intrinsic-size: 900px;
@@ -1097,14 +1243,14 @@ a {
 .experience-carousel-shell {
   position: relative;
   width: 100%;
-  max-width: 874px;
+  max-width: 1284px;
 }
 
 .experience-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 114px;
+  gap: 72px;
 }
 
 .experience-card {
@@ -1113,7 +1259,7 @@ a {
   display: grid;
   width: 380px;
   height: 438px;
-  padding: 96px 48px 56px;
+  padding: 76px 48px 76px;
   place-items: center;
 }
 
@@ -1243,28 +1389,32 @@ a {
 .about-carousel-shell {
   position: relative;
   width: 100%;
-  max-width: 1020px;
+  --about-card-width: clamp(180px, 20vw, 288px);
+  --about-card-gap: clamp(24px, 6.4vw, 92px);
+  max-width: calc((var(--about-card-width) * 3) + (var(--about-card-gap) * 2));
 }
 
 .about-card-list {
   display: flex;
+  align-items: stretch;
   justify-content: center;
-  gap: 92px;
+  gap: var(--about-card-gap);
 }
 
 .about-card {
   display: flex;
-  width: 288px;
+  width: var(--about-card-width);
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  align-self: stretch;
+  gap: clamp(20px, calc(var(--about-card-width) * 0.097), 28px);
 }
 
 .about-card-label {
   position: relative;
   display: grid;
-  width: 176px;
-  height: 58px;
+  width: calc(var(--about-card-width) * 0.611);
+  height: calc(var(--about-card-width) * 0.201);
   padding: 0;
   border: 0;
   background: transparent;
@@ -1298,22 +1448,23 @@ a {
   margin: 0;
   padding-top: 2px;
   color: var(--main-yellow);
-  font-size: 1.45rem;
+  font-size: clamp(1.16rem, calc(var(--about-card-width) * 0.081), 1.45rem);
   font-weight: 400;
   line-height: 1;
   text-align: center;
   text-shadow: 1px 1px 1px #000;
-  transform: translateX(14px);
+  transform: translateX(calc(var(--about-card-width) * 0.049));
   white-space: nowrap;
 }
 
 .about-card-paper {
   display: flex;
-  width: 288px;
-  min-height: 384px;
+  width: var(--about-card-width);
+  min-height: calc(var(--about-card-width) * 1.333);
+  flex: 1;
   align-items: flex-start;
   justify-content: center;
-  padding: 42px 28px;
+  padding: calc(var(--about-card-width) * 0.146) calc(var(--about-card-width) * 0.097);
   background: url("assets/aboutMe_backgrounds.png") center / 100% 100% no-repeat;
   color: #473c2c;
   font-size: 1.5rem;
@@ -1328,13 +1479,13 @@ a {
 
 .about-card-paper p,
 .about-card-paper li {
-  font-size: clamp(1rem, 1.7vw, 1.5rem);
+  font-size: clamp(1rem, calc(var(--about-card-width) * 0.052), 1.5rem);
   line-height: 1.18;
 }
 
 .about-card-paper ul {
   display: grid;
-  gap: 14px;
+  gap: clamp(10px, calc(var(--about-card-width) * 0.049), 14px);
   padding-left: 0;
   list-style: none;
 }
@@ -1563,12 +1714,18 @@ a {
   left: 50%;
   margin: 0;
   color: var(--main-yellow);
-  font-size: 1.65rem;
+  font-size: clamp(0.95rem, 1.3vw, 1.65rem);
   line-height: 1;
   text-align: center;
   text-shadow: 1px 1px 1px #000;
   transform: translate(-50%, -50%);
   white-space: nowrap;
+}
+
+@media (max-width: 1200px) and (min-width: 641px) {
+  .site-footer p {
+    font-size: clamp(0.8rem, 1.45vw, 1.15rem);
+  }
 }
 
 .site-footer p span {
@@ -1611,6 +1768,42 @@ a {
   outline-offset: 4px;
 }
 
+.experience-dots,
+.about-dots {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 12px;
+  margin-top: 8px;
+}
+
+.experience-dot,
+.about-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 1px solid #473c2c;
+  border-radius: 50%;
+  background: var(--main-yellow);
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition: background-color 160ms ease;
+}
+
+.experience-dot[aria-current="true"],
+.experience-dot:focus-visible,
+.about-dot[aria-current="true"],
+.about-dot:focus-visible {
+  background: var(--warm-accent);
+}
+
+.experience-dot:focus-visible,
+.about-dot:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 3px;
+}
+
 .carousel-arrow {
   display: grid;
   width: clamp(28px, calc(var(--project-card-width) * 0.08), 40px);
@@ -1651,6 +1844,14 @@ a {
     transform: translateY(-56%) scaleX(-1);
   }
 
+  .project-modal-project-prev:hover {
+    transform: translateY(-56%);
+  }
+
+  .project-modal-project-next:hover {
+    transform: translateY(-56%) scaleX(-1);
+  }
+
   .project-dot:hover {
     background: var(--warm-accent);
     transform: translateY(-3px);
@@ -1677,6 +1878,99 @@ a {
   .hero-section {
     column-gap: 48px;
     padding-inline: 32px;
+  }
+
+  .experience-carousel-shell {
+    max-width: 874px;
+  }
+
+  .experience-list {
+    gap: 72px 114px;
+  }
+
+  .about-section {
+    padding-inline: clamp(24px, 5vw, 48px);
+  }
+
+  .about-carousel-shell {
+    --about-card-width: clamp(150px, 18vw, 220px);
+    --about-card-gap: clamp(16px, 4.6vw, 52px);
+  }
+
+  .about-card-paper {
+    padding: calc(var(--about-card-width) * 0.13) calc(var(--about-card-width) * 0.08);
+  }
+
+  .about-card-label h3 {
+    font-size: clamp(0.82rem, calc(var(--about-card-width) * 0.068), 1.18rem);
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 901px) {
+  .hero-section {
+    grid-template-columns: minmax(320px, 460px) minmax(260px, 390px);
+    column-gap: clamp(52px, 6vw, 68px);
+  }
+
+  .hero-heading-group p {
+    font-size: clamp(2.25rem, 3.35vw, 3rem);
+  }
+
+  .hero-art {
+    width: min(390px, 100%);
+  }
+}
+
+@media (max-width: 1280px) and (min-width: 641px) {
+  .decor-butterfly-about-gap {
+    top: 112px;
+  }
+
+  .decor-butterfly-about-currently {
+    top: 560px;
+  }
+}
+
+@media (max-width: 800px) and (min-width: 641px) {
+  .contact-board {
+    width: min(560px, calc(100vw - 48px));
+  }
+
+  .contact-board-content {
+    width: 80%;
+    transform: translate(0, 10px);
+  }
+
+  .contact-form {
+    width: min(430px, 100%);
+    gap: 8px;
+    font-size: clamp(0.78rem, 1.8vw, 0.95rem);
+  }
+
+  .contact-form label {
+    grid-template-columns: clamp(72px, 15vw, 92px) minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .contact-name-field {
+    padding-top: clamp(22px, 5vw, 34px);
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 90%;
+    padding: 4px 7px;
+  }
+
+  .contact-form textarea {
+    min-height: clamp(104px, 20vw, 140px);
+  }
+
+  .contact-form button {
+    min-width: clamp(94px, 18vw, 118px);
+    min-height: clamp(30px, 5vw, 36px);
+    margin-top: clamp(14px, 3vw, 20px);
+    font-size: clamp(0.78rem, 1.7vw, 0.95rem);
   }
 }
 
@@ -1750,6 +2044,61 @@ a {
 }
 
 @media (max-width: 640px) {
+  body {
+    min-width: 0;
+  }
+
+  .decor-butterfly {
+    --butterfly-front-sheet-width: 80px;
+    --butterfly-side-sheet-width: 160px;
+    width: 34px;
+    height: 30px;
+  }
+
+  .decor-butterfly span {
+    background-size: 80px 30px;
+  }
+
+  .decor-butterfly.is-following span {
+    background-size: 160px 30px;
+  }
+
+  .decor-butterfly-hero-ne {
+    top: 76px;
+    right: 10%;
+    left: auto;
+  }
+
+  .decor-butterfly-projects-east {
+    top: 132px;
+    right: 14px;
+  }
+
+  .decor-butterfly-experience-nw {
+    top: 58px;
+    left: 14px;
+  }
+
+  .decor-butterfly-about-gap {
+    top: -46px;
+    left: 18px;
+  }
+
+  .decor-butterfly-about-currently {
+    top: 326px;
+    right: 14px;
+  }
+
+  .decor-butterfly-contact-west {
+    top: 172px;
+    left: 14px;
+  }
+
+  .decor-butterfly-footer-house {
+    top: -24%;
+    right: 18%;
+  }
+
   .butterfly-friend {
     --butterfly-front-sheet-width: 80px;
     --butterfly-side-sheet-width: 160px;
@@ -2011,15 +2360,30 @@ a {
     position: absolute;
     top: 0;
     left: 50%;
-    display: none;
+    display: grid;
     width: 190px;
     height: 219px;
-    padding: 48px 24px 28px;
-    transform: translateX(-50%);
+    padding: 38px 24px 38px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(8px) scale(0.96);
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease;
   }
 
   .experience-card.is-active {
-    display: grid;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .experience-card.is-active.is-entering-forward {
+    animation: about-enter-forward 260ms ease-out;
+  }
+
+  .experience-card.is-active.is-entering-backward {
+    animation: about-enter-backward 260ms ease-out;
   }
 
   .experience-content {
@@ -2065,6 +2429,10 @@ a {
     pointer-events: none;
   }
 
+  .experience-dots {
+    display: flex;
+  }
+
   .about-section {
     gap: 40px;
     padding: 48px 24px 72px;
@@ -2079,28 +2447,43 @@ a {
   }
 
   .about-carousel-shell {
-    width: 294px;
+    width: min(326px, calc(100vw - 28px));
   }
 
   .about-card-list {
     position: relative;
     display: block;
-    width: 294px;
-    min-height: 276px;
+    width: 100%;
+    min-height: 346px;
   }
 
   .about-card {
     position: absolute;
     top: 0;
     left: 50%;
-    display: none;
-    width: 144px;
+    display: flex;
+    width: min(190px, 64vw);
     gap: 14px;
-    transform: translateX(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(8px) scale(0.96);
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease;
   }
 
   .about-card.is-active {
-    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .about-card.is-active.is-entering-forward {
+    animation: about-enter-forward 260ms ease-out;
+  }
+
+  .about-card.is-active.is-entering-backward {
+    animation: about-enter-backward 260ms ease-out;
   }
 
   .about-card-label {
@@ -2110,13 +2493,13 @@ a {
 
   .about-card-label h3 {
     padding-top: 1px;
-    font-size: 1.0625rem;
+    font-size: 0.95rem;
   }
 
   .about-card-paper {
-    width: 144px;
-    min-height: 192px;
-    padding: 20px 14px;
+    width: 100%;
+    min-height: 286px;
+    padding: 24px 18px;
     font-size: 1rem;
   }
 
@@ -2132,69 +2515,155 @@ a {
 
   .about-carousel-controls {
     position: absolute;
-    top: 132px;
+    top: 177px;
     left: 50%;
     display: flex;
     justify-content: space-between;
-    width: 294px;
+    width: 100%;
     transform: translateX(-50%);
     pointer-events: none;
   }
 
+  .about-dots {
+    display: flex;
+  }
+
   .contact-section {
-  min-height: 724px;
+    min-height: 724px;
     gap: 40px;
-    padding: 48px 24px 72px;
+    padding: 48px 0 72px;
     scroll-margin-top: 72px;
   }
 
   .contact-board {
-    width: min(378px, calc(100vw - 18px));
+    width: min(378px, 82vw);
+    margin-inline: auto;
   }
 
   .contact-board-content {
-    width: 86%;
+    width: 72%;
+    margin-top: -9%;
+    transform: translate(0, 5px);
   }
 
   .contact-form {
-    width: 320px;
-    gap: 5px;
-    font-size: 0.58rem;
+    width: 100%;
+    gap: clamp(2px, 1vw, 4px);
+    font-size: clamp(0.34rem, calc(0.12rem + 0.95vw), 0.56rem);
   }
 
   .contact-form label {
-    grid-template-columns: 64px minmax(0, 1fr);
-    gap: 4px;
+    grid-template-columns: 24% minmax(0, 1fr);
+    gap: clamp(3px, 1.2vw, 4px);
   }
 
   .contact-form span {
-    padding-top: 4px;
+    padding-top: clamp(2px, 0.9vw, 4px);
   }
 
   .contact-name-field {
-    padding-top: 24px;
+    padding-top: clamp(8px, 4vw, 24px);
   }
 
   .contact-form input,
   .contact-form textarea {
-    padding: 3px 5px;
+    width: 100%;
+    padding: clamp(1px, 0.55vw, 3px) clamp(3px, 1vw, 5px);
     border-width: 1px;
+    line-height: 0.95;
   }
 
   .contact-form textarea {
-    min-height: 106px;
+    min-height: clamp(42px, 17vw, 106px);
   }
 
   .contact-form button {
-    min-width: 88px;
-    min-height: 26px;
-    margin-top: 18px;
-    padding: 3px 12px;
-    font-size: 0.58rem;
+    min-width: clamp(38px, 16vw, 78px);
+    min-height: clamp(16px, 5vw, 24px);
+    margin-top: clamp(6px, 2vw, 12px);
+    padding: clamp(2px, 0.7vw, 3px) clamp(5px, 1.6vw, 12px);
+    font-size: inherit;
   }
 
   .contact-form-status {
     font-size: 0.625rem;
+  }
+
+  @media (min-width: 300px) {
+    .contact-board {
+      width: min(340px, 82vw);
+    }
+
+    .contact-board-content {
+      width: 80%;
+      transform: translate(0, 4px);
+    }
+
+    .contact-form {
+      font-size: clamp(0.42rem, calc(0.18rem + 0.78vw), 0.5rem);
+    }
+
+    .contact-form label {
+      grid-template-columns: 20% minmax(0, 1fr);
+    }
+
+    .contact-name-field {
+      padding-top: clamp(12px, 3.8vw, 18px);
+    }
+
+    .contact-form textarea {
+      min-height: clamp(54px, 15vw, 90px);
+    }
+
+    .contact-form button {
+      position: relative;
+      top: clamp(10px, 3vw, 16px);
+      min-width: clamp(48px, 13vw, 68px);
+      min-height: clamp(18px, 4.4vw, 22px);
+      margin-top: clamp(8px, 2vw, 12px);
+    }
+  }
+
+  @media (min-width: 350px) and (max-width: 419px) {
+    .contact-form textarea {
+      min-height: clamp(72px, 19vw, 86px);
+    }
+  }
+
+  @media (min-width: 420px) {
+    .contact-form {
+      gap: 4px;
+      font-size: 0.5rem;
+    }
+
+    .contact-form label {
+      gap: 4px;
+    }
+
+    .contact-form span {
+      padding-top: 4px;
+    }
+
+    .contact-name-field {
+      padding-top: 18px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 3px 5px;
+    }
+
+    .contact-form textarea {
+      min-height: 90px;
+    }
+
+    .contact-form button {
+      top: 16px;
+      min-width: 68px;
+      min-height: 22px;
+      margin-top: 12px;
+      padding: 3px 12px;
+    }
   }
 
   .site-footer {
@@ -2357,6 +2826,19 @@ a {
     height: 24px;
   }
 
+  .project-modal-project-arrow {
+    width: 34px;
+    height: 41px;
+  }
+
+  .project-modal-project-prev {
+    left: 6px;
+  }
+
+  .project-modal-project-next {
+    right: 6px;
+  }
+
   .project-modal-image {
     width: min(304px, calc(100vw - 72px));
   }
@@ -2402,7 +2884,7 @@ a {
   }
 
   .project-modal-actions {
-    gap: 16px;
+    gap: 32px;
   }
 
   .project-modal-actions a,
@@ -2470,14 +2952,55 @@ a {
   }
 }
 
-@media (hover: none), (pointer: coarse) {
+@media (max-width: 370px) {
+  .decor-butterfly-hero-ne {
+    top: 112px;
+    right: 8px;
+  }
+
+  .decor-butterfly-projects-east,
+  .decor-butterfly-about-currently {
+    right: 6px;
+  }
+
+  .decor-butterfly-experience-nw,
+  .decor-butterfly-about-gap,
+  .decor-butterfly-contact-west {
+    left: 6px;
+  }
+
   .butterfly-friend {
+    top: 860px;
+    left: 12px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .butterfly-friend,
+  .decor-butterfly {
     cursor: default;
     pointer-events: none;
   }
 }
 
 @media (max-width: 960px) and (min-width: 641px) {
+  .decor-butterfly-hero-ne {
+    top: 228px;
+    left: auto;
+    right: 18%;
+  }
+
+  .decor-butterfly-projects-east,
+  .decor-butterfly-about-currently {
+    right: 28px;
+  }
+
+  .decor-butterfly-experience-nw,
+  .decor-butterfly-about-gap,
+  .decor-butterfly-contact-west {
+    left: 28px;
+  }
+
   .portfolio-nav {
     width: min(816px, calc(100% - 48px));
   }
@@ -2618,6 +3141,30 @@ a {
 
   50% {
     transform: translateY(-10px);
+  }
+}
+
+@keyframes about-enter-forward {
+  from {
+    opacity: 0;
+    transform: translateX(-34%) translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes about-enter-backward {
+  from {
+    opacity: 0;
+    transform: translateX(-66%) translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 }
 
