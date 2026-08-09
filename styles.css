@@ -1183,7 +1183,7 @@ a {
 .experience-points li::before {
   margin-right: 4px;
   color: var(--soft-green);
-  content: "⸙";
+  content: "✦";
 }
 
 .experience-tags {
@@ -1342,7 +1342,7 @@ a {
 .about-card-paper li::before {
   margin-right: 4px;
   color: var(--soft-green);
-  content: "⸙";
+  content: "✦";
 }
 
 .about-carousel-controls {
