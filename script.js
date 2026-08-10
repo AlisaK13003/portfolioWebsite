@@ -401,21 +401,6 @@ if (projectCards.length > 0) {
   let isProjectTransitioning = false;
   let projectTransitionTimer = 0;
 
-  function updateProjectCarouselHeight() {
-    const activeCard = projectCards[activeProjectIndex];
-
-    if (!projectsGrid || !activeCard) {
-      return;
-    }
-
-    window.requestAnimationFrame(() => {
-      projectsGrid.style.setProperty(
-        "--project-carousel-height",
-        `${Math.ceil(activeCard.scrollHeight)}px`,
-      );
-    });
-  }
-
   function getProjectDirection(index) {
     const targetIndex = (index + projectCards.length) % projectCards.length;
     const forwardSteps = (targetIndex - activeProjectIndex + projectCards.length) % projectCards.length;
@@ -480,7 +465,6 @@ if (projectCards.length > 0) {
       }
     });
 
-    updateProjectCarouselHeight();
   }
 
   syncProjectCarouselToCard = (card) => {
@@ -513,14 +497,6 @@ if (projectCards.length > 0) {
       window.clearTimeout(projectTransitionTimer);
     });
   });
-
-  if ("ResizeObserver" in window && projectsGrid) {
-    const projectHeightObserver = new ResizeObserver(updateProjectCarouselHeight);
-    projectCards.forEach((card) => projectHeightObserver.observe(card));
-  }
-
-  window.addEventListener("resize", updateProjectCarouselHeight);
-  window.addEventListener("load", updateProjectCarouselHeight);
 
   setActiveProject(activeProjectIndex, null, true);
 }

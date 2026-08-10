@@ -567,8 +567,11 @@ a {
   justify-items: center;
   width: 100%;
   max-width: 1120px;
-  min-height: max(calc((var(--project-card-width) * 1.11) + 54px), var(--project-carousel-height, 0px));
-  transition: min-height 220ms ease;
+  min-height: calc(
+    (var(--project-card-width) * 0.606)
+    + clamp(18px, calc(var(--project-card-width) * 0.056), 28px)
+    + clamp(32px, calc(var(--project-card-width) * 0.08), 40px)
+  );
 }
 
 .project-card {
@@ -577,10 +580,9 @@ a {
   left: 50%;
   display: none;
   width: var(--project-card-width);
-  min-height: calc(var(--project-card-width) * 1.12);
   flex-direction: column;
   align-items: center;
-  gap: 48px;
+  gap: clamp(18px, calc(var(--project-card-width) * 0.056), 28px);
   opacity: 0;
   pointer-events: none;
   transform: translateX(-50%) scale(0.72);
@@ -635,7 +637,9 @@ a {
 .project-card.is-prev .project-island-content,
 .project-card.is-next .project-island-content,
 .project-card.is-prev .project-note,
-.project-card.is-next .project-note {
+.project-card.is-next .project-note,
+.project-card.is-prev .project-actions,
+.project-card.is-next .project-actions {
   display: none;
 }
 
@@ -1255,7 +1259,7 @@ a {
 }
 
 .project-modal-list li::before {
-  color: var(--sage-green);
+  color: var(--soft-green);
   content: "✦ ";
 }
 
@@ -2902,7 +2906,7 @@ a {
     position: relative;
     display: block;
     width: 274px;
-    min-height: max(220px, var(--project-carousel-height, 0px));
+    min-height: 138px;
   }
 
   .project-card {
@@ -2911,7 +2915,6 @@ a {
     left: 50%;
     display: none;
     width: 190px;
-    min-height: 203px;
     gap: 10px;
     opacity: 0;
     pointer-events: none;
