@@ -812,10 +812,19 @@ a {
   background: url("assets/buttonWithBorder.png") center / 100% 100% no-repeat;
   width: clamp(118px, calc(var(--project-card-width) * 0.29), 145px);
   min-height: clamp(32px, calc(var(--project-card-width) * 0.08), 40px);
+  gap: 7px;
   padding: 5px max(14px, 4px);
   font-size: clamp(0.95rem, calc(var(--project-card-width) * 0.04), 1.25rem);
   cursor: pointer;
   transition: transform 180ms ease;
+}
+
+.project-actions .button-icon,
+.project-modal-actions .button-icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+  image-rendering: pixelated;
 }
 
 .project-actions a:focus-visible,
@@ -902,7 +911,7 @@ a {
   box-sizing: border-box;
   justify-items: center;
   gap: 18px;
-  padding: clamp(24px, 3.8vw, 50px);
+  padding: clamp(12px, 1.9vw, 25px);
   border: 26px solid transparent;
   overflow: auto;
   background: transparent;
@@ -941,7 +950,7 @@ a {
 
 .project-modal-image {
   position: relative;
-  width: min(640px, 72%);
+  width: min(660px, 74%);
   aspect-ratio: 16 / 9;
   display: grid;
   overflow: hidden;
@@ -952,12 +961,19 @@ a {
 }
 
 .project-modal-image > img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   border-radius: 5px;
   object-fit: cover;
   image-rendering: pixelated;
+  opacity: 0;
+}
+
+.project-modal-image > img.is-active {
+  opacity: 1;
 }
 
 .project-modal-image:not(.has-carousel) {
@@ -1025,14 +1041,15 @@ a {
 }
 
 .project-modal-image-dots {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin: 34px 0 4px;
 }
 
-.project-modal-image-dots.has-carousel {
-  display: flex;
+.project-modal-image-dots[hidden] {
+  display: none;
 }
 
 .project-modal-image-dots button {
@@ -1056,7 +1073,7 @@ a {
     width: min(720px, calc(100vw - 18px));
     max-height: calc(100vh - 28px);
     gap: 12px;
-    padding: 16px 14px;
+    padding: 8px 7px;
     border-width: 20px;
     border-image-width: 20px;
   }
@@ -1107,7 +1124,7 @@ a {
 
 .project-modal-summary {
   display: grid;
-  width: min(760px, 88%);
+  width: min(690px, 88%);
   justify-items: center;
 }
 
@@ -1130,6 +1147,10 @@ a {
   text-align: center;
 }
 
+.project-modal-body h3:first-child {
+  margin-top: 0;
+}
+
 .project-modal-body p {
   max-width: 760px;
   margin: 0;
@@ -1144,23 +1165,42 @@ a {
 }
 
 .project-modal-facts {
+  --fact-gutter: clamp(13px, 1.7vw, 19px);
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
-  gap: 10px;
-  width: min(760px, 100%);
+  aspect-ratio: 351 / 144;
+  width: min(610px, 100%);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--fact-gutter);
   margin: 0 auto 4px;
+  padding: var(--fact-gutter);
+  background: url("assets/modalDetails.png") center / 100% 100% no-repeat;
+  image-rendering: pixelated;
 }
 
-.project-modal-facts div {
+.project-modal-fact {
   display: grid;
-  gap: 4px;
-  padding: 8px 12px;
-  background: rgba(214, 184, 109, 0.22);
+  align-content: start;
+  justify-items: start;
+  gap: clamp(10px, 1.4vw, 16px);
+  min-width: 0;
+  padding-left: clamp(42px, 6.6vw, 72px);
+  padding-top: clamp(8px, 1.2vw, 14px);
+}
+
+.project-modal-fact:nth-child(1),
+.project-modal-fact:nth-child(3) {
+  padding-left: clamp(34px, 5.6vw, 60px);
+}
+
+.project-modal-fact:nth-child(4) {
+  padding-right: clamp(0px, 0.8vw, 8px);
 }
 
 .project-modal-facts dt {
-  color: var(--warmer-accent);
-  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  color: #473c2c;
+  font-size: clamp(0.78rem, 1.08vw, 1rem);
+  line-height: 1;
   text-transform: uppercase;
 }
 
@@ -1170,6 +1210,31 @@ a {
   font-size: clamp(0.98rem, 1.2vw, 1.15rem);
   line-height: 1.15;
   text-align: center;
+}
+
+.project-modal-fact-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 4px 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-modal-fact-tags li {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: clamp(36px, 4.6vw, 52px);
+  min-height: clamp(18px, 2vw, 23px);
+  padding: 5px clamp(7px, 0.85vw, 10px) 3px;
+  color: #473c2c;
+  background: url("assets/button.png") center / 100% 100% no-repeat;
+  font-size: clamp(0.63rem, 0.88vw, 0.84rem);
+  line-height: 1;
+  white-space: nowrap;
+  image-rendering: pixelated;
 }
 
 .project-modal-body .project-modal-role {
@@ -1242,8 +1307,33 @@ a {
   }
 
   .project-modal-facts {
-    grid-template-columns: 1fr;
-    gap: 6px;
+    --fact-gutter: 8px;
+    width: min(360px, 100%);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-modal-facts dt {
+    font-size: 0.62rem;
+  }
+
+  .project-modal-fact {
+    padding-left: 22px;
+  }
+
+  .project-modal-fact:nth-child(1),
+  .project-modal-fact:nth-child(3) {
+    padding-left: 16px;
+  }
+
+  .project-modal-fact-tags {
+    gap: 4px;
+  }
+
+  .project-modal-fact-tags li {
+    min-width: 34px;
+    min-height: 15px;
+    padding: 3px 6px 2px;
+    font-size: 0.5rem;
   }
 }
 
@@ -1261,8 +1351,12 @@ a {
   list-style: none;
 }
 
+.project-modal-tags[hidden] {
+  display: none;
+}
+
 .project-modal-actions {
-  gap: 24px;
+  gap: 18px;
 }
 
 .project-modal-actions a,
@@ -1285,12 +1379,13 @@ a {
 
 .project-modal-actions a,
 .project-modal-actions button {
-  min-width: 220px;
-  min-height: 58px;
-  padding: 10px 28px;
+  min-width: 156px;
+  min-height: 42px;
+  gap: 8px;
+  padding: 7px 18px;
   background-image: url("assets/buttonWithBorder.png");
   cursor: pointer;
-  font-size: 1.45rem;
+  font-size: 1.08rem;
   transition: transform 180ms ease;
 }
 
@@ -2941,7 +3036,7 @@ a {
   }
 
   .project-modal-image {
-    width: min(304px, calc(100vw - 72px));
+    width: min(320px, calc(100vw - 56px));
   }
 
   .project-modal-image-arrow {
@@ -2960,8 +3055,7 @@ a {
 
   .project-modal-image-dots {
     gap: 6px;
-    margin-top: 2px;
-    margin-bottom: 4px;
+    margin: 24px 0 2px;
   }
 
   .project-modal-image-dots button {
@@ -2994,16 +3088,16 @@ a {
   }
 
   .project-modal-actions {
-    gap: 32px;
+    gap: 18px;
   }
 
   .project-modal-actions a,
   .project-modal-actions button {
-    width: 154px;
+    width: 118px;
     min-width: 0;
-    min-height: 42px;
-    padding: 6px 16px;
-    font-size: 1rem;
+    min-height: 32px;
+    padding: 5px 10px;
+    font-size: 0.82rem;
   }
 
   .project-modal-tags {

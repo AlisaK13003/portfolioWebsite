@@ -18,6 +18,7 @@ const projectModalSubtitle = document.querySelector("[data-project-modal-subtitl
 const projectModalSummary = document.querySelector("[data-project-modal-summary]");
 const projectModalMedia = document.querySelector("[data-project-modal-media]");
 const projectModalImage = document.querySelector("[data-project-modal-image]");
+const projectModalImageLayers = [...document.querySelectorAll("[data-project-modal-image-layer]")];
 const projectModalPrev = document.querySelector("[data-project-modal-prev]");
 const projectModalNext = document.querySelector("[data-project-modal-next]");
 const projectModalProjectPrev = document.querySelector("[data-project-modal-project-prev]");
@@ -529,10 +530,11 @@ if (projectModal) {
   let activeProjectModalCard = null;
   let projectModalImages = [];
   let activeProjectModalImageIndex = 0;
+  let activeProjectModalImageLayer = 0;
   let projectModalImageTimer = 0;
-  let projectModalImageAnimation = null;
+  let isProjectModalImageLoading = false;
   const projectModalImageCache = new WeakMap();
-  const PROJECT_MODAL_IMAGE_FADE_MS = 240;
+  const projectModalPreloadCache = new Map();
 
   function clearProjectModal() {
     if (projectModalActions) {
@@ -545,6 +547,7 @@ if (projectModal) {
 
     if (projectModalImageDots) {
       projectModalImageDots.innerHTML = "";
+      projectModalImageDots.hidden = true;
     }
 
     if (projectModalSubtitle) {
@@ -573,17 +576,89 @@ if (projectModal) {
     });
   }
 
-  function finishProjectModalImageFade() {
-    projectModalImageAnimation?.cancel();
-    projectModalImageAnimation = null;
+  function preloadProjectModalImage(src) {
+    if (projectModalPreloadCache.has(src)) {
+      return projectModalPreloadCache.get(src);
+    }
 
-    if (projectModalImage) {
-      projectModalImage.style.opacity = "";
+    const preloadPromise = new Promise((resolve) => {
+      const image = new Image();
+      image.decoding = "async";
+      image.onload = async () => {
+        if (image.decode) {
+          try {
+            await image.decode();
+          } catch {
+            // The image loaded; failed decode promises should not block the carousel.
+          }
+        }
+
+        resolve(src);
+      };
+      image.onerror = () => resolve(src);
+      image.src = src;
+    });
+
+    projectModalPreloadCache.set(src, preloadPromise);
+    return preloadPromise;
+  }
+
+  function preloadProjectModalImages(images) {
+    images.forEach((src) => {
+      preloadProjectModalImage(src);
+    });
+  }
+
+  function setActiveProjectModalImageLayer(layerIndex) {
+    activeProjectModalImageLayer = layerIndex;
+    projectModalImageLayers.forEach((imageLayer, imageLayerIndex) => {
+      const isActiveLayer = imageLayerIndex === activeProjectModalImageLayer;
+      imageLayer.classList.toggle("is-active", isActiveLayer);
+      imageLayer.setAttribute("aria-hidden", isActiveLayer ? "false" : "true");
+    });
+  }
+
+  async function prepareProjectModalImageLayer(imageLayer, src) {
+    if (!imageLayer) {
+      return;
+    }
+
+    if (imageLayer.getAttribute("src") !== src) {
+      imageLayer.src = src;
+    }
+
+    if (imageLayer.complete && imageLayer.naturalWidth > 0) {
+      if (imageLayer.decode) {
+        try {
+          await imageLayer.decode();
+        } catch {
+          // The image has loaded; a decode rejection should not block the layer swap.
+        }
+      }
+
+      return;
+    }
+
+    await new Promise((resolve) => {
+      imageLayer.addEventListener("load", resolve, { once: true });
+      imageLayer.addEventListener("error", resolve, { once: true });
+    });
+
+    if (imageLayer.decode) {
+      try {
+        await imageLayer.decode();
+      } catch {
+        // The image has loaded; a decode rejection should not block the layer swap.
+      }
     }
   }
 
-  function setProjectModalImage(index, options = {}) {
-    if (!projectModalImage || projectModalImages.length === 0) {
+  async function setProjectModalImage(index, options = {}) {
+    if (projectModalImageLayers.length === 0 || projectModalImages.length === 0) {
+      return;
+    }
+
+    if (isProjectModalImageLoading && !options.force) {
       return;
     }
 
@@ -594,54 +669,29 @@ if (projectModal) {
       return;
     }
 
-    const useAnimation =
-      options.animate &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const nextSrc = projectModalImages[nextIndex];
+    isProjectModalImageLoading = true;
+    const nextLayerIndex = options.force ? activeProjectModalImageLayer : (activeProjectModalImageLayer + 1) % projectModalImageLayers.length;
+    const nextImageLayer = projectModalImageLayers[nextLayerIndex];
 
-    if (!useAnimation) {
-      finishProjectModalImageFade();
-      activeProjectModalImageIndex = nextIndex;
-      projectModalImage.src = projectModalImages[activeProjectModalImageIndex];
-      updateProjectModalImageDots();
+    if (!nextImageLayer) {
+      isProjectModalImageLoading = false;
       return;
     }
 
-    finishProjectModalImageFade();
-    const fadeOut = projectModalImage.animate(
-      [{ opacity: 1 }, { opacity: 0 }],
-      { duration: PROJECT_MODAL_IMAGE_FADE_MS, easing: "ease-in-out", fill: "forwards" },
-    );
-    projectModalImageAnimation = fadeOut;
-
-    fadeOut.finished
-      .then(() => {
-        if (projectModalImageAnimation !== fadeOut) {
-          return;
-        }
-
-        activeProjectModalImageIndex = nextIndex;
-        projectModalImage.src = projectModalImages[activeProjectModalImageIndex];
-        updateProjectModalImageDots();
-
-        const fadeIn = projectModalImage.animate(
-          [{ opacity: 0 }, { opacity: 1 }],
-          { duration: PROJECT_MODAL_IMAGE_FADE_MS, easing: "ease-in-out", fill: "forwards" },
-        );
-        projectModalImageAnimation = fadeIn;
-
-        fadeIn.finished
-          .then(() => {
-            if (projectModalImageAnimation !== fadeIn) {
-              return;
-            }
-
-            projectModalImage.style.opacity = "1";
-            fadeIn.cancel();
-            projectModalImageAnimation = null;
-          })
-          .catch(() => {});
-      })
-      .catch(() => {});
+    try {
+      await preloadProjectModalImage(nextSrc);
+      nextImageLayer.alt = projectModalImage?.alt ?? "";
+      await prepareProjectModalImageLayer(nextImageLayer, nextSrc);
+      activeProjectModalImageIndex = nextIndex;
+      window.requestAnimationFrame(() => {
+        setActiveProjectModalImageLayer(nextLayerIndex);
+        isProjectModalImageLoading = false;
+      });
+      updateProjectModalImageDots();
+    } catch {
+      isProjectModalImageLoading = false;
+    }
   }
 
   function startProjectModalImageCarousel() {
@@ -652,20 +702,14 @@ if (projectModal) {
     }
 
     projectModalImageTimer = window.setInterval(() => {
-      setProjectModalImage(activeProjectModalImageIndex + 1, { animate: true, direction: 1 });
+      setProjectModalImage(activeProjectModalImageIndex + 1);
     }, 2600);
   }
 
-  function showProjectModalImage(index, direction) {
+  function showProjectModalImage(index) {
     const nextIndex = (index + projectModalImages.length) % projectModalImages.length;
-    const inferredDirection =
-      direction ??
-      (nextIndex > activeProjectModalImageIndex ||
-      (activeProjectModalImageIndex === projectModalImages.length - 1 && nextIndex === 0)
-        ? 1
-        : -1);
 
-    setProjectModalImage(nextIndex, { animate: true, direction: inferredDirection });
+    setProjectModalImage(nextIndex);
     startProjectModalImageCarousel();
   }
 
@@ -755,6 +799,7 @@ if (projectModal) {
     clearProjectModal();
     projectModalImages = modalImages?.length ? modalImages : [image?.getAttribute("src") ?? "assets/island.png"];
     activeProjectModalImageIndex = 0;
+    preloadProjectModalImages(projectModalImages);
 
     if (projectModalTitle) {
       projectModalTitle.textContent = title;
@@ -787,7 +832,10 @@ if (projectModal) {
     }
 
     projectModalMedia?.classList.toggle("has-carousel", projectModalImages.length > 1);
-    projectModalImageDots?.classList.toggle("has-carousel", projectModalImages.length > 1);
+
+    if (projectModalImageDots) {
+      projectModalImageDots.hidden = projectModalImages.length <= 1;
+    }
 
     projectModalImages.forEach((_, index) => {
       const button = document.createElement("button");

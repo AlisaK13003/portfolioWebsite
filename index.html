@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="preload" as="image" href="assets/islandGirl.webp" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="styles.css?v=20260809-project-modal-summary-top" />
+    <link rel="stylesheet" href="styles.css?v=20260810-modal-layer-decode" />
   </head>
   <body>
     <header class="site-header" data-nav>
@@ -148,6 +148,7 @@
               data-modal-image-folder="assets/sealbound"
               data-modal-image-prefix="sealbound"
               data-modal-image-extension="png"
+              data-modal-images="assets/sealbound/sealbound0.webp, assets/sealbound/sealbound1.webp, assets/sealbound/sealbound2.webp"
               data-modal-hide-tags
             >
             <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
@@ -168,35 +169,61 @@
                 <p><strong>Game Producer &middot; Designer &middot; Developer</strong></p>
               </div>
               <div class="project-actions">
-                <button type="button" aria-label="Play Sealbound demo">Play Demo</button>
+                <button type="button" aria-label="Play Sealbound demo">
+                  <img class="button-icon" src="assets/demo.png" alt="" />
+                  <span>Play Demo</span>
+                </button>
                 <a
                   href="https://github.com/AlisaK13003/sealbound"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="View Sealbound on GitHub"
                 >
-                  GitHub
+                  <img class="button-icon" src="assets/githubIcon.png" alt="" />
+                  <span>GitHub</span>
                 </a>
               </div>
             </div>
             <div class="project-modal-copy" hidden data-project-modal-copy>
               <p class="project-modal-kicker">2D narrative-focused fantasy RPG</p>
               <dl class="project-modal-facts" aria-label="Sealbound project summary">
-                <div>
+                <div class="project-modal-fact">
                   <dt>Role</dt>
-                  <dd>Game Producer &middot; Designer &middot; Developer</dd>
+                  <dd>
+                    <ul class="project-modal-fact-tags" aria-label="Role tags">
+                      <li>Game Producer</li>
+                      <li>Designer</li>
+                      <li>Developer</li>
+                    </ul>
+                  </dd>
                 </div>
-                <div>
+                <div class="project-modal-fact">
                   <dt>Team</dt>
-                  <dd>5 people</dd>
+                  <dd>
+                    <ul class="project-modal-fact-tags" aria-label="Team tags">
+                      <li>5 people</li>
+                    </ul>
+                  </dd>
                 </div>
-                <div>
+                <div class="project-modal-fact">
                   <dt>Timeline</dt>
-                  <dd>6 months</dd>
+                  <dd>
+                    <ul class="project-modal-fact-tags" aria-label="Timeline tags">
+                      <li>6 months</li>
+                    </ul>
+                  </dd>
                 </div>
-                <div>
+                <div class="project-modal-fact">
                   <dt>Tools</dt>
-                  <dd>Godot &middot; GDScript &middot; Git &middot; GitHub &middot; Jira</dd>
+                  <dd>
+                    <ul class="project-modal-fact-tags" aria-label="Tool tags">
+                      <li>Godot</li>
+                      <li>GDScript</li>
+                      <li>Git</li>
+                      <li>GitHub</li>
+                      <li>Jira</li>
+                    </ul>
+                  </dd>
                 </div>
               </dl>
 
@@ -209,55 +236,65 @@
               </p>
 
               <h3>My Role</h3>
-              <ul class="project-modal-inline-tags" aria-label="Sealbound role tags">
-                <li>Production</li>
-                <li>Game Design</li>
-                <li>Systems Design</li>
-                <li>Programming</li>
-              </ul>
               <p>
-                I created the original concept and design documentation, defined core systems, managed scope and
-                milestones, and contributed directly to implementation in Godot.
+                I created the original concept and game design documentation for Sealbound, designing its core
+                gameplay systems, progression, characters, and overall player experience. As Game Producer, I
+                translated those designs into development priorities, delegated implementation across the team, and
+                managed scope and milestones throughout production.
+              </p>
+              <p>
+                Alongside leading the project, I worked directly in Godot to implement several of the game's gameplay
+                and narrative systems, including character bonds, dialogue, NPC schedules, and the sleep/day-cycle
+                system.
               </p>
 
               <h3>Process</h3>
-              <ul class="project-modal-inline-tags" aria-label="Sealbound work process tags">
-                <li>Sprint Planning</li>
-                <li>Scope Management</li>
-                <li>Team Coordination</li>
-                <li>Iterative Development</li>
-              </ul>
               <p>
-                Sealbound was developed by a five-person team over roughly six months. We began with a detailed game
-                design document defining the world, gameplay systems, characters, combat, progression, and overall
-                scope.
+                Development began with a detailed game design document defining the world, gameplay systems,
+                characters, combat, progression, and overall scope. I translated the design into actionable features
+                and milestones, organized development through Jira sprints, and delegated work across programming,
+                art, and level design based on team capacity and project priorities.
               </p>
               <p>
-                From there, I translated the design into actionable features and milestones, organized development
-                through Jira sprints, and coordinated implementation across programming, art, and level design.
-                Features were developed iteratively through dedicated Git branches, integration, playtesting,
-                debugging, and refinement.
+                Features were developed across Git branches and regularly integrated into the main build for testing.
+                As systems came together, I reviewed implementations against the original design, tested interactions
+                between features, identified issues, and adjusted requirements or priorities where necessary.
               </p>
 
               <h3>What I Built</h3>
               <ul class="project-modal-list">
-                <li>Designed and implemented gameplay systems for quests, dialogue, progression, and character bonds.</li>
-                <li>Integrated separately developed combat, UI, narrative, and level systems into a playable prototype.</li>
-                <li>Built and debugged Godot/GDScript features, UI flows, and narrative interactions.</li>
+                <li>Designed the game's core systems, including combat, character bonds, dialogue, quests, progression, NPC behavior, and day/night gameplay.</li>
+                <li>Implemented and debugged the bond, dialogue, NPC scheduling, and sleep/day-cycle systems in Godot using GDScript.</li>
+                <li>Defined system behavior and requirements for features delegated to other developers, including combat and supporting gameplay systems.</li>
+                <li>Integrated and tested independently developed gameplay, UI, narrative, and level systems as they were merged into the playable build.</li>
               </ul>
 
-              <h3>Challenges / Decisions</h3>
+              <h3>Challenges &amp; Decisions</h3>
               <p>
-                As the scope grew, I prioritized the systems that best supported the prototype's core fantasy:
-                exploration, party progression, and character relationships. I used Jira milestones and sprint
-                planning to keep the team focused on a complete playable build.
+                The original design was ambitious for a five-person team and the available development timeline, so
+                maintaining a realistic scope became an important part of production. As development progressed, I
+                reduced the complexity of several planned features, deferred lower-priority content, and reorganized
+                work around the systems most important to the core experience.
+              </p>
+              <p>
+                I also adjusted designs after implementation and playtesting revealed where systems were too complex
+                or where development effort would have had limited impact on the final experience. Work was
+                reprioritized throughout development based on team capacity, dependencies, and progress, allowing us
+                to focus on delivering a cohesive playable build rather than spreading development across unfinished
+                features.
               </p>
 
               <h3>Outcome</h3>
               <p>
-                The final prototype includes explorable environments, NPC schedules, branching dialogue, quests,
-                shops, dungeon progression, turn-based combat, party management, and a character Bond system that
-                connects relationships with gameplay progression.
+                The final prototype brings together exploration, turn-based combat, character relationships, quests,
+                NPC schedules, shops, progression, dialogue, and multiple dungeon areas into a cohesive playable
+                experience.
+              </p>
+              <p>
+                By the end of development, the team had transformed the original design document into a functional RPG
+                vertical slice demonstrating Sealbound's core gameplay loop and narrative systems. The project also
+                gave me experience carrying a product from initial concept and system design through production
+                planning, implementation, integration, testing, and delivery.
               </p>
             </div>
           </article>
@@ -693,23 +730,24 @@
           <h2 id="project-modal-title" data-project-modal-title></h2>
           <p class="project-modal-subtitle" hidden data-project-modal-subtitle></p>
           <div class="project-modal-summary" hidden data-project-modal-summary></div>
-          <div class="project-modal-actions" data-project-modal-actions></div>
           <ul class="project-modal-tags" aria-label="Project tags" data-project-modal-tags></ul>
+          <div class="project-modal-body" data-project-modal-body></div>
+          <div class="project-modal-actions" data-project-modal-actions></div>
           <div class="project-modal-image" data-project-modal-media>
             <button class="project-modal-image-arrow project-modal-image-prev" type="button" aria-label="Previous image" data-project-modal-prev>
               <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
-            <img src="assets/island.png" alt="" loading="lazy" decoding="async" data-project-modal-image />
+            <img class="is-active" src="assets/island.png" alt="" loading="lazy" decoding="async" data-project-modal-image data-project-modal-image-layer />
+            <img src="assets/island.png" alt="" loading="lazy" decoding="async" aria-hidden="true" data-project-modal-image-layer />
             <button class="project-modal-image-arrow project-modal-image-next" type="button" aria-label="Next image" data-project-modal-next>
               <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
             </button>
           </div>
           <div class="project-modal-image-dots" aria-label="Project image carousel" data-project-modal-image-dots></div>
-          <div class="project-modal-body" data-project-modal-body></div>
         </article>
       </div>
     </main>
 
-    <script src="script.js?v=20260809-project-modal-actions-top"></script>
+    <script src="script.js?v=20260810-modal-layer-decode"></script>
   </body>
 </html>
