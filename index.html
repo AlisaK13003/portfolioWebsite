@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="preload" as="image" href="assets/islandGirl.webp" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="styles.css?v=20260809-project-modal-sync-silent" />
+    <link rel="stylesheet" href="styles.css?v=20260809-project-modal-subtitle-brown" />
   </head>
   <body>
     <header class="site-header" data-nav>
@@ -67,14 +67,15 @@
         </button>
         <div class="hero-copy" data-node-id="19:58">
           <div class="hero-heading-group">
-            <h1 id="hero-title">Hi, I'm Alisa. I am a...</h1>
+            <h1 id="hero-title">Hi, I'm Alisa.</h1>
+            <p class="hero-role-prefix">I am a...</p>
             <p class="typewriter-line" aria-live="polite">
-              <span data-typewriter>Game Developer</span><span class="typewriter-cursor" aria-hidden="true"></span>
+              <span data-typewriter></span><span class="typewriter-cursor" aria-hidden="true"></span>
             </p>
           </div>
 
           <p class="hero-intro">
-            Welcome to my little corner of the web. Take a look around and make yourself at home.
+            I design and build thoughtful digital products from idea to launch.
           </p>
 
           <div class="hero-actions">
@@ -154,15 +155,18 @@
               <div class="project-island-content">
                 <h3>Sealbound</h3>
                 <ul class="project-tags" aria-label="Project tags">
-                  <li>RPG Design</li>
-                  <li>Pixel Art</li>
                   <li>Godot</li>
-                  <li>Narrative</li>
+                  <li>GDScript</li>
+                  <li>Jira</li>
+                  <li>Git</li>
                 </ul>
               </div>
             </div>
             <div class="project-note project-note-with-actions">
-              <p>A 2D pixel-art fantasy RPG about exploration, party combat, character bonds, and restoring ancient Seals.</p>
+              <div class="project-note-summary">
+                <p>Narrative-driven pixel-art RPG</p>
+                <p><strong>Game Producer &middot; Designer &middot; Developer</strong></p>
+              </div>
               <div class="project-actions">
                 <button type="button" aria-label="Play Sealbound demo">Play Demo</button>
                 <a
@@ -176,32 +180,47 @@
               </div>
             </div>
             <div class="project-modal-copy" hidden data-project-modal-copy>
-              <h3>Description</h3>
-              <ul class="project-modal-inline-tags project-modal-role-tags" aria-label="Sealbound description tags">
-                <li>2D RPG</li>
-                <li>Turn-Based Combat</li>
-                <li>Exploration</li>
-                <li>Character Bonds</li>
-              </ul>
+              <p class="project-modal-kicker">2D narrative-focused fantasy RPG</p>
+              <dl class="project-modal-facts" aria-label="Sealbound project summary">
+                <div>
+                  <dt>Role</dt>
+                  <dd>Game Producer &middot; Designer &middot; Developer</dd>
+                </div>
+                <div>
+                  <dt>Team</dt>
+                  <dd>5 people</dd>
+                </div>
+                <div>
+                  <dt>Timeline</dt>
+                  <dd>6 months</dd>
+                </div>
+                <div>
+                  <dt>Tools</dt>
+                  <dd>Godot &middot; GDScript &middot; Git &middot; GitHub &middot; Jira</dd>
+                </div>
+              </dl>
+
+              <h3>Overview</h3>
               <p>
                 Sealbound is a 2D pixel-art fantasy RPG centered around exploration, turn-based party combat,
                 character relationships, and narrative progression. Players explore the village of Hearthwyn and
                 surrounding dungeons, complete quests, build bonds with party members, and progress through a story
                 centered around restoring ancient Seals that hold the world together.
               </p>
-              <h3>Tools</h3>
-              <ul class="project-modal-inline-tags" aria-label="Sealbound tools">
-                <li>Godot 4.6</li>
-                <li>GDScript</li>
-                <li>Git/GitHub</li>
-                <li>Jira</li>
+
+              <h3>My Role</h3>
+              <ul class="project-modal-inline-tags" aria-label="Sealbound role tags">
+                <li>Production</li>
+                <li>Game Design</li>
+                <li>Systems Design</li>
+                <li>Programming</li>
               </ul>
               <p>
-                The game was developed in Godot using GDScript, with Git and GitHub for version control and Git LFS
-                for managing larger game assets. Jira was used to organize development into sprints, assign tasks,
-                track bugs, and keep milestones visible across the team.
+                I created the original concept and design documentation, defined core systems, managed scope and
+                milestones, and contributed directly to implementation in Godot.
               </p>
-              <h3>Work Process</h3>
+
+              <h3>Process</h3>
               <ul class="project-modal-inline-tags" aria-label="Sealbound work process tags">
                 <li>Sprint Planning</li>
                 <li>Scope Management</li>
@@ -219,36 +238,29 @@
                 Features were developed iteratively through dedicated Git branches, integration, playtesting,
                 debugging, and refinement.
               </p>
+
+              <h3>What I Built</h3>
+              <ul class="project-modal-list">
+                <li>Designed and implemented gameplay systems for quests, dialogue, progression, and character bonds.</li>
+                <li>Integrated separately developed combat, UI, narrative, and level systems into a playable prototype.</li>
+                <li>Built and debugged Godot/GDScript features, UI flows, and narrative interactions.</li>
+              </ul>
+
+              <h3>Challenges / Decisions</h3>
+              <p>
+                As the scope grew, I prioritized the systems that best supported the prototype's core fantasy:
+                exploration, party progression, and character relationships. I used Jira milestones and sprint
+                planning to keep the team focused on a complete playable build.
+              </p>
+
+              <h3>Outcome</h3>
               <p>
                 The final prototype includes explorable environments, NPC schedules, branching dialogue, quests,
                 shops, dungeon progression, turn-based combat, party management, and a character Bond system that
                 connects relationships with gameplay progression.
               </p>
-              <h3>My Role</h3>
-              <ul class="project-modal-inline-tags" aria-label="Sealbound role tags">
-                <li>Game Production</li>
-                <li>Game Design</li>
-                <li>Systems Design</li>
-                <li>Gameplay Programming</li>
-              </ul>
-              <p>
-                I served as the project's Game Producer, Designer, and Developer, overseeing both the creative
-                direction and production of the game.
-              </p>
-              <p>
-                I created the original game concept and design documentation, defined systems such as combat, quests,
-                character bonds, NPC behavior, progression, and dialogue, and managed the team's scope and development
-                schedule. I also contributed directly to implementation in Godot, particularly gameplay systems,
-                dialogue and narrative features, UI integration, debugging, and bringing separately developed systems
-                together into a playable build.
-              </p>
-              <p>
-                As producer, I maintained our Jira backlog and sprint plans, ran team meetings, tracked milestones and
-                blockers, coordinated responsibilities across the five-person team, and adjusted scope as development
-                progressed to ensure we could deliver a complete playable prototype.
-              </p>
             </div>
-            </article>
+          </article>
 
             <article class="project-card" data-project-card>
             <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
@@ -679,6 +691,7 @@
             <img src="assets/exitButton.png" alt="" loading="lazy" decoding="async" />
           </button>
           <h2 id="project-modal-title" data-project-modal-title></h2>
+          <p class="project-modal-subtitle" hidden data-project-modal-subtitle></p>
           <ul class="project-modal-tags" aria-label="Project tags" data-project-modal-tags></ul>
           <div class="project-modal-image" data-project-modal-media>
             <button class="project-modal-image-arrow project-modal-image-prev" type="button" aria-label="Previous image" data-project-modal-prev>
@@ -696,6 +709,6 @@
       </div>
     </main>
 
-    <script src="script.js?v=20260809-project-modal-sync-silent"></script>
+    <script src="script.js?v=20260809-project-modal-subtitle"></script>
   </body>
 </html>

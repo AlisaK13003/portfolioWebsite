@@ -14,6 +14,7 @@ const projectDots = document.querySelector("[data-project-dots]");
 const projectModal = document.querySelector("[data-project-modal]");
 const projectModalPanel = document.querySelector("[data-project-modal-panel]");
 const projectModalTitle = document.querySelector("[data-project-modal-title]");
+const projectModalSubtitle = document.querySelector("[data-project-modal-subtitle]");
 const projectModalMedia = document.querySelector("[data-project-modal-media]");
 const projectModalImage = document.querySelector("[data-project-modal-image]");
 const projectModalPrev = document.querySelector("[data-project-modal-prev]");
@@ -42,7 +43,7 @@ const footerWell = document.querySelector("[data-footer-well]");
 const swingSigns = [...document.querySelectorAll("[data-swing-sign]")];
 const navLinks = [...document.querySelectorAll('a[href^="#"]')];
 const sectionIds = ["home", "projects", "experience", "about", "contact"];
-const titles = ["Game Developer", "Software Engineer", "Project Manager", "UI/UX Designer"];
+const titles = ["Product Engineer."];
 let activeScrollAnimation = 0;
 let syncProjectCarouselToCard = () => {};
 const butterflyFollowDuration = 3200;
@@ -345,7 +346,7 @@ setActiveSection(currentSectionFromHash());
 
 if (typewriterText) {
   let titleIndex = 0;
-  let characterIndex = titles[titleIndex].length;
+  let characterIndex = 0;
   let isDeleting = false;
 
   function typeNextTitle() {
@@ -354,19 +355,19 @@ if (typewriterText) {
 
     if (!isDeleting && characterIndex < currentTitle.length) {
       characterIndex += 1;
-      window.setTimeout(typeNextTitle, 85);
+      window.setTimeout(typeNextTitle, 125);
       return;
     }
 
     if (!isDeleting && characterIndex === currentTitle.length) {
       isDeleting = true;
-      window.setTimeout(typeNextTitle, 1400);
+      window.setTimeout(typeNextTitle, 5000);
       return;
     }
 
     if (isDeleting && characterIndex > 0) {
       characterIndex -= 1;
-      window.setTimeout(typeNextTitle, 45);
+      window.setTimeout(typeNextTitle, 70);
       return;
     }
 
@@ -543,6 +544,11 @@ if (projectModal) {
 
     if (projectModalImageDots) {
       projectModalImageDots.innerHTML = "";
+    }
+
+    if (projectModalSubtitle) {
+      projectModalSubtitle.textContent = "";
+      projectModalSubtitle.hidden = true;
     }
   }
 
@@ -751,6 +757,13 @@ if (projectModal) {
     if (projectModalBody) {
       if (richBody) {
         projectModalBody.innerHTML = richBody.innerHTML;
+        const subtitle = projectModalBody.querySelector(".project-modal-kicker");
+
+        if (subtitle && projectModalSubtitle) {
+          projectModalSubtitle.textContent = subtitle.textContent?.trim() ?? "";
+          projectModalSubtitle.hidden = projectModalSubtitle.textContent.length === 0;
+          subtitle.remove();
+        }
       } else {
         projectModalBody.textContent = body;
       }
