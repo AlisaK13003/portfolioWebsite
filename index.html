@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="preload" as="image" href="assets/islandGirl.webp" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="styles.css?v=20260810-project-static-height" />
+    <link rel="stylesheet" href="styles.css?v=20260810-myloops-gallery-contain" />
   </head>
   <body>
     <header class="site-header" data-nav>
@@ -156,18 +156,26 @@
               <div class="project-island-content">
                 <h3>Sealbound</h3>
                 <ul class="project-tags" aria-label="Project tags">
-                  <li>Game</li>
-                  <li>Producer</li>
-                  <li>Developer</li>
+                  <li>Game Design</li>
+                  <li>Production</li>
+                  <li>Development</li>
                   <li>Godot</li>
                 </ul>
               </div>
-            </div>
+              </div>
               <div class="project-actions">
-                <button type="button" aria-label="Play Sealbound demo">
+                <button type="button" aria-label="View Sealbound project details" data-project-modal-trigger>View Project</button>
+              </div>
+              <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
+                <a
+                  href="https://koibaa.itch.io/sealbound"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Play Sealbound demo on itch.io"
+                >
                   <img class="button-icon" src="assets/demo.png" alt="" />
                   <span>Play Demo</span>
-                </button>
+                </a>
                 <a
                   href="https://github.com/AlisaK13003/sealbound"
                   target="_blank"
@@ -293,21 +301,175 @@
             </div>
           </article>
 
-            <article class="project-card" data-project-card>
+            <article
+              class="project-card"
+              data-project-card
+              data-modal-images="assets/myloops/myloops0.png, assets/myloops/myloops1.png, assets/myloops/myloops2.png, assets/myloops/myloops3.png"
+              data-modal-fit="contain"
+              data-modal-hide-tags
+            >
             <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
               <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
                 <h3>MyLoops</h3>
                 <ul class="project-tags" aria-label="Project tags">
-                  <li>Built App</li>
-                  <li>React Native</li>
-                  <li>Safety UX</li>
+                  <li>Product Design</li>
+                  <li>UI/UX</li>
+                  <li>Figma</li>
+                  <li>Mobile</li>
                 </ul>
               </div>
-            </div>
+              </div>
               <div class="project-actions">
-                <button type="button" aria-label="Visit MyLoops site">Visit Site</button>
-                <button type="button" aria-label="Download MyLoops app">Download App</button>
+                <button type="button" aria-label="View MyLoops project details" data-project-modal-trigger>View Project</button>
+              </div>
+              <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
+                <a
+                  href="https://myloops.co/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit the MyLoops website"
+                >
+                  Visit Site
+                </a>
+                <a
+                  href="https://myloops.co/#download"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download the MyLoops app"
+                  data-adaptive-download
+                  data-desktop-href="https://myloops.co/#download"
+                  data-ios-href="https://apps.apple.com/us/app/myloops-connected-and-safe/id6748546808"
+                  data-android-href="https://play.google.com/store/apps/details?id=com.innovation43veryone.mycircles&pcampaignid=web_share"
+                >
+                  Download App
+                </a>
+              </div>
+              <div class="project-modal-copy" hidden data-project-modal-copy>
+                <p class="project-modal-kicker">Location-sharing and family-safety product</p>
+                <dl class="project-modal-facts" aria-label="MyLoops project summary">
+                  <div class="project-modal-fact">
+                    <dt>Role</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Role tags">
+                        <li>UI/UX Lead</li>
+                        <li>Product Designer</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Team</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Team tags">
+                        <li>3 people</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Timeline</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Timeline tags">
+                        <li>1 year</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Tools</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Tool tags">
+                        <li>Figma</li>
+                        <li>React</li>
+                        <li>Figma AI</li>
+                      </ul>
+                    </dd>
+                  </div>
+                </dl>
+
+                <h3>Overview</h3>
+                <p>
+                  MyLoops is a <strong>location-sharing and family-safety platform</strong> designed to make staying
+                  connected with trusted contacts feel simpler and more approachable. Similar in concept to apps like
+                  Life360, MyLoops focuses on a cleaner, more user-friendly experience for location sharing, safety
+                  tools, and emergency coordination.
+                </p>
+                <p>
+                  I designed the product experience across the <strong>mobile application, website, and supporting
+                  marketing materials</strong>, creating a consistent visual system and interaction language across the
+                  entire brand.
+                </p>
+
+                <h3>My Role</h3>
+                <p>
+                  I served as the <strong>UI/UX Lead and Product Designer</strong> on a three-person team alongside a
+                  developer and project manager.
+                </p>
+                <p>
+                  Over roughly a year of development, I was responsible for <strong>designing the full application
+                  experience in Figma</strong>, including user flows, wireframes, high-fidelity screens, interactive
+                  prototypes, and reusable design patterns. I also designed the public-facing website and created
+                  marketing graphics used to communicate the product and its features.
+                </p>
+                <p>
+                  I worked closely with the team to <strong>translate product requirements into usable interfaces</strong>,
+                  refine flows based on feedback, and maintain consistency as the product evolved.
+                </p>
+
+                <h3>Process</h3>
+                <p>
+                  The design process began by defining the core user journeys around <strong>location sharing, trusted
+                  circles, safety tools, notifications, and account management</strong>. I mapped these flows in Figma
+                  and iterated from early wireframes into increasingly detailed prototypes.
+                </p>
+                <p>
+                  As new requirements were introduced, I expanded and refined the design system rather than treating
+                  each screen as a standalone design. This helped keep navigation, components, spacing, states, and
+                  interactions consistent across a growing number of screens.
+                </p>
+                <p>
+                  I regularly reviewed designs with the developer and project manager, adjusting layouts and
+                  interactions based on <strong>technical constraints, product priorities, and feedback</strong> before
+                  handoff.
+                </p>
+
+                <h3>What I Designed</h3>
+                <ul class="project-modal-list">
+                  <li><strong>Designed the complete mobile application experience</strong>, including navigation, location-sharing flows, circle management, notifications, safety tools, and account settings.</li>
+                  <li>Created <strong>75+ mobile-first wireframes and high-fidelity screens</strong> in Figma.</li>
+                  <li>Built a reusable <strong>UI design system and component library</strong> to maintain consistency across the product.</li>
+                  <li>Designed and prototyped the <strong>public-facing MyLoops website</strong>.</li>
+                  <li>Created <strong>marketing graphics, product demonstrations, and app store assets</strong> to support product communication and launch.</li>
+                  <li>Produced interactive prototypes used to <strong>communicate requirements and support developer handoff</strong>.</li>
+                </ul>
+
+                <h3>Challenges &amp; Decisions</h3>
+                <p>
+                  One of the main design challenges was balancing a feature-rich safety application with the need to
+                  keep the interface <strong>simple and approachable for users with different levels of technical
+                  comfort</strong>.
+                </p>
+                <p>
+                  As the product expanded, I simplified navigation and grouped related features to reduce cognitive load
+                  rather than exposing every capability at once. I also refined visual hierarchy, terminology, and
+                  interaction patterns to make important safety actions easier to understand and access.
+                </p>
+                <p>
+                  Because the project was developed by a small three-person team, design decisions also needed to
+                  account for <strong>implementation effort and development priorities</strong>. I worked closely with
+                  the developer and project manager to adjust scope and refine designs so that the most important user
+                  flows remained clear and achievable.
+                </p>
+
+                <h3>Outcome</h3>
+                <p>
+                  The result was a <strong>cohesive product experience spanning the mobile app, website, and marketing
+                  presence</strong>, with a shared visual language and design system connecting each part of the
+                  product.
+                </p>
+                <p>
+                  Over the course of the project, I took MyLoops from early product concepts through <strong>wireframing,
+                  visual design, prototyping, iteration, and developer handoff</strong>, giving me experience designing
+                  a complex digital product across its full lifecycle.
+                </p>
               </div>
             </article>
 
@@ -323,8 +485,11 @@
                   <li>Systems</li>
                 </ul>
               </div>
-            </div>
+              </div>
               <div class="project-actions">
+                <button type="button" aria-label="View Sunny Days project details" data-project-modal-trigger>View Project</button>
+              </div>
+              <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
                 <button type="button" aria-label="Play Sunny Days demo">Play Demo</button>
                 <button type="button" aria-label="View Sunny Days GitHub">GitHub</button>
               </div>
@@ -340,8 +505,11 @@
                   <li>Product UX</li>
                 </ul>
               </div>
-            </div>
+              </div>
               <div class="project-actions">
+                <button type="button" aria-label="View Celo project details" data-project-modal-trigger>View Project</button>
+              </div>
+              <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
                 <button type="button" aria-label="Visit Celo site">Visit Site</button>
               </div>
             </article>
@@ -357,8 +525,11 @@
                   <li>Figma</li>
                 </ul>
               </div>
-            </div>
+              </div>
               <div class="project-actions">
+                <button type="button" aria-label="View My Pantry Pal project details" data-project-modal-trigger>View Project</button>
+              </div>
+              <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
                 <button type="button" aria-label="View My Pantry Pal Figma">Figma</button>
                 <button type="button" aria-label="Visit My Pantry Pal site">Visit Site</button>
                 <button type="button" aria-label="View My Pantry Pal GitHub">GitHub</button>
@@ -376,8 +547,11 @@
                   <li>Figma</li>
                 </ul>
               </div>
-            </div>
+              </div>
               <div class="project-actions">
+                <button type="button" aria-label="View Infolio project details" data-project-modal-trigger>View Project</button>
+              </div>
+              <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
                 <button type="button" aria-label="View Infolio GitHub">GitHub</button>
                 <button type="button" aria-label="View Infolio Figma">Figma</button>
                 <button type="button" aria-label="Visit Infolio site">Visit Site</button>
@@ -727,6 +901,6 @@
       </div>
     </main>
 
-    <script src="script.js?v=20260810-project-static-height"></script>
+    <script src="script.js?v=20260810-myloops-gallery-contain"></script>
   </body>
 </html>

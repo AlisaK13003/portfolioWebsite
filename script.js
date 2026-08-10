@@ -48,6 +48,33 @@ const sectionIds = ["home", "projects", "experience", "about", "contact"];
 const titles = ["Product Engineer."];
 let activeScrollAnimation = 0;
 let syncProjectCarouselToCard = () => {};
+
+function getAdaptiveDownloadHref(link) {
+  const userAgent = navigator.userAgent || navigator.vendor || "";
+  const isAndroid = /Android/i.test(userAgent);
+  const isIos = /iPad|iPhone|iPod/.test(userAgent)
+    || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+  if (isAndroid && link.dataset.androidHref) {
+    return link.dataset.androidHref;
+  }
+
+  if (isIos && link.dataset.iosHref) {
+    return link.dataset.iosHref;
+  }
+
+  return link.dataset.desktopHref || link.href;
+}
+
+document.addEventListener("click", (event) => {
+  const downloadLink = event.target.closest("[data-adaptive-download]");
+
+  if (!downloadLink) {
+    return;
+  }
+
+  downloadLink.href = getAdaptiveDownloadHref(downloadLink);
+});
 const butterflyFollowDuration = 3200;
 const butterflyReturnMinSpeed = 180;
 const butterflyReturnMaxSpeed = 640;
@@ -752,7 +779,8 @@ if (projectModal) {
     const body = card.querySelector(".project-note p")?.textContent?.trim() ?? "";
     const richBody = card.querySelector("[data-project-modal-copy]");
     const image = card.querySelector(".project-island > img");
-    const actions = [...card.querySelectorAll(".project-actions a, .project-actions button")];
+    const actionsSource = card.querySelector("[data-project-modal-actions-source]") ?? card.querySelector(".project-actions");
+    const actions = [...(actionsSource?.querySelectorAll("a, button") ?? [])];
     const shouldHideModalTags = card.hasAttribute("data-modal-hide-tags");
     const modalTags = card.dataset.modalTags
       ?.split(",")
@@ -808,6 +836,7 @@ if (projectModal) {
     }
 
     projectModalMedia?.classList.toggle("has-carousel", projectModalImages.length > 1);
+    projectModalMedia?.classList.toggle("is-contained", card.dataset.modalFit === "contain");
 
     if (projectModalImageDots) {
       projectModalImageDots.hidden = projectModalImages.length <= 1;
@@ -877,15 +906,17 @@ if (projectModal) {
   }
 
   projectCards.forEach((card) => {
-    const trigger = card.querySelector("[data-project-modal-trigger]");
-    trigger?.addEventListener("click", () => {
-      openProjectModal(card, trigger);
-    });
-    trigger?.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
+    const triggers = [...card.querySelectorAll("[data-project-modal-trigger]")];
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
         openProjectModal(card, trigger);
-      }
+      });
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openProjectModal(card, trigger);
+        }
+      });
     });
   });
 
