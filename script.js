@@ -15,6 +15,7 @@ const projectModal = document.querySelector("[data-project-modal]");
 const projectModalPanel = document.querySelector("[data-project-modal-panel]");
 const projectModalTitle = document.querySelector("[data-project-modal-title]");
 const projectModalSubtitle = document.querySelector("[data-project-modal-subtitle]");
+const projectModalSummary = document.querySelector("[data-project-modal-summary]");
 const projectModalMedia = document.querySelector("[data-project-modal-media]");
 const projectModalImage = document.querySelector("[data-project-modal-image]");
 const projectModalPrev = document.querySelector("[data-project-modal-prev]");
@@ -550,6 +551,11 @@ if (projectModal) {
       projectModalSubtitle.textContent = "";
       projectModalSubtitle.hidden = true;
     }
+
+    if (projectModalSummary) {
+      projectModalSummary.innerHTML = "";
+      projectModalSummary.hidden = true;
+    }
   }
 
   function stopProjectModalImageCarousel() {
@@ -763,6 +769,13 @@ if (projectModal) {
           projectModalSubtitle.textContent = subtitle.textContent?.trim() ?? "";
           projectModalSubtitle.hidden = projectModalSubtitle.textContent.length === 0;
           subtitle.remove();
+        }
+
+        const facts = projectModalBody.querySelector(".project-modal-facts");
+
+        if (facts && projectModalSummary) {
+          projectModalSummary.append(facts);
+          projectModalSummary.hidden = false;
         }
       } else {
         projectModalBody.textContent = body;

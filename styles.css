@@ -1105,6 +1105,12 @@ a {
   text-align: center;
 }
 
+.project-modal-summary {
+  display: grid;
+  width: min(760px, 88%);
+  justify-items: center;
+}
+
 .project-modal-body {
   display: grid;
   width: min(820px, 88%);
