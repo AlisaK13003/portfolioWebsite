@@ -1,5 +1,11 @@
 :root {
   --page-bg: #fbf7ef;
+  --page-bg-hero: #fbf7ef;
+  --page-bg-projects: #fcf3df;
+  --page-bg-experience: #fbf4e8;
+  --page-bg-about: #f7f3e8;
+  --page-bg-contact: #fbf0dc;
+  --page-bg-footer: #f8efe3;
   --ink: #5f4a35;
   --main-yellow: #f8e7b8;
   --warm-accent: #d6b970;
@@ -16,6 +22,12 @@
 
 :root[data-theme="dark"] {
   --page-bg: #17130f;
+  --page-bg-hero: #17130f;
+  --page-bg-projects: #1b1510;
+  --page-bg-experience: #18150f;
+  --page-bg-about: #151711;
+  --page-bg-contact: #1a140f;
+  --page-bg-footer: #17130f;
   --ink: #f8e7b8;
   --wood-shadow: rgba(0, 0, 0, 0.48);
   --page-dim: rgba(0, 0, 0, 0.54);
@@ -41,16 +53,39 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: var(--ink);
-  background: var(--page-bg);
+  background:
+    linear-gradient(
+      180deg,
+      var(--page-bg-hero) 0%,
+      var(--page-bg-hero) 16%,
+      var(--page-bg-projects) 31%,
+      var(--page-bg-experience) 49%,
+      var(--page-bg-about) 67%,
+      var(--page-bg-contact) 84%,
+      var(--page-bg-footer) 100%
+    );
+  background-attachment: fixed;
+  background-size: 100% 180%;
+  animation: page-warmth-drift 42s ease-in-out infinite alternate;
   font-family: "Pixelify Sans", ui-monospace, "Cascadia Mono", monospace;
   transition:
-    background-color 220ms ease,
+    background 220ms ease,
     color 220ms ease;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+@keyframes page-warmth-drift {
+  0% {
+    background-position: 50% 0%;
+  }
+
+  100% {
+    background-position: 50% 28%;
+  }
 }
 
 .butterfly-friend {
@@ -260,6 +295,10 @@ a {
   border-radius: 999px;
   background: transparent;
   cursor: pointer;
+}
+
+.lantern-toggle:disabled {
+  cursor: default;
 }
 
 .lantern-toggle:focus-visible {
@@ -965,7 +1004,7 @@ a {
 
 .project-modal-image {
   position: relative;
-  width: min(660px, 74%);
+  width: min(560px, 70%, calc((100vh - 120px) * 0.78));
   aspect-ratio: 16 / 9;
   display: grid;
   overflow: hidden;
@@ -1079,7 +1118,7 @@ a {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 34px 0 4px;
+  margin: 14px 0 4px;
 }
 
 .project-modal-image-dots[hidden] {
@@ -1113,11 +1152,11 @@ a {
   }
 
   .project-modal-image {
-    width: min(520px, calc(100vw - 112px));
+    width: min(440px, calc(100vw - 112px), calc((100vh - 120px) * 0.72));
   }
 
   .project-modal-image-dots {
-    margin-top: -6px;
+    margin-top: 8px;
     margin-bottom: 4px;
   }
 
@@ -1176,7 +1215,7 @@ a {
 .project-modal-body h3 {
   margin: 10px 0 0;
   color: #473c2c;
-  font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+  font-size: clamp(1.25rem, 2.75vh, 1.65rem);
   font-weight: 400;
   line-height: 1;
   text-align: center;
@@ -1189,7 +1228,7 @@ a {
 .project-modal-body p {
   max-width: 760px;
   margin: 0;
-  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  font-size: clamp(1rem, 1.85vh, 1.12rem);
   font-weight: 300;
   line-height: 1.18;
   text-align: left;
@@ -1297,7 +1336,7 @@ a {
   margin: 0 auto;
   padding: 0;
   color: #473c2c;
-  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  font-size: clamp(1rem, 1.85vh, 1.12rem);
   font-weight: 300;
   line-height: 1.18;
   list-style: none;
@@ -1346,7 +1385,15 @@ a {
   }
 
   .project-modal-body p {
-    font-size: clamp(0.95rem, 2.4vw, 1.2rem);
+    font-size: clamp(0.92rem, 1.75vh, 1rem);
+  }
+
+  .project-modal-body h3 {
+    font-size: clamp(1.18rem, 2.45vh, 1.5rem);
+  }
+
+  .project-modal-list {
+    font-size: clamp(0.92rem, 1.75vh, 1rem);
   }
 
   .project-modal-inline-tags li {
@@ -1384,6 +1431,42 @@ a {
     min-height: 17px;
     padding: 4px 7px 3px;
     font-size: 0.56rem;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 641px) {
+  .project-modal-panel {
+    gap: clamp(8px, 1.4vh, 12px);
+    padding: clamp(8px, 1.5vh, 14px);
+  }
+
+  .project-modal-facts {
+    width: min(620px, 100%);
+  }
+
+  .project-modal-body {
+    max-height: clamp(150px, 26vh, 220px);
+  }
+
+  .project-modal-body p,
+  .project-modal-list {
+    font-size: clamp(0.9rem, 1.7vh, 1rem);
+  }
+
+  .project-modal-body h3 {
+    font-size: clamp(1.16rem, 2.35vh, 1.45rem);
+  }
+
+  .project-modal-actions {
+    gap: 14px;
+  }
+
+  .project-modal-image {
+    width: min(460px, 62%, calc((100vh - 140px) * 0.68));
+  }
+
+  .project-modal-image-dots {
+    margin: 6px 0 0;
   }
 }
 
@@ -3055,10 +3138,10 @@ a {
   }
 
   .project-modal {
-    place-items: start center;
+    place-items: center;
     box-sizing: border-box;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
     overscroll-behavior: contain;
     height: 100vh;
     height: 100dvh;
@@ -3071,12 +3154,11 @@ a {
     width: min(380px, calc(100vw - 32px));
     height: auto;
     min-height: 0;
-    max-height: calc(100vh - 24px);
-    max-height: calc(100dvh - 24px);
+    max-height: none;
     align-content: start;
     gap: 12px;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: visible;
     padding: 32px 14px 28px;
   }
 
@@ -3413,6 +3495,12 @@ a {
   .decor-butterfly {
     cursor: default;
     pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
   }
 }
 

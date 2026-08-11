@@ -142,7 +142,8 @@ function setTheme(theme) {
   localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
 }
 
-setTheme(localStorage.getItem("portfolio-theme") === "dark" ? "dark" : "light");
+setTheme("light");
+localStorage.removeItem("portfolio-theme");
 
 butterflies.forEach((butterfly) => {
   let butterflyOrigin = { x: 0, y: 0 };
@@ -314,11 +315,6 @@ mobileMenu?.addEventListener("click", (event) => {
 
 menuBackdrop?.addEventListener("click", () => {
   setMenuOpen(false);
-});
-
-themeToggle?.addEventListener("click", () => {
-  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  setTheme(nextTheme);
 });
 
 window.addEventListener("keydown", (event) => {
