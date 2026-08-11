@@ -56,6 +56,29 @@ const titles = ["Product Engineer."];
 let activeScrollAnimation = 0;
 let syncProjectCarouselToCard = () => {};
 
+function resetInitialScrollPosition() {
+  window.cancelAnimationFrame(activeScrollAnimation);
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
+if ("scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+}
+
+if (sectionIds.includes(window.location.hash.slice(1))) {
+  window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+}
+
+resetInitialScrollPosition();
+window.addEventListener("load", () => window.requestAnimationFrame(resetInitialScrollPosition), {
+  once: true,
+});
+window.addEventListener("pageshow", () => window.requestAnimationFrame(resetInitialScrollPosition), {
+  once: true,
+});
+
 function setupProjectCardActions() {
   projectCards.forEach((card) => {
     const islandContent = card.querySelector(".project-island-content");

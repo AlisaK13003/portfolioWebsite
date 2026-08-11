@@ -1237,6 +1237,10 @@ a {
   padding-top: clamp(4px, 0.75vw, 9px);
 }
 
+.project-modal-fact:nth-child(n + 3) {
+  padding-top: clamp(6px, 0.9vw, 11px);
+}
+
 .project-modal-fact:nth-child(4) {
   padding-right: clamp(0px, 0.8vw, 8px);
 }
@@ -3078,8 +3082,8 @@ a {
   }
 
   .project-modal-close {
-    top: 8px;
-    right: 8px;
+    top: 5px;
+    right: 5px;
     z-index: 3;
     width: 24px;
     height: 24px;
@@ -3153,6 +3157,10 @@ a {
   }
 
   .project-modal-fact:nth-child(-n + 2) {
+    padding-top: 0;
+  }
+
+  .project-modal-fact:nth-child(n + 3) {
     padding-top: 3px;
   }
 
@@ -3284,7 +3292,11 @@ a {
   }
 
   .project-modal-fact:nth-child(-n + 2) {
-    padding-top: 2px;
+    padding-top: 0;
+  }
+
+  .project-modal-fact:nth-child(n + 3) {
+    padding-top: 3px;
   }
 
   .project-modal-fact-tags li {
@@ -3334,6 +3346,10 @@ a {
   }
 
   .project-modal-fact:nth-child(-n + 2) {
+    padding-top: 0;
+  }
+
+  .project-modal-fact:nth-child(n + 3) {
     padding-top: 2px;
   }
 
@@ -3371,6 +3387,10 @@ a {
   }
 
   .project-modal-fact:nth-child(-n + 2) {
+    padding-top: 0;
+  }
+
+  .project-modal-fact:nth-child(n + 3) {
     padding-top: 1px;
   }
 
