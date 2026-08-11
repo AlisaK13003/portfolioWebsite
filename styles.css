@@ -567,11 +567,7 @@ a {
   justify-items: center;
   width: 100%;
   max-width: 1120px;
-  min-height: calc(
-    (var(--project-card-width) * 0.606)
-    + clamp(18px, calc(var(--project-card-width) * 0.056), 28px)
-    + (var(--project-card-width) * 0.68)
-  );
+  min-height: calc(var(--project-card-width) * 0.606);
 }
 
 .project-card {
@@ -639,9 +635,7 @@ a {
 .project-card.is-prev .project-note,
 .project-card.is-next .project-note,
 .project-card.is-prev .project-actions,
-.project-card.is-next .project-actions,
-.project-card.is-prev .project-preview,
-.project-card.is-next .project-preview {
+.project-card.is-next .project-actions {
   display: none;
 }
 
@@ -863,84 +857,6 @@ a {
 .project-actions-pair a,
 .project-actions-pair button {
   width: clamp(128px, calc(var(--project-card-width) * 0.32), 160px);
-}
-
-.project-preview {
-  display: grid;
-  width: min(calc(var(--project-card-width) * 1.22), calc(100vw - 48px));
-  justify-items: center;
-  gap: 10px;
-}
-
-.project-preview-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border: 3px solid #473c2c;
-  border-radius: 8px;
-  background: #111;
-}
-
-.project-preview-frame > img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.project-preview-frame.is-contained > img {
-  object-fit: contain;
-}
-
-.project-preview-arrow {
-  position: absolute;
-  top: 50%;
-  z-index: 1;
-  width: clamp(26px, calc(var(--project-card-width) * 0.072), 36px);
-  height: clamp(32px, calc(var(--project-card-width) * 0.086), 43px);
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  transform: translateY(-50%);
-}
-
-.project-preview-arrow img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  image-rendering: pixelated;
-}
-
-.project-preview-prev {
-  left: 12px;
-}
-
-.project-preview-next {
-  right: 12px;
-  transform: translateY(-50%) scaleX(-1);
-}
-
-.project-preview-dots {
-  display: flex;
-  gap: 8px;
-  min-height: 10px;
-}
-
-.project-preview-dots button {
-  width: 9px;
-  height: 9px;
-  padding: 0;
-  border: 2px solid #473c2c;
-  border-radius: 50%;
-  background: var(--main-yellow);
-  cursor: pointer;
-}
-
-.project-preview-dots button[aria-current="true"],
-.project-preview-dots button:focus-visible {
-  background: var(--warm-accent);
 }
 
 .project-modal {
@@ -1434,7 +1350,7 @@ a {
 
   .project-modal-facts {
     --fact-gutter: 9px;
-    width: min(420px, 100%);
+    width: min(520px, 100%);
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1443,12 +1359,12 @@ a {
   }
 
   .project-modal-fact {
-    padding-left: 22px;
+    padding-left: clamp(44px, 7vw, 58px);
   }
 
   .project-modal-fact:nth-child(1),
   .project-modal-fact:nth-child(3) {
-    padding-left: 16px;
+    padding-left: clamp(38px, 6vw, 50px);
   }
 
   .project-modal-fact-tags {
@@ -2372,7 +2288,7 @@ a {
   .decor-butterfly {
     --butterfly-front-sheet-width: 80px;
     --butterfly-side-sheet-width: 160px;
-    width: 34px;
+    width: 40px;
     height: 30px;
   }
 
@@ -2590,7 +2506,7 @@ a {
   .hero-section {
     grid-template-columns: 1fr;
     align-items: center;
-    gap: 96px;
+    gap: clamp(44px, 12vw, 56px);
     min-height: 650px;
     padding: 68px clamp(24px, 8vw, 54px) 48px;
     text-align: center;
@@ -3122,39 +3038,6 @@ a {
     font-size: 0.5rem;
   }
 
-  .project-preview {
-    width: 250px;
-    gap: 7px;
-  }
-
-  .project-preview-frame {
-    border-width: 2px;
-    border-radius: 6px;
-  }
-
-  .project-preview-arrow {
-    width: 22px;
-    height: 26px;
-  }
-
-  .project-preview-prev {
-    left: 7px;
-  }
-
-  .project-preview-next {
-    right: 7px;
-  }
-
-  .project-preview-dots {
-    gap: 6px;
-  }
-
-  .project-preview-dots button {
-    width: 8px;
-    height: 8px;
-    border-width: 1px;
-  }
-
   .project-modal {
     padding: 16px;
   }
@@ -3228,6 +3111,38 @@ a {
   .project-modal-subtitle {
     max-width: 260px;
     font-size: 1rem;
+  }
+
+  .project-modal-facts {
+    --fact-gutter: 7px;
+    width: min(286px, 100%);
+    padding: 8px;
+  }
+
+  .project-modal-fact {
+    gap: 5px;
+    padding-left: 28px;
+    padding-top: 6px;
+  }
+
+  .project-modal-fact:nth-child(1),
+  .project-modal-fact:nth-child(3) {
+    padding-left: 24px;
+  }
+
+  .project-modal-facts dt {
+    font-size: 0.54rem;
+  }
+
+  .project-modal-fact-tags {
+    gap: 2px 3px;
+  }
+
+  .project-modal-fact-tags li {
+    min-width: 0;
+    min-height: 13px;
+    padding: 3px 5px 2px;
+    font-size: 0.43rem;
   }
 
   .project-modal-body {
@@ -3309,7 +3224,39 @@ a {
   }
 }
 
+@media (max-width: 390px) {
+  .project-modal-fact-tags {
+    gap: 2px;
+  }
+
+  .project-modal-fact-tags li {
+    min-height: 12px;
+    padding: 2px 4px;
+    font-size: clamp(0.36rem, 1.6vw, 0.42rem);
+  }
+}
+
 @media (max-width: 370px) {
+  .project-modal-facts {
+    width: min(270px, 100%);
+  }
+
+  .project-modal-fact {
+    gap: 4px;
+    padding-left: 25px;
+  }
+
+  .project-modal-fact:nth-child(1),
+  .project-modal-fact:nth-child(3) {
+    padding-left: 22px;
+  }
+
+  .project-modal-fact-tags li {
+    min-height: 11px;
+    padding: 2px 3px;
+    font-size: clamp(0.34rem, 1.55vw, 0.38rem);
+  }
+
   .decor-butterfly-hero-ne {
     top: 112px;
     right: 8px;
@@ -3329,6 +3276,72 @@ a {
   .butterfly-friend {
     top: 860px;
     left: 12px;
+  }
+}
+
+@media (max-width: 330px) {
+  .project-modal-facts {
+    --fact-gutter: 5px;
+    width: min(252px, 100%);
+    padding: 7px;
+  }
+
+  .project-modal-fact {
+    gap: 3px;
+    padding-left: 22px;
+    padding-top: 5px;
+  }
+
+  .project-modal-fact:nth-child(1),
+  .project-modal-fact:nth-child(3) {
+    padding-left: 19px;
+  }
+
+  .project-modal-facts dt {
+    font-size: 0.46rem;
+  }
+
+  .project-modal-fact-tags {
+    gap: 1px 2px;
+  }
+
+  .project-modal-fact-tags li {
+    min-height: 10px;
+    padding: 1px 3px;
+    font-size: 0.32rem;
+  }
+}
+
+@media (max-width: 280px) {
+  .project-modal-facts {
+    --fact-gutter: 4px;
+    width: min(224px, 100%);
+    padding: 6px;
+  }
+
+  .project-modal-fact {
+    gap: 2px;
+    padding-left: 18px;
+    padding-top: 4px;
+  }
+
+  .project-modal-fact:nth-child(1),
+  .project-modal-fact:nth-child(3) {
+    padding-left: 16px;
+  }
+
+  .project-modal-facts dt {
+    font-size: 0.4rem;
+  }
+
+  .project-modal-fact-tags {
+    gap: 1px;
+  }
+
+  .project-modal-fact-tags li {
+    min-height: 8px;
+    padding: 1px 2px;
+    font-size: 0.26rem;
   }
 }
 

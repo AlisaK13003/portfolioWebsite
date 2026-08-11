@@ -56,108 +56,15 @@ const titles = ["Product Engineer."];
 let activeScrollAnimation = 0;
 let syncProjectCarouselToCard = () => {};
 
-function getProjectCardImages(card) {
-  const explicitImages = card.dataset.modalImages
-    ?.split(",")
-    .map((src) => src.trim())
-    .filter(Boolean);
-
-  if (explicitImages?.length) {
-    return explicitImages;
-  }
-
-  const islandImage = card.querySelector(".project-island > img")?.getAttribute("src");
-  return islandImage ? [islandImage] : [];
-}
-
-function setupProjectCardPreviews() {
+function setupProjectCardActions() {
   projectCards.forEach((card) => {
     const islandContent = card.querySelector(".project-island-content");
     const actions = card.querySelector(".project-actions");
-    const images = getProjectCardImages(card);
 
     if (islandContent && actions) {
       actions.classList.add("project-island-actions");
       islandContent.append(actions);
     }
-
-    if (images.length === 0 || card.querySelector("[data-project-preview]")) {
-      return;
-    }
-
-    let activePreviewIndex = 0;
-    const preview = document.createElement("div");
-    const frame = document.createElement("div");
-    const image = document.createElement("img");
-    const dots = document.createElement("div");
-
-    preview.className = "project-preview";
-    preview.dataset.projectPreview = "";
-    frame.className = "project-preview-frame";
-    dots.className = "project-preview-dots";
-    dots.setAttribute("aria-label", `${card.querySelector("h3")?.textContent ?? "Project"} preview gallery`);
-
-    if (card.dataset.modalFit === "contain" || card.dataset.modalFit === "soft-contain") {
-      frame.classList.add("is-contained");
-    }
-
-    image.src = images[0];
-    image.alt = "";
-    image.loading = "lazy";
-    image.decoding = "async";
-    frame.append(image);
-
-    const dotButtons = images.map((_, index) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.setAttribute("aria-label", `Show preview image ${index + 1}`);
-      button.addEventListener("click", (event) => {
-        event.stopPropagation();
-        setActivePreview(index);
-      });
-      dots.append(button);
-      return button;
-    });
-
-    function setActivePreview(index) {
-      activePreviewIndex = (index + images.length) % images.length;
-      image.src = images[activePreviewIndex];
-      dotButtons.forEach((button, buttonIndex) => {
-        if (buttonIndex === activePreviewIndex) {
-          button.setAttribute("aria-current", "true");
-        } else {
-          button.removeAttribute("aria-current");
-        }
-      });
-    }
-
-    if (images.length > 1) {
-      const previous = document.createElement("button");
-      const next = document.createElement("button");
-
-      previous.className = "project-preview-arrow project-preview-prev";
-      next.className = "project-preview-arrow project-preview-next";
-      previous.type = "button";
-      next.type = "button";
-      previous.setAttribute("aria-label", "Previous preview image");
-      next.setAttribute("aria-label", "Next preview image");
-      previous.innerHTML = '<img src="assets/arrow.png?v=20260807-arrow-update" alt="" />';
-      next.innerHTML = '<img src="assets/arrow.png?v=20260807-arrow-update" alt="" />';
-      previous.addEventListener("click", (event) => {
-        event.stopPropagation();
-        setActivePreview(activePreviewIndex - 1);
-      });
-      next.addEventListener("click", (event) => {
-        event.stopPropagation();
-        setActivePreview(activePreviewIndex + 1);
-      });
-
-      frame.append(previous, next);
-    }
-
-    setActivePreview(0);
-    preview.append(frame, dots);
-    card.append(preview);
   });
 }
 
@@ -520,7 +427,7 @@ if (typewriterText) {
   window.setTimeout(typeNextTitle, 900);
 }
 
-setupProjectCardPreviews();
+setupProjectCardActions();
 
 if (projectCards.length > 0) {
   const dotButtons = projectCards.map((card, index) => {
