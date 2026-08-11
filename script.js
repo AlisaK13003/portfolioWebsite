@@ -899,6 +899,13 @@ if (projectModal) {
     projectModal.setAttribute("aria-hidden", "false");
     projectModal.removeAttribute("inert");
     document.body.style.overflow = "hidden";
+    projectModal.scrollTop = 0;
+    if (projectModalPanel) {
+      projectModalPanel.scrollTop = 0;
+    }
+    if (projectModalBody) {
+      projectModalBody.scrollTop = 0;
+    }
     projectModalPanel?.focus();
     startProjectModalImageCarousel();
   }
