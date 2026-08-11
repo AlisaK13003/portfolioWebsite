@@ -2709,7 +2709,7 @@ a {
     display: none;
     width: min(190px, 64vw);
     min-height: var(--about-mobile-card-height);
-    gap: 28px;
+    gap: 35px;
     opacity: 0;
     pointer-events: none;
     transform: translateX(-50%) translateY(8px) scale(0.96);
@@ -2745,7 +2745,7 @@ a {
 
   .about-card-paper {
     width: 100%;
-    min-height: calc(var(--about-mobile-card-height) - 66px);
+    min-height: calc(var(--about-mobile-card-height) - 73px);
     padding: 24px 18px;
     font-size: 1rem;
   }
@@ -2762,7 +2762,7 @@ a {
 
   .about-carousel-controls {
     position: absolute;
-    top: calc((var(--about-mobile-card-height) - 66px) / 2 + 66px);
+    top: calc((var(--about-mobile-card-height) - 73px) / 2 + 73px);
     left: 50%;
     display: flex;
     justify-content: space-between;
