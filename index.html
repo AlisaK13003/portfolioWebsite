@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="preload" as="image" href="assets/islandGirl.webp" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="styles.css?v=20260810-myloops-gallery-contain" />
+    <link rel="stylesheet" href="styles.css?v=20260810-mobile-carousel-snap" />
   </head>
   <body>
     <header class="site-header" data-nav>
@@ -143,8 +143,9 @@
         <div class="projects-carousel-shell">
           <div class="projects-grid" data-projects-grid>
             <article
-              class="project-card is-active"
+              class="project-card"
               data-project-card
+              data-project-order="3"
               data-modal-image-folder="assets/sealbound"
               data-modal-image-prefix="sealbound"
               data-modal-image-extension="png"
@@ -302,8 +303,9 @@
           </article>
 
             <article
-              class="project-card"
+              class="project-card is-active"
               data-project-card
+              data-project-order="1"
               data-modal-images="assets/myloops/myloops0.png, assets/myloops/myloops1.png, assets/myloops/myloops2.png, assets/myloops/myloops3.png"
               data-modal-fit="contain"
               data-modal-hide-tags
@@ -330,7 +332,17 @@
                   rel="noopener noreferrer"
                   aria-label="Visit the MyLoops website"
                 >
-                  Visit Site
+                  <img class="button-icon button-icon-globe" src="assets/globe-export.png" alt="" />
+                  <span>Visit Site</span>
+                </a>
+                <a
+                  href="https://www.figma.com/design/GsAt77jM7CsYbEU7jF9uxP/Untitled?node-id=0-1&t=qb4jrPp2OVLy2K36-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View MyLoops Figma design"
+                >
+                  <img class="button-icon button-icon-figma" src="assets/figma.png" alt="" />
+                  <span>Figma</span>
                 </a>
                 <a
                   href="https://myloops.co/#download"
@@ -342,7 +354,8 @@
                   data-ios-href="https://apps.apple.com/us/app/myloops-connected-and-safe/id6748546808"
                   data-android-href="https://play.google.com/store/apps/details?id=com.innovation43veryone.mycircles&pcampaignid=web_share"
                 >
-                  Download App
+                  <img class="button-icon" src="assets/download.png" alt="" />
+                  <span>Download App</span>
                 </a>
               </div>
               <div class="project-modal-copy" hidden data-project-modal-copy>
@@ -473,16 +486,22 @@
               </div>
             </article>
 
-            <article class="project-card" data-project-card>
+            <article
+              class="project-card"
+              data-project-card
+              data-project-order="4"
+              data-modal-hide-tags
+              data-modal-images="assets/sunnyDays/sunnyDays0.png, assets/sunnyDays/sunnyDays1.png, assets/sunnyDays/sunnyDays2.png, assets/sunnyDays/sunnyDays3.png"
+            >
             <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
               <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
                 <h3>Sunny Days</h3>
                 <ul class="project-tags" aria-label="Project tags">
-                  <li>Game Design</li>
+                  <li>Developer</li>
+                  <li>UI Design</li>
                   <li>Pixel Art</li>
                   <li>Unity</li>
-                  <li>Systems</li>
                 </ul>
               </div>
               </div>
@@ -490,12 +509,159 @@
                 <button type="button" aria-label="View Sunny Days project details" data-project-modal-trigger>View Project</button>
               </div>
               <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
-                <button type="button" aria-label="Play Sunny Days demo">Play Demo</button>
-                <button type="button" aria-label="View Sunny Days GitHub">GitHub</button>
+                <a
+                  href="https://koibaa.itch.io/sunny-days"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Play Sunny Days demo on itch.io"
+                >
+                  <img class="button-icon" src="assets/demo.png" alt="" />
+                  <span>Play Demo</span>
+                </a>
+              </div>
+              <div class="project-modal-copy" hidden data-project-modal-copy>
+                <p class="project-modal-kicker">2D solarpunk adventure and life-simulation game</p>
+                <dl class="project-modal-facts" aria-label="Sunny Days project summary">
+                  <div class="project-modal-fact">
+                    <dt>Role</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Role tags">
+                        <li>Game Developer</li>
+                        <li>UI Designer</li>
+                        <li>Pixel Artist</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Team</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Team tags">
+                        <li>5 people</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Timeline</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Timeline tags">
+                        <li>4 months</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Tools</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Tool tags">
+                        <li>Unity</li>
+                        <li>C#</li>
+                        <li>Git</li>
+                        <li>GitHub</li>
+                        <li>Aseprite</li>
+                      </ul>
+                    </dd>
+                  </div>
+                </dl>
+
+                <h3>Overview</h3>
+                <p>
+                  Sunny Days is a <strong>2D solarpunk adventure and life-simulation game built in Unity</strong>, set
+                  in a village overtaken by pollution and smog. Players gather resources by exploring and defeating
+                  enemies, then use those materials to build <strong>green machinery and restore the environment</strong>.
+                </p>
+                <p>
+                  Alongside its environmental progression, the game combines
+                  <strong>combat, hydroponic farming, cooking, crafting, and day/night systems</strong> into a larger
+                  gameplay loop centered around gradually bringing life back to the village.
+                </p>
+
+                <h3>My Role</h3>
+                <p>
+                  I worked as a <strong>Game Developer and Designer</strong>, taking ownership of several player-facing
+                  features from concept through implementation.
+                </p>
+                <p>
+                  My primary development work included the <strong>farming, cooking, sleeping, and day/night
+                  systems</strong>, along with UI supporting the game's core interactions. I worked across gameplay
+                  logic and presentation to ensure these systems were intuitive to use and connected naturally with the
+                  game's larger progression loop.
+                </p>
+                <p>
+                  While the project primarily used existing asset packs, I also created
+                  <strong>custom pixel-art assets when existing resources couldn't support a feature</strong>, including
+                  crops and their growth stages, food items, hydroponics equipment, cooking stations, and other
+                  gameplay-specific objects.
+                </p>
+
+                <h3>Process</h3>
+                <p>
+                  I approached features as <strong>complete player experiences rather than isolated mechanics</strong>.
+                  Building the farming system, for example, involved implementing planting and harvesting logic, crop
+                  progression over time, visual growth states, player interactions, and connections with sleeping and
+                  the day/night cycle.
+                </p>
+                <p>
+                  Because Sunny Days combines environmental restoration, combat, resource collection, farming, and
+                  crafting, features also needed to work within a <strong>shared progression loop</strong>. I regularly
+                  moved between gameplay logic, UI, testing, and visual assets to ensure the systems I owned worked
+                  cohesively within the larger game.
+                </p>
+                <p>
+                  Development was collaborative, so features were integrated and tested alongside systems created by
+                  other team members, requiring implementations to adapt as mechanics and progression evolved.
+                </p>
+
+                <h3>What I Built</h3>
+                <ul class="project-modal-list">
+                  <li><strong>Developed the farming experience end-to-end</strong>, including planting, crop growth, harvesting, visual growth stages, and integration with the game's time system.</li>
+                  <li>Implemented <strong>sleeping and day/night progression</strong>, connecting player actions and other gameplay systems to the daily loop.</li>
+                  <li>Developed the <strong>cooking system and supporting interactions</strong>, allowing collected and grown resources to be turned into food.</li>
+                  <li>Designed and implemented <strong>player-facing UI</strong> supporting the game's core mechanics.</li>
+                  <li>Created custom <strong>pixel-art assets</strong> for features not supported by existing asset packs, including crops, food, hydroponics equipment, and cooking stations.</li>
+                  <li><strong>Integrated and tested features within the larger Unity project</strong>, ensuring my systems worked alongside combat, resource collection, crafting, and environmental progression.</li>
+                </ul>
+
+                <h3>Challenges &amp; Decisions</h3>
+                <p>
+                  One recurring challenge was building features that needed to interact with several other systems.
+                  <strong>Farming depended on time progression, crops required visual state changes, sleeping advanced
+                  the day, and harvested ingredients fed into cooking</strong>. Changes to one mechanic therefore had
+                  consequences elsewhere in the player's experience.
+                </p>
+                <p>
+                  The game's functionality also extended beyond what was available in our existing asset packs. Rather
+                  than limiting mechanics around those constraints, <strong>I created the additional artwork required to
+                  support them</strong>, allowing features such as hydroponic farming and cooking to retain their
+                  intended functionality while remaining visually consistent with the rest of the game.
+                </p>
+                <p>
+                  This required an <strong>end-to-end approach to feature development</strong>, balancing implementation,
+                  usability, visual feedback, and integration rather than treating code, UI, and art as separate
+                  responsibilities.
+                </p>
+
+                <h3>Outcome</h3>
+                <p>
+                  The completed project brought together <strong>environmental restoration, combat, resource collection,
+                  farming, cooking, crafting, and time progression</strong> into a cohesive playable experience centered
+                  around restoring a polluted solarpunk village.
+                </p>
+                <p>
+                  My contributions spanned the full lifecycle of several player-facing features-from defining how they
+                  should work through <strong>implementation, interface design, asset creation, integration, and
+                  testing</strong>. Sunny Days strengthened my experience taking ownership of features beyond their
+                  underlying code and considering how each system contributes to the overall player experience.
+                </p>
               </div>
             </article>
 
-            <article class="project-card" data-project-card>
+            <article
+              class="project-card"
+              data-project-card
+              data-project-order="2"
+              data-modal-hide-tags
+              data-modal-fit="soft-contain"
+              data-modal-images="assets/celo/celo0.png, assets/celo/celo1.png, assets/celo/celo2.png"
+            >
             <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
               <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
@@ -510,11 +676,146 @@
                 <button type="button" aria-label="View Celo project details" data-project-modal-trigger>View Project</button>
               </div>
               <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
-                <button type="button" aria-label="Visit Celo site">Visit Site</button>
+                <a
+                  href="https://www.celo.fyi/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Celo site"
+                >
+                  <img class="button-icon button-icon-globe" src="assets/globe-export.png" alt="" />
+                  <span>Visit Site</span>
+                </a>
+              </div>
+              <div class="project-modal-copy" hidden data-project-modal-copy>
+                <p class="project-modal-kicker">Privacy-awareness product</p>
+                <dl class="project-modal-facts" aria-label="Celo project summary">
+                  <div class="project-modal-fact">
+                    <dt>Role</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Role tags">
+                        <li>Product Designer</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Team</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Team tags">
+                        <li>3 people</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Timeline</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Timeline tags">
+                        <li>4 months</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Tools</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Tool tags">
+                        <li>Figma</li>
+                        <li>SvelteKit</li>
+                        <li>Vercel</li>
+                      </ul>
+                    </dd>
+                  </div>
+                </dl>
+
+                <h3>Overview</h3>
+                <p>
+                  Celo is a <strong>privacy-awareness platform that helps users understand how the apps on their
+                  devices collect, track, and share their data</strong>. Users can upload a screenshot of their home
+                  screen to identify their apps and receive a report with privacy risk scores, flags, and actionable
+                  recommendations.
+                </p>
+                <p>
+                  The product was designed to make <strong>complex privacy information easier to understand and act
+                  on</strong>, translating dense policies and data practices into an approachable experience for
+                  everyday users.
+                </p>
+
+                <h3>My Role</h3>
+                <p>
+                  I worked as the <strong>Product Designer</strong> on a three-person team, owning the visual and
+                  interaction design across Celo's website and product interface.
+                </p>
+                <p>
+                  I designed the user experience from early concepts through high-fidelity interfaces, including the
+                  public-facing website, app-scanning experience, privacy reports, dashboard, and supporting marketing
+                  graphics.
+                </p>
+                <p>
+                  I also contributed to frontend development, working with <strong>SvelteKit and Vercel adapters</strong>
+                  to help translate the designs into the live product and support deployment on Vercel.
+                </p>
+
+                <h3>Process</h3>
+                <p>
+                  My design work focused on turning a technically complex privacy-analysis system into an experience
+                  that felt <strong>clear, trustworthy, and approachable</strong>.
+                </p>
+                <p>
+                  I designed flows around uploading and scanning apps, understanding privacy risk scores, reviewing
+                  individual app findings, and navigating recommendations. As the product evolved, I worked alongside
+                  the developer and project manager to refine the interface around new functionality and technical
+                  requirements.
+                </p>
+                <p>
+                  Because Celo communicates potentially unfamiliar privacy concepts, I paid particular attention to
+                  <strong>information hierarchy and progressive disclosure</strong>, surfacing the most important
+                  findings first while allowing users to explore the underlying details when needed.
+                </p>
+
+                <h3>What I Designed &amp; Built</h3>
+                <ul class="project-modal-list">
+                  <li><strong>Designed Celo's product experience and visual system</strong>, including the website, dashboard, scanning flow, privacy reports, and supporting interfaces.</li>
+                  <li>Created reusable <strong>UI patterns and components</strong> to keep a data-heavy product visually consistent and easy to navigate.</li>
+                  <li>Designed <strong>marketing graphics and educational content</strong> used to communicate privacy risks and Celo's value to users.</li>
+                  <li>Worked alongside the developer to <strong>translate Figma designs into the live product</strong>.</li>
+                  <li>Contributed to frontend implementation using <strong>SvelteKit</strong> and helped configure <strong>Vercel adapters and deployment</strong>.</li>
+                </ul>
+
+                <h3>Challenges &amp; Decisions</h3>
+                <p>
+                  Celo needed to communicate a large amount of privacy information without overwhelming users. Privacy
+                  policies are dense and technical, while Celo's audience includes people who may have little
+                  familiarity with concepts such as third-party tracking, data brokers, or cross-app data sharing.
+                </p>
+                <p>
+                  I approached the interface by <strong>prioritizing actionable information over raw complexity</strong>.
+                  Risk scores, severity levels, flags, and recommendations create an immediate summary, while more
+                  detailed information remains available for users who want to understand why an app was flagged.
+                </p>
+                <p>
+                  Another challenge was designing around a product that continued to evolve technically. Working in a
+                  small three-person team meant designs needed to remain flexible as functionality changed, so I
+                  regularly <strong>adjusted flows and components around implementation constraints and new product
+                  requirements</strong>.
+                </p>
+
+                <h3>Outcome</h3>
+                <p>
+                  The result is a <strong>live privacy product that turns complex app-data practices into a visual,
+                  actionable experience</strong>. Users can move from a screenshot of their device to a structured
+                  report highlighting privacy risks, patterns, and recommendations in a single workflow.
+                </p>
+                <p>
+                  Celo was also <strong>approved for a partnership with Incogni</strong>, a personal-data removal
+                  service, providing external validation for the product's direction within the consumer privacy space.
+                </p>
+                <p>
+                  The project gave me experience owning the design of a product with <strong>complex information
+                  architecture</strong>, while also working beyond Figma to contribute directly to frontend
+                  implementation and deployment.
+                </p>
               </div>
             </article>
 
-            <article class="project-card" data-project-card>
+            <article class="project-card" data-project-card data-project-hidden hidden>
             <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
               <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
@@ -531,19 +832,30 @@
               </div>
               <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
                 <button type="button" aria-label="View My Pantry Pal Figma">Figma</button>
-                <button type="button" aria-label="Visit My Pantry Pal site">Visit Site</button>
+                <button type="button" aria-label="Visit My Pantry Pal site">
+                  <img class="button-icon button-icon-globe" src="assets/globe-export.png" alt="" />
+                  <span>Visit Site</span>
+                </button>
                 <button type="button" aria-label="View My Pantry Pal GitHub">GitHub</button>
               </div>
             </article>
 
-            <article class="project-card" data-project-card>
+            <article
+              class="project-card"
+              data-project-card
+              data-project-order="5"
+              data-modal-hide-tags
+              data-modal-fit="soft-contain"
+              data-modal-images="assets/infolio/infolio0.png, assets/infolio/infolio1.png, assets/infolio/infolio2.png, assets/infolio/infolio3.png"
+            >
             <div class="project-island" role="button" tabindex="0" data-project-modal-trigger>
               <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
               <div class="project-island-content">
                 <h3>Infolio</h3>
                 <ul class="project-tags" aria-label="Project tags">
-                  <li>Dashboard UX</li>
-                  <li>Tracking Flow</li>
+                  <li>Frontend</li>
+                  <li>CRUD</li>
+                  <li>JavaScript</li>
                   <li>Figma</li>
                 </ul>
               </div>
@@ -552,9 +864,149 @@
                 <button type="button" aria-label="View Infolio project details" data-project-modal-trigger>View Project</button>
               </div>
               <div class="project-modal-actions-source" hidden data-project-modal-actions-source>
-                <button type="button" aria-label="View Infolio GitHub">GitHub</button>
-                <button type="button" aria-label="View Infolio Figma">Figma</button>
-                <button type="button" aria-label="Visit Infolio site">Visit Site</button>
+                <a
+                  href="https://github.com/Arqane-UCF/COP_4331_Small_Project_Public"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Infolio on GitHub"
+                >
+                  <img class="button-icon" src="assets/githubIcon.png" alt="" />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href="https://www.figma.com/design/3mZuHrmgh5qEs5fhqsywy0/Infolio--Contact-Manager?node-id=0-1&t=MTFABrEdYIlup2cx-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Infolio Figma design"
+                >
+                  <img class="button-icon button-icon-figma" src="assets/figma.png" alt="" />
+                  <span>Figma</span>
+                </a>
+              </div>
+              <div class="project-modal-copy" hidden data-project-modal-copy>
+                <p class="project-modal-kicker">Web-based contact management application</p>
+                <dl class="project-modal-facts" aria-label="Infolio project summary">
+                  <div class="project-modal-fact">
+                    <dt>Role</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Role tags">
+                        <li>Product Designer</li>
+                        <li>Frontend Developer</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Team</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Team tags">
+                        <li>4 people</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Timeline</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Timeline tags">
+                        <li>1.5 months</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="project-modal-fact">
+                    <dt>Tools</dt>
+                    <dd>
+                      <ul class="project-modal-fact-tags" aria-label="Tool tags">
+                        <li>Figma</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>GitHub</li>
+                      </ul>
+                    </dd>
+                  </div>
+                </dl>
+
+                <h3>Overview</h3>
+                <p>
+                  Infolio is a <strong>web-based contact management application</strong> built around core CRUD
+                  functionality, allowing users to create, view, update, delete, search, and organize contacts through
+                  a simple interface.
+                </p>
+                <p>
+                  The project focused on creating a straightforward interface for common contact-management tasks while
+                  maintaining a cohesive visual system across authentication, contact lists, search, and editing flows.
+                </p>
+
+                <h3>My Role</h3>
+                <p>
+                  I worked as the <strong>Product Designer and Frontend Developer</strong>, owning the product
+                  experience from initial interface design through implementation.
+                </p>
+                <p>
+                  I designed the complete application in Figma, defining its <strong>visual system, layouts,
+                  interaction patterns, and core user flows</strong>, then translated those designs directly into the
+                  frontend.
+                </p>
+                <p>
+                  Beyond the interface itself, I also contributed JavaScript logic supporting features such as
+                  <strong>contact search and filtering</strong>, allowing me to work across both presentation and
+                  user-facing functionality.
+                </p>
+
+                <h3>Process</h3>
+                <p>
+                  I began by designing the application's primary workflows in Figma, including authentication, viewing
+                  and managing contacts, searching, and editing contact information.
+                </p>
+                <p>
+                  Rather than treating design and implementation as separate phases, I used the Figma designs as the
+                  foundation for development and refined the interface as the application took shape in code. This
+                  allowed me to account for <strong>real implementation constraints, responsive behavior, and
+                  interaction states</strong> while preserving the original design intent.
+                </p>
+                <p>
+                  Working within a team repository also required coordinating frontend work with the application's
+                  backend functionality and adapting the interface around the data and behaviors provided by other team
+                  members.
+                </p>
+
+                <h3>What I Built</h3>
+                <ul class="project-modal-list">
+                  <li><strong>Designed the complete application experience in Figma</strong>, including authentication, navigation, contact management, and reusable interface patterns.</li>
+                  <li><strong>Developed the frontend from the Figma designs</strong>, implementing responsive layouts, styling, and interactive UI behavior.</li>
+                  <li><strong>Built the frontend for CRUD workflows</strong>, supporting the creation, viewing, editing, and deletion of contacts.</li>
+                  <li>Developed JavaScript for <strong>contact search, filtering, and other user-facing interaction logic</strong>.</li>
+                  <li><strong>Integrated frontend interactions with backend functionality</strong>, handling dynamic contact data and application states.</li>
+                </ul>
+
+                <h3>Challenges &amp; Decisions</h3>
+                <p>
+                  One of the main challenges was maintaining consistency between the original Figma designs and the
+                  realities of a working application.
+                </p>
+                <p>
+                  Layouts that appear straightforward in a static design need to account for <strong>dynamic contact
+                  data, varying content lengths, interaction states, validation, and responsive behavior</strong> once
+                  implemented. I adjusted components and flows during development where necessary while preserving the
+                  underlying visual hierarchy and usability goals.
+                </p>
+                <p>
+                  Because I owned both the design and frontend implementation, I was able to resolve these issues
+                  directly rather than relying on a traditional designer-to-developer handoff. That shortened the
+                  feedback loop between <strong>design decisions and technical implementation</strong>.
+                </p>
+
+                <h3>Outcome</h3>
+                <p>
+                  The result was a functional contact-management application with a
+                  <strong>consistent experience from initial design through implementation</strong>.
+                </p>
+                <p>
+                  Infolio gave me direct experience taking a product from <strong>Figma to working frontend
+                  code</strong>, while contributing additional JavaScript functionality for user-facing features such
+                  as contact discovery and search. The project strengthened my ability to work across <strong>product
+                  design, frontend engineering, and interaction logic</strong> rather than treating those responsibilities
+                  as separate disciplines.
+                </p>
               </div>
             </article>
           </div>
@@ -749,19 +1201,17 @@
 
         <div class="about-intro">
           <p>
-            Hi, I'm Alisa! I make games, design interfaces, and pour a lot of love into the little things-how
-            a button bounces, how a character feels to move, how a screen makes you feel at home. I care about
-            creating experiences that feel genuine and playful, with personality and heart.
+            Hi, I'm Alisa. I'm a Product Engineer who enjoys turning ideas into thoughtful, intuitive digital
+            experiences. I like working across design and development, especially when I can shape both how
+            something works and how it feels to use.
           </p>
           <p>
-            I'm not interested in climbing any corporate ladders--just looking for a small team that cares as
-            much as I do.
+            I care about the small details that make products feel polished-from clear interaction flows and
+            responsive interfaces to the little moments that give an experience personality.
           </p>
           <p>
-            If you like heartfelt projects, pixel art, or just wandering through chill spaces, you're in good
-            company.
+            Outside of work, I'm usually sketching, gaming, traveling, or finding new music.
           </p>
-          <p>(P.S. Have you tried clicking on the butterflies?)</p>
         </div>
 
         <div class="about-carousel-shell">
@@ -773,9 +1223,9 @@
               </button>
               <div class="about-card-paper">
                 <ul>
-                  <li>I'm learning violin and slowly getting less terrible at it.</li>
-                  <li>If I were an RPG character, I'd be a mildly unhinged assassin with a cat companion.</li>
                   <li>My favorite Pokemon is Absol.</li>
+                  <li>I play lots of League of Legends (I can play any role but I'm a Lulu OTP).</li>
+                  <li>I'm usually working on some kind of game, drawing, or new app idea.</li>
                 </ul>
               </div>
             </article>
@@ -787,8 +1237,7 @@
               </button>
               <div class="about-card-paper">
                 <p>
-                  Pixel art, UI/UX, playing violin, studying architecture, gaming, singing, and discovering new
-                  music.
+                  Traveling, sketching, gaming, singing, discovering new music, and exploring new places and ideas.
                 </p>
               </div>
             </article>
@@ -800,8 +1249,8 @@
               </button>
               <div class="about-card-paper">
                 <p>
-                  Working on a game called Sealbound and a real-world safety app, MyLoops. Scouting Unity,
-                  Unreal, and pixel animation to sharpen my game dev toolkit.
+                  Refining my product engineering skills, experimenting with new app ideas, and learning more about
+                  LLMs and how to use them effectively in design and development workflows.
                 </p>
               </div>
             </article>
@@ -901,6 +1350,6 @@
       </div>
     </main>
 
-    <script src="script.js?v=20260810-myloops-gallery-contain"></script>
+    <script src="script.js?v=20260810-project-preview-gallery"></script>
   </body>
 </html>

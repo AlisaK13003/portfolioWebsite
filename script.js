@@ -6,7 +6,14 @@ const themeToggle = document.querySelector("[data-theme-toggle]");
 const navBoard = document.querySelector("[data-nav-board]");
 const typewriterText = document.querySelector("[data-typewriter]");
 const butterflies = [...document.querySelectorAll("[data-butterfly]")];
-const projectCards = [...document.querySelectorAll("[data-project-card]")];
+const projectCards = [...document.querySelectorAll("[data-project-card]")]
+  .filter((card) => !card.hidden && !card.hasAttribute("data-project-hidden"))
+  .sort((firstCard, secondCard) => {
+    const firstOrder = Number(firstCard.dataset.projectOrder ?? Number.MAX_SAFE_INTEGER);
+    const secondOrder = Number(secondCard.dataset.projectOrder ?? Number.MAX_SAFE_INTEGER);
+
+    return firstOrder - secondOrder;
+  });
 const projectsGrid = document.querySelector("[data-projects-grid]");
 const projectPrev = document.querySelector("[data-project-prev]");
 const projectNext = document.querySelector("[data-project-next]");
@@ -48,6 +55,111 @@ const sectionIds = ["home", "projects", "experience", "about", "contact"];
 const titles = ["Product Engineer."];
 let activeScrollAnimation = 0;
 let syncProjectCarouselToCard = () => {};
+
+function getProjectCardImages(card) {
+  const explicitImages = card.dataset.modalImages
+    ?.split(",")
+    .map((src) => src.trim())
+    .filter(Boolean);
+
+  if (explicitImages?.length) {
+    return explicitImages;
+  }
+
+  const islandImage = card.querySelector(".project-island > img")?.getAttribute("src");
+  return islandImage ? [islandImage] : [];
+}
+
+function setupProjectCardPreviews() {
+  projectCards.forEach((card) => {
+    const islandContent = card.querySelector(".project-island-content");
+    const actions = card.querySelector(".project-actions");
+    const images = getProjectCardImages(card);
+
+    if (islandContent && actions) {
+      actions.classList.add("project-island-actions");
+      islandContent.append(actions);
+    }
+
+    if (images.length === 0 || card.querySelector("[data-project-preview]")) {
+      return;
+    }
+
+    let activePreviewIndex = 0;
+    const preview = document.createElement("div");
+    const frame = document.createElement("div");
+    const image = document.createElement("img");
+    const dots = document.createElement("div");
+
+    preview.className = "project-preview";
+    preview.dataset.projectPreview = "";
+    frame.className = "project-preview-frame";
+    dots.className = "project-preview-dots";
+    dots.setAttribute("aria-label", `${card.querySelector("h3")?.textContent ?? "Project"} preview gallery`);
+
+    if (card.dataset.modalFit === "contain" || card.dataset.modalFit === "soft-contain") {
+      frame.classList.add("is-contained");
+    }
+
+    image.src = images[0];
+    image.alt = "";
+    image.loading = "lazy";
+    image.decoding = "async";
+    frame.append(image);
+
+    const dotButtons = images.map((_, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.setAttribute("aria-label", `Show preview image ${index + 1}`);
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setActivePreview(index);
+      });
+      dots.append(button);
+      return button;
+    });
+
+    function setActivePreview(index) {
+      activePreviewIndex = (index + images.length) % images.length;
+      image.src = images[activePreviewIndex];
+      dotButtons.forEach((button, buttonIndex) => {
+        if (buttonIndex === activePreviewIndex) {
+          button.setAttribute("aria-current", "true");
+        } else {
+          button.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    if (images.length > 1) {
+      const previous = document.createElement("button");
+      const next = document.createElement("button");
+
+      previous.className = "project-preview-arrow project-preview-prev";
+      next.className = "project-preview-arrow project-preview-next";
+      previous.type = "button";
+      next.type = "button";
+      previous.setAttribute("aria-label", "Previous preview image");
+      next.setAttribute("aria-label", "Next preview image");
+      previous.innerHTML = '<img src="assets/arrow.png?v=20260807-arrow-update" alt="" />';
+      next.innerHTML = '<img src="assets/arrow.png?v=20260807-arrow-update" alt="" />';
+      previous.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setActivePreview(activePreviewIndex - 1);
+      });
+      next.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setActivePreview(activePreviewIndex + 1);
+      });
+
+      frame.append(previous, next);
+    }
+
+    setActivePreview(0);
+    preview.append(frame, dots);
+    card.append(preview);
+  });
+}
 
 function getAdaptiveDownloadHref(link) {
   const userAgent = navigator.userAgent || navigator.vendor || "";
@@ -407,6 +519,8 @@ if (typewriterText) {
 
   window.setTimeout(typeNextTitle, 900);
 }
+
+setupProjectCardPreviews();
 
 if (projectCards.length > 0) {
   const dotButtons = projectCards.map((card, index) => {
@@ -837,6 +951,7 @@ if (projectModal) {
 
     projectModalMedia?.classList.toggle("has-carousel", projectModalImages.length > 1);
     projectModalMedia?.classList.toggle("is-contained", card.dataset.modalFit === "contain");
+    projectModalMedia?.classList.toggle("is-soft-contained", card.dataset.modalFit === "soft-contain");
 
     if (projectModalImageDots) {
       projectModalImageDots.hidden = projectModalImages.length <= 1;
