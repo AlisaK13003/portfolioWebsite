@@ -1604,6 +1604,8 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 48px;
+  --about-body-font-size: clamp(1rem, 1.7vw, 1.5rem);
+  --about-body-line-height: 1.18;
   padding: 64px 64px 112px;
   scroll-margin-top: 180px;
   content-visibility: auto;
@@ -1615,8 +1617,8 @@ a {
   width: min(100%, 980px);
   gap: 18px;
   color: var(--brown-ink);
-  font-size: clamp(1rem, 1.7vw, 1.5rem);
-  line-height: 1.18;
+  font-size: var(--about-body-font-size);
+  line-height: var(--about-body-line-height);
   text-align: left;
 }
 
@@ -1717,8 +1719,8 @@ a {
 
 .about-card-paper p,
 .about-card-paper li {
-  font-size: clamp(1rem, 1.7vw, 1.5rem);
-  line-height: 1.18;
+  font-size: var(--about-body-font-size);
+  line-height: var(--about-body-line-height);
 }
 
 .about-card-paper ul {
@@ -2317,7 +2319,7 @@ a {
   }
 
   .decor-butterfly-about-gap {
-    top: -46px;
+    top: 38px;
     left: 18px;
   }
 
@@ -2506,7 +2508,7 @@ a {
   .hero-section {
     grid-template-columns: 1fr;
     align-items: center;
-    gap: clamp(44px, 12vw, 56px);
+    gap: clamp(36px, 10vw, 48px);
     min-height: 650px;
     padding: 68px clamp(24px, 8vw, 54px) 48px;
     text-align: center;
@@ -2677,6 +2679,8 @@ a {
 
   .about-section {
     gap: 40px;
+    --about-body-font-size: 0.875rem;
+    --about-body-line-height: 1.16;
     padding: 48px 24px 72px;
     scroll-margin-top: 72px;
   }
@@ -2684,11 +2688,10 @@ a {
   .about-intro {
     width: min(294px, 100%);
     gap: 16px;
-    font-size: 0.875rem;
-    line-height: 1.16;
   }
 
   .about-carousel-shell {
+    --about-mobile-card-height: clamp(430px, 126vw, 500px);
     width: min(326px, calc(100vw - 28px));
   }
 
@@ -2696,7 +2699,7 @@ a {
     position: relative;
     display: block;
     width: 100%;
-    min-height: 346px;
+    min-height: var(--about-mobile-card-height);
   }
 
   .about-card {
@@ -2705,7 +2708,8 @@ a {
     left: 50%;
     display: none;
     width: min(190px, 64vw);
-    gap: 14px;
+    min-height: var(--about-mobile-card-height);
+    gap: 28px;
     opacity: 0;
     pointer-events: none;
     transform: translateX(-50%) translateY(8px) scale(0.96);
@@ -2741,15 +2745,15 @@ a {
 
   .about-card-paper {
     width: 100%;
-    min-height: 286px;
+    min-height: calc(var(--about-mobile-card-height) - 66px);
     padding: 24px 18px;
     font-size: 1rem;
   }
 
   .about-card-paper p,
   .about-card-paper li {
-    font-size: clamp(1rem, 4vw, 1.22rem);
-    line-height: 1.16;
+    font-size: var(--about-body-font-size);
+    line-height: var(--about-body-line-height);
   }
 
   .about-card-paper ul {
@@ -2758,7 +2762,7 @@ a {
 
   .about-carousel-controls {
     position: absolute;
-    top: 177px;
+    top: calc((var(--about-mobile-card-height) - 66px) / 2 + 66px);
     left: 50%;
     display: flex;
     justify-content: space-between;
@@ -2932,7 +2936,7 @@ a {
   }
 
   .projects-carousel-shell {
-    gap: 16px;
+    gap: 8px;
   }
 
   .section-sign {
@@ -2949,7 +2953,7 @@ a {
     position: relative;
     display: block;
     width: 274px;
-    min-height: 164px;
+    min-height: 120px;
   }
 
   .project-card {
