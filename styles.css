@@ -3069,8 +3069,7 @@ a {
 
   .project-modal-panel {
     width: min(380px, calc(100vw - 32px));
-    height: calc(100vh - 24px);
-    height: calc(100dvh - 24px);
+    height: auto;
     min-height: 0;
     max-height: calc(100vh - 24px);
     max-height: calc(100dvh - 24px);
