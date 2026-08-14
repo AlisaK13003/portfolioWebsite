@@ -20,7 +20,7 @@ export const aboutCards: AboutCard[] = [
     items: [
       "My favorite Pokemon is Absol.",
       "I play lots of League of Legends (I can play any role but I'm a Lulu OTP).",
-      "I'm usually working on some kind of game, drawing, or new app idea.",
+      "I'm usually practicing violin, drawing, or working on a new app idea.",
     ],
   },
   {

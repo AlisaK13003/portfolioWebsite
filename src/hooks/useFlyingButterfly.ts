@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
-
-type ButterflyVector = {
-  x: number;
-  y: number;
-};
-
-type ButterflyMode = "idle" | "following" | "returning";
-type ButterflyFacing = "left" | "right";
+import {
+  butterflyFollowDuration,
+  butterflyFollowEase,
+  getDirectionToHome,
+  getFacingFromMovement,
+  getMouseFriendlyInteraction,
+  getReturnFlutter,
+  getReturnTravelDistance,
+  maxFrameSeconds,
+  type ButterflyFacing,
+  type ButterflyMode,
+  type ButterflyVector,
+} from "../utils/butterflyMotion";
 
 export type FlyingButterfly = {
   className: string;
@@ -15,30 +20,6 @@ export type FlyingButterfly = {
   origin: ButterflyVector;
   position: ButterflyVector;
 };
-
-const butterflyFollowDuration = 3200;
-const butterflyReturnMinSpeed = 180;
-const butterflyReturnMaxSpeed = 640;
-const butterflyReturnWobbleStrength = 16;
-const butterflyReturnWobbleFrequency = 0.009;
-const butterflyFollowEase = 0.14;
-const maxFrameSeconds = 0.05;
-
-function getMouseFriendlyInteraction() {
-  return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-}
-
-function getFacingFromMovement(nextX: number, previousX: number, fallback: ButterflyFacing) {
-  if (nextX > previousX + 1) {
-    return "right";
-  }
-
-  if (nextX < previousX - 1) {
-    return "left";
-  }
-
-  return fallback;
-}
 
 export function useFlyingButterfly(className: string) {
   const restingButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -110,28 +91,18 @@ export function useFlyingButterfly(className: string) {
       const now = performance.now();
       const elapsedSeconds = Math.min(Math.max((now - previousTime) / 1000, 0), maxFrameSeconds);
       const distance = Math.hypot(position.current.x, position.current.y);
-      const travelDistance =
-        Math.min(butterflyReturnMaxSpeed, butterflyReturnMinSpeed + distance * 0.65) * elapsedSeconds;
+      const travelDistance = getReturnTravelDistance(distance, elapsedSeconds);
 
       if (distance <= travelDistance) {
         finishReturn();
         return;
       }
 
-      const directionToHome = {
-        x: -position.current.x / distance,
-        y: -position.current.y / distance,
-      };
+      const directionToHome = getDirectionToHome(position.current, distance);
       const returnProgress = returnStartDistance.current
         ? Math.min(1, 1 - distance / returnStartDistance.current)
         : 1;
-      const wobbleFade = Math.sin(returnProgress * Math.PI);
-      const wobblePhase = now * butterflyReturnWobbleFrequency;
-      const wobbleAmount = butterflyReturnWobbleStrength * wobbleFade;
-      const flutterX = -directionToHome.y * Math.sin(wobblePhase) * wobbleAmount;
-      const flutterY =
-        directionToHome.x * Math.sin(wobblePhase * 0.85) * wobbleAmount * 0.55 +
-        Math.cos(wobblePhase * 1.15) * wobbleAmount * 0.2;
+      const flutter = getReturnFlutter(directionToHome, returnProgress, now);
 
       position.current = {
         x: position.current.x + directionToHome.x * travelDistance,
@@ -149,8 +120,8 @@ export function useFlyingButterfly(className: string) {
           facing: facing.current,
           mode: "returning",
           position: {
-            x: position.current.x + flutterX,
-            y: position.current.y + flutterY,
+            x: position.current.x + flutter.x,
+            y: position.current.y + flutter.y,
           },
         };
       });

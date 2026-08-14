@@ -8,6 +8,7 @@ type ProjectIslandCardProps = {
   isPrevious: boolean;
   project: Project;
   onOpenProject: (project: Project) => void;
+  setRef: (node: HTMLElement | null) => void;
 };
 
 export function ProjectIslandCard({
@@ -17,11 +18,13 @@ export function ProjectIslandCard({
   isPrevious,
   project,
   onOpenProject,
+  setRef,
 }: ProjectIslandCardProps) {
   const openProject = () => onOpenProject(project);
 
   return (
     <article
+      ref={setRef}
       className={[
         "project-card",
         isActive ? "is-active" : "",

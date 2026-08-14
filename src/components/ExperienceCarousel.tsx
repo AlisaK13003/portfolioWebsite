@@ -1,8 +1,8 @@
 import { experienceItems } from "../data/experience";
 import { useCarousel } from "../hooks/useCarousel";
+import { CarouselControls } from "./CarouselControls";
+import { CarouselDots } from "./CarouselDots";
 import { ExperienceCard } from "./ExperienceCard";
-import { ExperienceCarouselControls } from "./ExperienceCarouselControls";
-import { ExperienceCarouselDots } from "./ExperienceCarouselDots";
 
 export function ExperienceCarousel() {
   const carousel = useCarousel({ itemCount: experienceItems.length, transitionDuration: 280 });
@@ -20,11 +20,21 @@ export function ExperienceCarousel() {
         ))}
       </div>
 
-      <ExperienceCarouselControls onPrevious={carousel.goToPrevious} onNext={carousel.goToNext} />
-      <ExperienceCarouselDots
-        items={experienceItems}
+      <CarouselControls
+        className="experience-carousel-controls"
+        label="Experience carousel controls"
+        previousLabel="Previous experience"
+        nextLabel="Next experience"
+        onPrevious={carousel.goToPrevious}
+        onNext={carousel.goToNext}
+      />
+      <CarouselDots
+        className="experience-dots"
+        dotClassName="experience-dot"
+        label="Experience carousel position"
+        items={experienceItems.map((item) => ({ key: item.company, label: `Show ${item.company}` }))}
         activeIndex={carousel.activeIndex}
-        onSelectItem={carousel.setActiveIndex}
+        onSelect={carousel.setActiveIndex}
       />
     </div>
   );

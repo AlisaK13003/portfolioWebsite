@@ -4,10 +4,10 @@ import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useEscapeKey } from "../hooks/useEscapeKey";
 import { useProjectModalFocus } from "../hooks/useProjectModalFocus";
 import { useProjectModalNavigation } from "../hooks/useProjectModalNavigation";
-import { ProjectActionLink } from "./ProjectActionLink";
 import { ProjectCaseStudyBody } from "./ProjectCaseStudyBody";
-import { ProjectFacts } from "./ProjectFacts";
 import { ProjectGallery } from "./ProjectGallery";
+import { ProjectModalActions } from "./ProjectModalActions";
+import { ProjectModalHeader } from "./ProjectModalHeader";
 
 type ProjectModalProps = {
   project: Project | null;
@@ -16,6 +16,7 @@ type ProjectModalProps = {
 };
 
 export function ProjectModal({ project, onClose, onProjectChange }: ProjectModalProps) {
+  const modalRef = useRef<HTMLDivElement | null>(null);
   const panelRef = useRef<HTMLElement | null>(null);
   const bodyRef = useRef<HTMLDivElement | null>(null);
   const isOpen = Boolean(project);
@@ -27,12 +28,17 @@ export function ProjectModal({ project, onClose, onProjectChange }: ProjectModal
     }
   }, [isOpen, onClose]);
 
-  useProjectModalFocus(project?.id, panelRef, bodyRef);
+  useProjectModalFocus(project?.id, modalRef, panelRef, bodyRef);
   useBodyScrollLock(isOpen);
   useEscapeKey(closeOnEscape);
 
   return (
-    <div className={`project-modal${isOpen ? " is-open" : ""}`} aria-hidden={isOpen ? "false" : "true"} inert={!isOpen ? true : undefined}>
+    <div
+      className={`project-modal${isOpen ? " is-open" : ""}`}
+      aria-hidden={isOpen ? "false" : "true"}
+      inert={!isOpen ? true : undefined}
+      ref={modalRef}
+    >
       <button className="project-modal-backdrop" type="button" aria-label="Close project details" onClick={onClose} />
       <button
         className="project-modal-project-arrow project-modal-project-prev"
@@ -58,23 +64,11 @@ export function ProjectModal({ project, onClose, onProjectChange }: ProjectModal
         tabIndex={-1}
         ref={panelRef}
       >
-        <button className="project-modal-close" type="button" aria-label="Close project details" onClick={onClose}>
-          <img src="assets/exitButton.png" alt="" loading="lazy" decoding="async" />
-        </button>
-        <h2 id="project-modal-title">{project?.title ?? ""}</h2>
-        <p className="project-modal-subtitle" hidden={!project?.caseStudy.subtitle}>
-          {project?.caseStudy.subtitle}
-        </p>
-        {project ? <ProjectFacts facts={project.caseStudy.facts} title={project.title} /> : null}
-        <ul className="project-modal-tags" aria-label="Project tags" hidden={project?.hideModalTags ?? true}>
-          {project?.tags.map((tag) => <li key={tag}>{tag}</li>)}
-        </ul>
+        {project ? <ProjectModalHeader project={project} onClose={onClose} /> : null}
         <div className="project-modal-body" ref={bodyRef}>
           {project ? <ProjectCaseStudyBody sections={project.caseStudy.sections} /> : null}
         </div>
-        <div className="project-modal-actions">
-          {project?.actions.map((action) => <ProjectActionLink key={`${project.id}-${action.label}`} action={action} />)}
-        </div>
+        {project ? <ProjectModalActions project={project} /> : null}
         {project ? <ProjectGallery project={project} /> : null}
       </article>
     </div>

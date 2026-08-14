@@ -1,0 +1,365 @@
+.projects-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 76px;
+  --project-card-width: clamp(320px, 39vw, 500px);
+  overflow-x: clip;
+  padding: 64px 64px 96px;
+  scroll-margin-top: 180px;
+}
+
+.projects-carousel-shell {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 1120px;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.section-sign {
+  position: relative;
+  display: grid;
+  width: 251px;
+  height: 150px;
+  padding-top: 60px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  place-items: center;
+  transform-origin: 50% 10%;
+}
+
+.section-sign.is-swinging {
+  animation: sign-swing-click 720ms ease-in-out;
+}
+
+.section-sign:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 4px;
+}
+
+.section-sign img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.section-sign h2 {
+  position: relative;
+  margin: 0;
+  color: var(--main-yellow);
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.projects-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  width: 100%;
+  max-width: 1120px;
+  height: max(calc(var(--project-card-width) * 0.606), var(--projects-carousel-height, 0px));
+  min-height: calc(var(--project-card-width) * 0.606);
+}
+
+.project-card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: none;
+  width: var(--project-card-width);
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, calc(var(--project-card-width) * 0.056), 28px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) scale(0.72);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.projects-grid.is-syncing,
+.projects-grid.is-syncing .project-card {
+  transition: none !important;
+}
+
+.project-card.is-active,
+.project-card.is-prev,
+.project-card.is-next {
+  display: flex;
+}
+
+.project-card.is-active {
+  z-index: 2;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
+}
+
+.project-card.is-active.is-entering-forward,
+.project-card.is-active.is-entering-backward {
+  transition: opacity 220ms ease;
+}
+
+.project-card.is-active.is-entering-forward {
+  animation: project-enter-forward 280ms ease-out;
+}
+
+.project-card.is-active.is-entering-backward {
+  animation: project-enter-backward 280ms ease-out;
+}
+
+.project-card.is-prev {
+  z-index: 1;
+  opacity: 0.48;
+  transform: translateX(-128%) scale(0.68);
+}
+
+.project-card.is-next {
+  z-index: 1;
+  opacity: 0.48;
+  transform: translateX(28%) scale(0.68);
+}
+
+.project-card.is-prev .project-island-content,
+.project-card.is-next .project-island-content,
+.project-card.is-prev .project-note,
+.project-card.is-next .project-note,
+.project-card.is-prev .project-actions,
+.project-card.is-next .project-actions {
+  display: none;
+}
+
+.project-card.is-active .project-island,
+.project-card.is-prev .project-island,
+.project-card.is-next .project-island {
+  animation: island-float 1800ms ease-in-out infinite;
+}
+
+.project-card.is-prev .project-island {
+  animation-delay: -600ms;
+}
+
+.project-card.is-next .project-island {
+  animation-delay: -1200ms;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .project-island,
+  .carousel-arrow,
+  .project-dot {
+    touch-action: manipulation;
+  }
+
+  .project-island {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.project-island {
+  position: relative;
+  width: 100%;
+  height: calc(var(--project-card-width) * 0.606);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.project-island:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 4px;
+}
+
+.project-island > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.project-island-content {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(20px, calc(var(--project-card-width) * 0.064), 32px);
+}
+
+.project-island h3 {
+  margin: 0;
+  color: var(--main-yellow);
+  font-size: clamp(1.75rem, calc(var(--project-card-width) * 0.085), 2.65rem);
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.project-tags {
+  display: none;
+  width: calc(var(--project-card-width) * 0.72);
+  min-height: calc(var(--project-card-width) * 0.224);
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(8px, calc(var(--project-card-width) * 0.032), 16px);
+  margin: clamp(34px, calc(var(--project-card-width) * 0.108), 54px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-tags li,
+.project-actions a,
+.project-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: #473c2c;
+  font-family: inherit;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.project-tags li {
+  min-width: clamp(64px, calc(var(--project-card-width) * 0.172), 86px);
+  min-height: clamp(18px, calc(var(--project-card-width) * 0.048), 24px);
+  padding: clamp(4px, calc(var(--project-card-width) * 0.01), 5px) clamp(10px, calc(var(--project-card-width) * 0.028), 14px);
+  background: url("/assets/button.png") center / 100% 100% no-repeat;
+  font-size: clamp(0.75rem, calc(var(--project-card-width) * 0.032), 1rem);
+  image-rendering: pixelated;
+}
+
+.project-note {
+  position: relative;
+  display: grid;
+  width: 87.36%;
+  min-height: calc(var(--project-card-width) * 0.42);
+  padding: clamp(22px, calc(var(--project-card-width) * 0.068), 34px);
+  place-items: center;
+  overflow: visible;
+}
+
+.project-note::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("/assets/aboutMe_backgroundHorizontal.png") center / 100% 100% no-repeat;
+  content: "";
+  image-rendering: pixelated;
+}
+
+.project-note p {
+  margin: 0;
+  color: #473c2c;
+  font-size: clamp(1.15rem, calc(var(--project-card-width) * 0.056), 1.75rem);
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.project-note-summary {
+  display: grid;
+  gap: clamp(5px, calc(var(--project-card-width) * 0.018), 9px);
+  justify-items: center;
+}
+
+.project-note-summary p {
+  font-size: clamp(0.95rem, calc(var(--project-card-width) * 0.043), 1.35rem);
+}
+
+.project-note-summary strong {
+  font-weight: 600;
+}
+
+.project-note-with-actions {
+  width: 100%;
+  min-height: calc(var(--project-card-width) * 0.5);
+  gap: clamp(8px, calc(var(--project-card-width) * 0.02), 10px);
+  align-content: center;
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.project-island-actions {
+  margin-top: clamp(44px, calc(var(--project-card-width) * 0.126), 64px);
+}
+
+.project-actions a,
+.project-actions button {
+  background: url("/assets/buttonWithBorder.png") center / 100% 100% no-repeat;
+  width: clamp(136px, calc(var(--project-card-width) * 0.33), 168px);
+  min-height: clamp(32px, calc(var(--project-card-width) * 0.08), 40px);
+  gap: 7px;
+  padding: 5px clamp(18px, calc(var(--project-card-width) * 0.044), 24px);
+  font-size: clamp(0.95rem, calc(var(--project-card-width) * 0.04), 1.25rem);
+  cursor: pointer;
+  transition: transform 180ms ease;
+}
+
+.project-actions .button-icon,
+.project-modal-actions .button-icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+  image-rendering: pixelated;
+}
+
+.project-actions .button-icon-globe,
+.project-modal-actions .button-icon-globe {
+  width: 1.42em;
+  height: 1.42em;
+}
+
+.project-actions .button-icon-figma,
+.project-modal-actions .button-icon-figma {
+  width: 1.42em;
+  height: 1.42em;
+}
+
+.project-actions a:focus-visible,
+.project-actions button:focus-visible {
+  transform: translateY(-4px);
+}
+
+.project-actions a:focus-visible,
+.project-actions button:focus-visible,
+.carousel-arrow:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 3px;
+}
+
+.project-actions-pair a,
+.project-actions-pair button {
+  width: clamp(128px, calc(var(--project-card-width) * 0.32), 160px);
+}
+

@@ -1,7 +1,9 @@
+import type { CSSProperties } from "react";
 import { projects, type Project } from "../data/projects";
 import { useCarousel } from "../hooks/useCarousel";
-import { ProjectCarouselControls } from "./ProjectCarouselControls";
-import { ProjectCarouselDots } from "./ProjectCarouselDots";
+import { useProjectCarouselHeight } from "../hooks/useProjectCarouselHeight";
+import { CarouselControls } from "./CarouselControls";
+import { CarouselDots } from "./CarouselDots";
 import { ProjectIslandCard } from "./ProjectIslandCard";
 
 type ProjectCarouselProps = {
@@ -17,11 +19,15 @@ export function ProjectCarousel({ activeIndex, onActiveIndexChange, onOpenProjec
     onActiveIndexChange,
     transitionDuration: 320,
   });
+  const { carouselHeight, setCardRef } = useProjectCarouselHeight(carousel.activeIndex);
   const previousIndex = (carousel.activeIndex - 1 + projects.length) % projects.length;
   const followingIndex = (carousel.activeIndex + 1) % projects.length;
 
   return (
-    <div className="projects-carousel-shell">
+    <div
+      className="projects-carousel-shell"
+      style={{ "--projects-carousel-height": carouselHeight } as CSSProperties}
+    >
       <div className="projects-grid" data-projects-grid>
         {projects.map((project, index) => (
           <ProjectIslandCard
@@ -32,15 +38,26 @@ export function ProjectCarousel({ activeIndex, onActiveIndexChange, onOpenProjec
             isNext={index === followingIndex}
             direction={carousel.direction}
             onOpenProject={onOpenProject}
+            setRef={(node) => setCardRef(index, node)}
           />
         ))}
       </div>
 
-      <ProjectCarouselControls onPrevious={carousel.goToPrevious} onNext={carousel.goToNext} />
-      <ProjectCarouselDots
-        projects={projects}
+      <CarouselControls
+        className="projects-carousel-controls"
+        label="Project carousel controls"
+        previousLabel="Previous project"
+        nextLabel="Next project"
+        onPrevious={carousel.goToPrevious}
+        onNext={carousel.goToNext}
+      />
+      <CarouselDots
+        className="project-dots"
+        dotClassName="project-dot"
+        label="Project carousel position"
+        items={projects.map((project) => ({ key: project.id, label: `Show ${project.title}` }))}
         activeIndex={carousel.activeIndex}
-        onSelectProject={carousel.setActiveIndex}
+        onSelect={carousel.setActiveIndex}
       />
     </div>
   );

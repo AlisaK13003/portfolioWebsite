@@ -1,0 +1,111 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  min-height: 197px;
+  pointer-events: none;
+}
+
+.portfolio-nav {
+  position: relative;
+  width: min(816px, calc(100% - 48px));
+  margin-inline: auto;
+  aspect-ratio: 816 / 197;
+  filter: drop-shadow(0 8px 10px var(--wood-shadow));
+  pointer-events: auto;
+}
+
+.nav-board {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  image-rendering: pixelated;
+  user-select: none;
+  pointer-events: none;
+}
+
+.lantern-toggle {
+  position: absolute;
+  top: 0;
+  right: 17.5%;
+  z-index: 2;
+  width: 70px;
+  height: 92px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.lantern-toggle:disabled {
+  cursor: default;
+}
+
+.lantern-toggle:focus-visible {
+  outline: 2px solid var(--main-yellow);
+  outline-offset: 3px;
+}
+
+.nav-links {
+  position: absolute;
+  left: 11.75%;
+  top: 56.35%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 74.5%;
+  color: var(--main-yellow);
+  font-size: clamp(1.08rem, 2.35vw, 1.5rem);
+  line-height: 1;
+  text-shadow: 1px 1px 1px #000;
+  white-space: nowrap;
+}
+
+.nav-links a {
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-links a:focus-visible,
+.nav-links a[aria-current="page"],
+.mobile-menu a:focus-visible,
+.mobile-menu a[aria-current="page"] {
+  color: var(--warm-accent);
+}
+
+.nav-links a:focus-visible {
+  transform: translateY(-1px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-links a:hover,
+  .mobile-menu a:hover {
+    color: var(--warm-accent);
+  }
+
+  .nav-links a:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.nav-links a:focus-visible,
+.menu-toggle:focus-visible,
+.mobile-menu a:focus-visible {
+  outline: 2px solid var(--main-yellow);
+  outline-offset: 3px;
+}
+
+.nav-mobile-row,
+.mobile-menu,
+.menu-backdrop {
+  display: none;
+}
+

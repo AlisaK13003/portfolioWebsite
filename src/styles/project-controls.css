@@ -1,0 +1,12 @@
+.projects-carousel-controls {
+  position: absolute;
+  top: calc(var(--project-card-width) * 0.24);
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  width: min(calc(var(--project-card-width) * 1.64), calc(100vw - 80px));
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+

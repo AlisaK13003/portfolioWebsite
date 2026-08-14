@@ -22,7 +22,7 @@ export const projectCaseStudies = {
       { label: "Role", tags: ["UI/UX Lead", "Product Designer"] },
       { label: "Team", tags: ["3 people"] },
       { label: "Timeline", tags: ["1 year"] },
-      { label: "Tools", tags: ["Figma", "React", "Figma AI"] },
+      { label: "Tools", tags: ["Figma", "React Native", "Figma AI"] },
     ],
     sections: [
       {

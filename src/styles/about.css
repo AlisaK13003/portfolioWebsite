@@ -1,0 +1,142 @@
+.about-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  --about-body-font-size: clamp(1rem, 1.7vw, 1.5rem);
+  --about-body-line-height: 1.18;
+  padding: 64px 64px 112px;
+  scroll-margin-top: 180px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
+}
+
+.about-intro {
+  display: grid;
+  width: min(100%, 980px);
+  gap: 18px;
+  color: var(--brown-ink);
+  font-size: var(--about-body-font-size);
+  line-height: var(--about-body-line-height);
+  text-align: left;
+}
+
+.about-intro p {
+  margin: 0;
+}
+
+.about-carousel-shell {
+  position: relative;
+  width: 100%;
+  --about-card-width: clamp(180px, 20vw, 288px);
+  --about-card-gap: clamp(24px, 6.4vw, 92px);
+  max-width: calc((var(--about-card-width) * 3) + (var(--about-card-gap) * 2));
+}
+
+.about-card-list {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--about-card-gap);
+}
+
+.about-card {
+  display: flex;
+  width: var(--about-card-width);
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  gap: clamp(20px, calc(var(--about-card-width) * 0.097), 28px);
+}
+
+.about-card-label {
+  position: relative;
+  display: grid;
+  width: calc(var(--about-card-width) * 0.611);
+  height: calc(var(--about-card-width) * 0.201);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  place-items: center;
+  transition: transform 180ms ease;
+  transform-origin: 50% 80%;
+}
+
+.about-card-label.is-seesawing {
+  animation: board-seesaw-click 520ms ease-in-out;
+}
+
+.about-card-label:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 3px;
+}
+
+.about-card-label img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+.about-card-label h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-top: 2px;
+  color: var(--main-yellow);
+  font-size: clamp(1.16rem, calc(var(--about-card-width) * 0.081), 1.45rem);
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
+  transform: translateX(calc(var(--about-card-width) * 0.049));
+  white-space: nowrap;
+}
+
+.about-card-paper {
+  display: flex;
+  width: var(--about-card-width);
+  min-height: calc(var(--about-card-width) * 1.333);
+  flex: 1;
+  align-items: flex-start;
+  justify-content: center;
+  padding: calc(var(--about-card-width) * 0.146) calc(var(--about-card-width) * 0.097);
+  background: url("/assets/aboutMe_backgrounds.png") center / 100% 100% no-repeat;
+  color: #473c2c;
+  font-size: 1.5rem;
+  line-height: 1.08;
+  image-rendering: pixelated;
+}
+
+.about-card-paper p,
+.about-card-paper ul {
+  margin: 0;
+}
+
+.about-card-paper p,
+.about-card-paper li {
+  font-size: var(--about-body-font-size);
+  line-height: var(--about-body-line-height);
+}
+
+.about-card-paper ul {
+  display: grid;
+  gap: clamp(10px, calc(var(--about-card-width) * 0.049), 14px);
+  padding-left: 0;
+  list-style: none;
+}
+
+.about-card-paper li::before {
+  margin-right: 4px;
+  color: var(--soft-green);
+  content: "\2726";
+}
+
+.about-carousel-controls {
+  display: none;
+}
+
