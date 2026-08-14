@@ -65,6 +65,12 @@ a {
   text-decoration: none;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  html body :is(.butterfly-friend, .decor-butterfly, .section-sign, .about-card-label, .footer-well-button):hover {
+    cursor: url("/assets/koi-cursor.png") 14 16, pointer;
+  }
+}
+
 @keyframes page-warmth-drift {
   0% {
     background-position: 50% 0%;
