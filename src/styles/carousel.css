@@ -1,0 +1,141 @@
+.project-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 18px;
+}
+
+.project-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 2px solid #473c2c;
+  border-radius: 50%;
+  background: var(--main-yellow);
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition:
+    background-color 160ms ease,
+    transform 180ms ease;
+}
+
+.project-dot[aria-current="true"] {
+  background: var(--warm-accent);
+}
+
+.project-dot:focus-visible {
+  background: var(--warm-accent);
+  transform: translateY(-3px);
+}
+
+.project-dot:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 4px;
+}
+
+.experience-dots,
+.about-dots {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 12px;
+  margin-top: 8px;
+}
+
+.experience-dot,
+.about-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 1px solid #473c2c;
+  border-radius: 50%;
+  background: var(--main-yellow);
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition: background-color 160ms ease;
+}
+
+.experience-dot[aria-current="true"],
+.experience-dot:focus-visible,
+.about-dot[aria-current="true"],
+.about-dot:focus-visible {
+  background: var(--warm-accent);
+}
+
+.experience-dot:focus-visible,
+.about-dot:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 3px;
+}
+
+.carousel-arrow {
+  display: grid;
+  width: clamp(28px, calc(var(--project-card-width) * 0.08), 40px);
+  height: clamp(34px, calc(var(--project-card-width) * 0.096), 48px);
+  padding: 1px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  place-items: center;
+  pointer-events: auto;
+  transition: transform 180ms ease;
+}
+
+.carousel-arrow:focus-visible {
+  transform: translateY(-4px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .resume-link:hover,
+  .social-link:hover img,
+  .project-actions a:hover,
+  .project-actions button:hover,
+  .project-modal-actions a:hover,
+  .project-modal-actions button:hover,
+  .project-modal-close:hover,
+  .experience-tags li:hover,
+  .contact-form button:hover,
+  .carousel-arrow:hover {
+    transform: translateY(-4px);
+  }
+
+  .project-modal-image-prev:hover {
+    transform: translateY(-56%);
+  }
+
+  .project-modal-image-next:hover {
+    transform: translateY(-56%) scaleX(-1);
+  }
+
+  .project-modal-project-prev:hover {
+    transform: translateY(-56%);
+  }
+
+  .project-modal-project-next:hover {
+    transform: translateY(-56%) scaleX(-1);
+  }
+
+  .project-dot:hover {
+    background: var(--warm-accent);
+    transform: translateY(-3px);
+  }
+
+  .project-modal-image-dots button:hover {
+    background: var(--warm-accent);
+  }
+}
+
+.carousel-arrow img {
+  display: block;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.carousel-arrow-next img {
+  transform: scaleX(-1);
+}
+

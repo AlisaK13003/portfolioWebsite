@@ -1,0 +1,141 @@
+@keyframes sidebar-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cursor-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  46%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes island-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes hero-island-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes about-enter-forward {
+  from {
+    opacity: 0;
+    transform: translateX(-34%) translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes about-enter-backward {
+  from {
+    opacity: 0;
+    transform: translateX(-66%) translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes project-enter-forward {
+  from {
+    opacity: 0.48;
+    transform: translateX(28%) scale(0.68);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes project-enter-backward {
+  from {
+    opacity: 0.48;
+    transform: translateX(-128%) scale(0.68);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes sign-swing-click {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  22% {
+    transform: rotate(-5deg);
+  }
+
+  48% {
+    transform: rotate(4deg);
+  }
+
+  72% {
+    transform: rotate(-2deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes board-seesaw-click {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(-4deg);
+  }
+
+  42% {
+    transform: rotate(4deg);
+  }
+
+  64% {
+    transform: rotate(-2.5deg);
+  }
+
+  82% {
+    transform: rotate(1.5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

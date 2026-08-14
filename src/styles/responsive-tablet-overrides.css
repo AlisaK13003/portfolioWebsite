@@ -1,0 +1,115 @@
+@media (max-width: 960px) and (min-width: 641px) {
+  .decor-butterfly-hero-ne {
+    top: 228px;
+    left: auto;
+    right: 18%;
+  }
+
+  .decor-butterfly-projects-east,
+  .decor-butterfly-about-currently {
+    right: 28px;
+  }
+
+  .decor-butterfly-experience-nw,
+  .decor-butterfly-about-gap,
+  .decor-butterfly-contact-west {
+    left: 28px;
+  }
+
+  .portfolio-nav {
+    width: min(816px, calc(100% - 48px));
+  }
+
+  .nav-links {
+    font-size: clamp(1.08rem, 2.35vw, 1.5rem);
+  }
+
+  .hero-section {
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 56px;
+    min-height: 820px;
+    padding: 132px 56px 72px;
+  }
+
+  .hero-copy {
+    width: min(460px, 100%);
+    align-items: center;
+    text-align: center;
+    order: 2;
+  }
+
+  .hero-heading-group h1,
+  .hero-heading-group p {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+  }
+
+  .hero-intro {
+    max-width: 360px;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-art {
+    width: 380px;
+    max-width: 72vw;
+    order: 1;
+  }
+
+  .projects-section {
+    --project-card-width: clamp(300px, 42vw, 360px);
+    overflow-x: clip;
+    padding-inline: clamp(32px, 7vw, 56px);
+  }
+
+  .projects-carousel-shell,
+  .projects-grid {
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .projects-carousel-controls {
+    width: min(calc(var(--project-card-width) * 1.52), 100%);
+  }
+}
+
+@media (max-width: 1400px) and (min-width: 641px) {
+  .hero-section {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: min(760px, 100%);
+    justify-items: center;
+    gap: clamp(36px, 5vw, 56px);
+    min-height: auto;
+    padding: clamp(120px, 14vw, 150px) clamp(24px, 6vw, 56px) 72px;
+    text-align: center;
+  }
+
+  .hero-copy {
+    order: 2;
+    width: min(520px, 100%);
+    max-width: 520px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-art {
+    order: 1;
+    width: min(460px, 78vw);
+    max-width: 100%;
+    justify-self: center;
+  }
+
+  .hero-intro {
+    max-width: 460px;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+}
+

@@ -1,0 +1,8 @@
+@media (hover: none), (pointer: coarse) {
+  .butterfly-friend,
+  .decor-butterfly {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
