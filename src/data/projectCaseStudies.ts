@@ -76,6 +76,73 @@ export const projectCaseStudies = {
       },
     ],
   },
+  "my-pantry-pal": {
+    subtitle: "AI-powered pantry management and recipe discovery platform",
+    facts: [
+      { label: "Role", tags: ["Product Engineer", "Product Designer"] },
+      { label: "Team", tags: ["Solo project"] },
+      { label: "Timeline", tags: ["2 weeks"] },
+      { label: "Tools", tags: ["Next.js", "TypeScript", "Firebase", "OpenAI", "Material UI"] },
+    ],
+    sections: [
+      {
+        heading: "Overview",
+        paragraphs: [
+          "My Pantry Pal is a **full-stack pantry management application** that helps users track the food they already have and turn that inventory into practical recipe ideas. Users can manage quantities and expiration dates, search their pantry, and generate recipes based on ingredients already available to them.",
+          "I built the project around a simple product question: **how can AI make an everyday workflow more useful without becoming unreliable or frustrating?** Rather than treating recipe generation as a standalone chatbot feature, I connected it directly to structured pantry data and built safeguards around the model so its suggestions stay grounded in what the user actually has.",
+        ],
+      },
+      {
+        heading: "My Role",
+        paragraphs: [
+          "I designed and developed My Pantry Pal as a **solo Product Engineer**, owning the experience across product design, frontend development, backend logic, data modeling, authentication, AI integration, testing, and deployment.",
+          "I built the interface in **Next.js, React, TypeScript, and Material UI**, implemented authenticated per-user inventory storage with **Firebase Authentication and Cloud Firestore**, and created a server-side recipe-generation pipeline using the **OpenAI API**.",
+          "Because I owned both the product behavior and its implementation, I was able to iterate directly from problems I observed in the user experience into changes in prompts, validation logic, API behavior, and automated tests.",
+        ],
+      },
+      {
+        heading: "Process",
+        paragraphs: [
+          "I began with the core pantry workflow: users needed to be able to **sign in, maintain a personal inventory, and quickly understand what food they had available**. I built CRUD flows for pantry items, quantity and expiration tracking, search, responsive layouts, and persistent user-specific storage.",
+          "I then extended the product with recipe generation. My first implementation exposed an important AI product problem: a model can return a syntactically valid answer that is still **wrong for the user's actual intent**. Early generations sometimes combined incompatible foods, ignored useful ingredient groups, introduced ingredients the user did not own, or gave up on an entire pantry because some items did not belong together.",
+          "Instead of solving those failures only through prompt wording, I treated them as **system-level product constraints**. I iteratively added compatible-subset discovery, structured responses, application-side validation, retry behavior, duplicate prevention, and supplemental recipe discovery. I tested the feature against deliberately difficult pantry combinations to find failure modes and used those results to refine both the product rules and implementation.",
+        ],
+      },
+      {
+        heading: "What I Built",
+        list: [
+          "Built a **full-stack pantry management experience** with add, edit, delete, search, quantity, unit, and expiration-date workflows.",
+          "Implemented **Firebase Authentication and per-user Firestore storage**, with security rules restricting inventory access to the authenticated user.",
+          "Designed and developed a responsive authenticated dashboard using **React, TypeScript, Next.js, and Material UI**, including light and dark themes.",
+          "Built a server-side **AI recipe-generation API** that connects structured pantry data to OpenAI rather than relying on a generic chat interface.",
+          "Created recipe validation that rejects **unsupported ingredients, malformed responses, duplicate recipes, and obviously incompatible combinations** before they reach the user.",
+          "Implemented **compatible-subset recipe discovery**, allowing the system to identify several useful dishes within a mixed pantry instead of trying to force every available ingredient into one recipe.",
+          "Added **supplemental recipe discovery** so the system continues searching when an initial generation finds fewer strong recipes than the pantry can support.",
+          "Added guidance for **international and culturally specific dishes**, encouraging established recipes when pantry ingredients genuinely match them instead of defaulting to generic combinations.",
+          "Built automated tests around recipe validation, incompatible ingredients, global cuisine discovery, duplicate handling, multiple pantry subsets, and supplemental generation.",
+          "Integrated the **Pexels API** for relevant recipe photography with a generated fallback when an image is unavailable.",
+        ],
+      },
+      {
+        heading: "Challenges & Decisions",
+        paragraphs: [
+          "The largest challenge was making a probabilistic AI feature behave like part of a dependable product. A generated recipe could look convincing while quietly violating important constraints, for example, introducing ingredients the user did not own or deciding that an entire pantry was unusable because several unrelated foods were present.",
+          "I changed the system from thinking about the pantry as one ingredient list to thinking in terms of **compatible subsets**. Pasta, tomatoes, and garlic could form one recipe while bananas, rice flour, and coconut could form another; unrelated ingredients could simply be ignored. This produced more useful results without encouraging artificial combinations solely to maximize ingredient usage.",
+          "I also deliberately separated **generation from validation**. The model proposes candidates, but application logic determines whether those candidates satisfy the product's rules. When a candidate fails, the API can reject it or request another result rather than displaying it blindly.",
+          "Another issue appeared when the model found one or two obvious recipes and stopped searching even though additional ingredient groups remained. I added a **partial-fill flow** that requests another distinct candidate, validates it against the same rules, and merges it into the response without creating an uncontrolled retry loop.",
+          "These iterations shifted the feature from a simple API integration into a more robust AI product workflow: **generate, constrain, validate, recover, and test**.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        paragraphs: [
+          "The result is a deployed full-stack application where **inventory management and AI-assisted decision making operate as one connected product**. Pantry data persists securely per user, while recipe generation uses that real application state to produce grounded suggestions instead of generic responses.",
+          "My Pantry Pal became an exercise in product engineering as much as application development. I moved between **interface design, frontend implementation, backend APIs, database behavior, prompt design, model evaluation, validation logic, debugging, and automated testing** as the product evolved.",
+          "The project strengthened my approach to building AI features around the complete user experience: not just whether a model can generate an answer, but **whether the system can recognize when that answer is useful, recover when it is not, and consistently uphold the product's intended behavior**.",
+        ],
+      },
+    ],
+  },
   celo: {
     subtitle: "Privacy-awareness product",
     facts: [

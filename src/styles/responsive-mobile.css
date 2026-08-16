@@ -873,10 +873,11 @@
   }
 
   .project-modal-facts {
-    --fact-gutter: 7px;
+    --fact-gutter: 6px;
+    --fact-padding-y: 5px;
     width: min(286px, 100%);
     min-height: 112px;
-    padding: 8px;
+    padding: var(--fact-padding-y) 7px;
   }
 
   .project-modal-fact {
@@ -903,14 +904,28 @@
   }
 
   .project-modal-fact-tags {
-    gap: 2px 3px;
+    gap: 2px;
   }
 
   .project-modal-fact-tags li {
     min-width: 0;
     min-height: 12px;
-    padding: 2px 5px 1px;
+    padding: 2px 4px 1px;
     font-size: clamp(0.36rem, 1.55vw, 0.43rem);
+  }
+
+  .project-modal-fact--dense {
+    gap: 2px;
+  }
+
+  .project-modal-fact--dense .project-modal-fact-tags {
+    gap: 1px 2px;
+  }
+
+  .project-modal-fact--dense .project-modal-fact-tags li {
+    min-height: 9px;
+    padding: 1px 3px 0;
+    font-size: clamp(0.28rem, 1.22vw, 0.34rem);
   }
 
   .project-modal-body {
@@ -1003,6 +1018,12 @@
     padding: 2px 4px;
     font-size: clamp(0.36rem, 1.6vw, 0.42rem);
   }
+
+  .project-modal-fact--dense .project-modal-fact-tags li {
+    min-height: 9px;
+    padding: 1px 3px 0;
+    font-size: clamp(0.27rem, 1.18vw, 0.32rem);
+  }
 }
 
 @media (max-width: 370px) {
@@ -1032,6 +1053,12 @@
     min-height: 11px;
     padding: 2px 3px;
     font-size: clamp(0.34rem, 1.55vw, 0.38rem);
+  }
+
+  .project-modal-fact--dense .project-modal-fact-tags li {
+    min-height: 8px;
+    padding: 1px 2px 0;
+    font-size: clamp(0.25rem, 1.14vw, 0.3rem);
   }
 
   .decor-butterfly-hero-ne {
@@ -1095,6 +1122,12 @@
     padding: 1px 3px;
     font-size: 0.32rem;
   }
+
+  .project-modal-fact--dense .project-modal-fact-tags li {
+    min-height: 8px;
+    padding: 1px 2px 0;
+    font-size: 0.25rem;
+  }
 }
 
 @media (max-width: 280px) {
@@ -1135,6 +1168,12 @@
     min-height: 8px;
     padding: 1px 2px;
     font-size: 0.26rem;
+  }
+
+  .project-modal-fact--dense .project-modal-fact-tags li {
+    min-height: 7px;
+    padding: 1px;
+    font-size: 0.22rem;
   }
 }
 

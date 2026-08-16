@@ -71,9 +71,34 @@ export const projects: Project[] = [
     caseStudy: projectCaseStudies.myloops,
   },
   {
+    id: "my-pantry-pal",
+    title: "My Pantry Pal",
+    order: 2,
+    tags: ["Product Engineering", "Full Stack", "AI", "Next.js"],
+    images: ["assets/myPantryPal/pantry1.png", "assets/myPantryPal/pantry0.png"],
+    imageFit: "soft-contain",
+    hideModalTags: true,
+    actions: [
+      {
+        label: "Visit Site",
+        href: "https://my-pantry-pal-beige.vercel.app/",
+        ariaLabel: "Visit My Pantry Pal",
+        icon: "assets/globe-export.png",
+        iconClassName: "button-icon-globe",
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/AlisaK13003/my-pantry-pal",
+        ariaLabel: "View My Pantry Pal on GitHub",
+        icon: "assets/githubIcon.png",
+      },
+    ],
+    caseStudy: projectCaseStudies["my-pantry-pal"],
+  },
+  {
     id: "celo",
     title: "Celo",
-    order: 2,
+    order: 3,
     tags: ["Web App", "Product UX"],
     images: ["assets/celo/celo0.png", "assets/celo/celo1.png", "assets/celo/celo2.png"],
     imageFit: "soft-contain",
@@ -92,7 +117,7 @@ export const projects: Project[] = [
   {
     id: "sealbound",
     title: "Sealbound",
-    order: 3,
+    order: 4,
     tags: ["Game Design", "Production", "Development", "Godot"],
     images: [
       "assets/sealbound/sealbound0.webp",
@@ -119,7 +144,7 @@ export const projects: Project[] = [
   {
     id: "sunny-days",
     title: "Sunny Days",
-    order: 4,
+    order: 5,
     tags: ["Developer", "UI Design", "Pixel Art", "Unity"],
     images: [
       "assets/sunnyDays/sunnyDays0.png",
@@ -141,7 +166,7 @@ export const projects: Project[] = [
   {
     id: "infolio",
     title: "Infolio",
-    order: 5,
+    order: 6,
     tags: ["Frontend", "CRUD", "JavaScript", "Figma"],
     images: [
       "assets/infolio/infolio0.png",
