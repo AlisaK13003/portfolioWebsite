@@ -36,6 +36,20 @@ export function AboutCarousel() {
             isShaking={shakingBoard === card.title}
             onShake={() => shakeBoard(card.title)}
             onShakeEnd={clearBoardShake}
+          />
+        ))}
+      </div>
+
+      <div className="about-card-measurements" aria-hidden="true">
+        {aboutCards.map((card, index) => (
+          <AboutCard
+            key={`${card.title}-measurement`}
+            card={card}
+            direction={null}
+            isActive
+            isShaking={false}
+            onShake={() => undefined}
+            onShakeEnd={() => undefined}
             setRef={(node) => setCardRef(index, node)}
           />
         ))}

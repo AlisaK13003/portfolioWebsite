@@ -41,6 +41,10 @@
   gap: var(--about-card-gap);
 }
 
+.about-card-measurements {
+  display: none;
+}
+
 .about-card {
   display: flex;
   width: var(--about-card-width);

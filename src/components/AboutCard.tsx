@@ -8,7 +8,7 @@ type AboutCardProps = {
   isShaking: boolean;
   onShake: () => void;
   onShakeEnd: () => void;
-  setRef: (node: HTMLElement | null) => void;
+  setRef?: (node: HTMLElement | null) => void;
 };
 
 export function AboutCard({ card, direction, isActive, isShaking, onShake, onShakeEnd, setRef }: AboutCardProps) {
