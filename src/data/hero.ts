@@ -1,6 +1,6 @@
 export const heroIntro = "I design and build thoughtful digital products from idea to launch.";
 
-export const heroRoleTitle = "Product Engineer.";
+export const heroRoleTitle = "Software Engineer.";
 
 export type HeroAction = {
   ariaLabel: string;
