@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { preloadAssets } from "../data/preloadAssets";
+import { preloadPortfolioFonts } from "../utils/preloadFonts";
 import { preloadImages } from "../utils/preloadImages";
 
 type StartupGateProps = {
@@ -8,25 +9,39 @@ type StartupGateProps = {
 
 const loaderExitDuration = 850;
 const minimumLoaderDuration = 700;
+const preloadTaskCount = preloadAssets.length + 1;
 
 export function StartupGate({ children }: StartupGateProps) {
   const [isExiting, setIsExiting] = useState(false);
   const [isLoaderVisible, setIsLoaderVisible] = useState(true);
-  const [progress, setProgress] = useState({ loaded: 0, total: preloadAssets.length });
+  const [progress, setProgress] = useState({ loaded: 0, total: preloadTaskCount });
 
   useEffect(() => {
     let isMounted = true;
     const startedAt = performance.now();
     let readyTimer = 0;
     let exitTimer = 0;
+    let loadedImages = 0;
+    let loadedFontTasks = 0;
 
-    void preloadImages(preloadAssets, {
+    const syncProgress = () => {
+      if (isMounted) {
+        setProgress({ loaded: loadedImages + loadedFontTasks, total: preloadTaskCount });
+      }
+    };
+
+    const imagePreload = preloadImages(preloadAssets, {
       onProgress: (nextProgress) => {
-        if (isMounted) {
-          setProgress(nextProgress);
-        }
+        loadedImages = nextProgress.loaded;
+        syncProgress();
       },
-    }).then(() => {
+    });
+    const fontPreload = preloadPortfolioFonts().then(() => {
+      loadedFontTasks = 1;
+      syncProgress();
+    });
+
+    void Promise.all([imagePreload, fontPreload]).then(() => {
       if (!isMounted) {
         return;
       }
@@ -39,7 +54,7 @@ export function StartupGate({ children }: StartupGateProps) {
           return;
         }
 
-        setProgress({ loaded: preloadAssets.length, total: preloadAssets.length });
+        setProgress({ loaded: preloadTaskCount, total: preloadTaskCount });
         setIsExiting(true);
 
         exitTimer = window.setTimeout(() => {
