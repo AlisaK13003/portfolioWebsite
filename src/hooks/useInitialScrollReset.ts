@@ -24,15 +24,5 @@ export function useInitialScrollReset(
     }
 
     resetInitialScrollPosition();
-    const handleLoad = () => window.requestAnimationFrame(resetInitialScrollPosition);
-    const handlePageShow = () => window.requestAnimationFrame(resetInitialScrollPosition);
-
-    window.addEventListener("load", handleLoad, { once: true });
-    window.addEventListener("pageshow", handlePageShow, { once: true });
-
-    return () => {
-      window.removeEventListener("load", handleLoad);
-      window.removeEventListener("pageshow", handlePageShow);
-    };
   }, [cancelActiveScroll, isSectionId]);
 }
