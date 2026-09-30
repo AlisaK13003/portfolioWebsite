@@ -168,5 +168,6 @@
 .hero-art img {
   animation: hero-island-float 4200ms ease-in-out infinite;
   image-rendering: auto;
+  will-change: transform;
 }
 

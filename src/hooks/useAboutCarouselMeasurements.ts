@@ -10,6 +10,7 @@ export function useAboutCarouselMeasurements(activeIndex: number): AboutCarousel
   const [aboutCardHeight, setAboutCardHeight] = useState("0px");
   const [aboutPaperHeight, setAboutPaperHeight] = useState("auto");
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const scheduledFrame = useRef<number | null>(null);
 
   const syncCarouselHeight = useCallback(() => {
     const measurements = cardRefs.current.reduce(
@@ -55,9 +56,24 @@ export function useAboutCarouselMeasurements(activeIndex: number): AboutCarousel
       { cardHeight: 0, paperHeight: 0 },
     );
 
-    setAboutCardHeight(`${measurements.cardHeight}px`);
-    setAboutPaperHeight(`${measurements.paperHeight}px`);
+    setAboutCardHeight((currentHeight) =>
+      currentHeight === `${measurements.cardHeight}px` ? currentHeight : `${measurements.cardHeight}px`,
+    );
+    setAboutPaperHeight((currentHeight) =>
+      currentHeight === `${measurements.paperHeight}px` ? currentHeight : `${measurements.paperHeight}px`,
+    );
   }, []);
+
+  const scheduleSyncCarouselHeight = useCallback(() => {
+    if (scheduledFrame.current !== null) {
+      return;
+    }
+
+    scheduledFrame.current = window.requestAnimationFrame(() => {
+      scheduledFrame.current = null;
+      syncCarouselHeight();
+    });
+  }, [syncCarouselHeight]);
 
   const setCardRef = useCallback((index: number, node: HTMLElement | null) => {
     cardRefs.current[index] = node;
@@ -65,16 +81,21 @@ export function useAboutCarouselMeasurements(activeIndex: number): AboutCarousel
 
   useLayoutEffect(() => {
     syncCarouselHeight();
+    scheduleSyncCarouselHeight();
 
-    const frame = window.requestAnimationFrame(syncCarouselHeight);
-    return () => window.cancelAnimationFrame(frame);
-  }, [activeIndex, syncCarouselHeight]);
+    return () => {
+      if (scheduledFrame.current !== null) {
+        window.cancelAnimationFrame(scheduledFrame.current);
+        scheduledFrame.current = null;
+      }
+    };
+  }, [activeIndex, scheduleSyncCarouselHeight, syncCarouselHeight]);
 
   useEffect(() => {
-    window.addEventListener("resize", syncCarouselHeight);
+    window.addEventListener("resize", scheduleSyncCarouselHeight);
 
-    return () => window.removeEventListener("resize", syncCarouselHeight);
-  }, [syncCarouselHeight]);
+    return () => window.removeEventListener("resize", scheduleSyncCarouselHeight);
+  }, [scheduleSyncCarouselHeight]);
 
   return { aboutCardHeight, aboutPaperHeight, setCardRef };
 }

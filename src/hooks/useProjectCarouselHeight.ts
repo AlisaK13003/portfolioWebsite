@@ -8,6 +8,7 @@ type ProjectCarouselHeight = {
 export function useProjectCarouselHeight(activeIndex: number): ProjectCarouselHeight {
   const [carouselHeight, setCarouselHeight] = useState("0px");
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const scheduledFrame = useRef<number | null>(null);
 
   const syncCarouselHeight = useCallback(() => {
     const activeCard = cardRefs.current[activeIndex];
@@ -25,28 +26,41 @@ export function useProjectCarouselHeight(activeIndex: number): ProjectCarouselHe
     }
   }, [activeIndex]);
 
+  const scheduleSyncCarouselHeight = useCallback(() => {
+    if (scheduledFrame.current !== null) {
+      return;
+    }
+
+    scheduledFrame.current = window.requestAnimationFrame(() => {
+      scheduledFrame.current = null;
+      syncCarouselHeight();
+    });
+  }, [syncCarouselHeight]);
+
   const setCardRef = useCallback((index: number, node: HTMLElement | null) => {
     cardRefs.current[index] = node;
   }, []);
 
   useLayoutEffect(() => {
     syncCarouselHeight();
-    const frame = window.requestAnimationFrame(syncCarouselHeight);
     const activeCard = cardRefs.current[activeIndex];
     const resizeObserver =
-      typeof ResizeObserver !== "undefined" && activeCard ? new ResizeObserver(syncCarouselHeight) : null;
+      typeof ResizeObserver !== "undefined" && activeCard ? new ResizeObserver(scheduleSyncCarouselHeight) : null;
 
     if (activeCard) {
       resizeObserver?.observe(activeCard);
     }
-    window.addEventListener("resize", syncCarouselHeight);
+    window.addEventListener("resize", scheduleSyncCarouselHeight);
 
     return () => {
-      window.cancelAnimationFrame(frame);
+      if (scheduledFrame.current !== null) {
+        window.cancelAnimationFrame(scheduledFrame.current);
+        scheduledFrame.current = null;
+      }
       resizeObserver?.disconnect();
-      window.removeEventListener("resize", syncCarouselHeight);
+      window.removeEventListener("resize", scheduleSyncCarouselHeight);
     };
-  }, [activeIndex, syncCarouselHeight]);
+  }, [activeIndex, scheduleSyncCarouselHeight, syncCarouselHeight]);
 
   return { carouselHeight, setCardRef };
 }

@@ -147,6 +147,7 @@
 .project-card.is-prev .project-island,
 .project-card.is-next .project-island {
   animation: island-float 1800ms ease-in-out infinite;
+  will-change: transform;
 }
 
 .project-card.is-prev .project-island {
@@ -231,7 +232,8 @@
 
 .project-tags li,
 .project-actions a,
-.project-actions button {
+.project-actions button,
+.project-actions .project-open-prompt {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -315,7 +317,8 @@
 }
 
 .project-actions a,
-.project-actions button {
+.project-actions button,
+.project-actions .project-open-prompt {
   background: url("/assets/buttonWithBorder.png") center / 100% 100% no-repeat;
   width: clamp(136px, calc(var(--project-card-width) * 0.33), 168px);
   min-height: clamp(32px, calc(var(--project-card-width) * 0.08), 40px);

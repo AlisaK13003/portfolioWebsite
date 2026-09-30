@@ -39,6 +39,7 @@ export function ProjectIslandCard({
       <div
         className="project-island"
         role="button"
+        aria-label={`View ${project.title} project details`}
         tabIndex={0}
         onClick={openProject}
         onKeyDown={(event) => {
@@ -56,17 +57,8 @@ export function ProjectIslandCard({
               <li key={tag}>{tag}</li>
             ))}
           </ul>
-          <div className="project-actions project-island-actions">
-            <button
-              type="button"
-              aria-label={`View ${project.title} project details`}
-              onClick={(event) => {
-                event.stopPropagation();
-                openProject();
-              }}
-            >
-              View Project
-            </button>
+          <div className="project-actions project-island-actions" aria-hidden="true">
+            <span className="project-open-prompt">View Project</span>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ export function CarouselControls({
   previousLabel,
 }: CarouselControlsProps) {
   return (
-    <div className={className} aria-label={label}>
+    <div className={className} role="group" aria-label={label}>
       <button
         className="carousel-arrow carousel-arrow-prev"
         type="button"

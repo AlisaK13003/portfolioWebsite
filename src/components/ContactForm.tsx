@@ -7,7 +7,14 @@ export function ContactForm() {
 
   return (
     <form className="contact-form" noValidate onSubmit={handleSubmit}>
-      <input className="contact-honeypot" type="text" name="_honey" tabIndex={-1} autoComplete="off" />
+      <input
+        className="contact-honeypot"
+        type="text"
+        name="_honey"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
       {contactFields.map((field) => (
         <ContactFormField
           key={field.name}

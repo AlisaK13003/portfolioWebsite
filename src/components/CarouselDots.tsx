@@ -21,7 +21,7 @@ export function CarouselDots({
   onSelect,
 }: CarouselDotsProps) {
   return (
-    <div className={className} aria-label={label}>
+    <div className={className} role="group" aria-label={label}>
       {items.map((item, index) => (
         <button
           key={item.key}

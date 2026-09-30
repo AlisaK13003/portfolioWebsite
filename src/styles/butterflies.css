@@ -12,17 +12,28 @@
   background: transparent;
   cursor: pointer;
   image-rendering: pixelated;
+  overflow: hidden;
   transform: translate3d(var(--butterfly-x, 0px), var(--butterfly-y, 0px), 0);
+  will-change: transform;
 }
 
 .butterfly-friend span {
   display: block;
   width: 100%;
   height: 100%;
-  background: url("/assets/butterflyFrontSheet.png") 0 0 / 112px 42px no-repeat;
   image-rendering: pixelated;
-  animation: butterfly-front-flap 520ms steps(2) infinite;
+  overflow: hidden;
   pointer-events: none;
+}
+
+.butterfly-friend span::before {
+  display: block;
+  width: var(--butterfly-front-sheet-width);
+  height: 100%;
+  background: url("/assets/butterflyFrontSheet.png") 0 0 / var(--butterfly-front-sheet-width) 100% no-repeat;
+  animation: butterfly-front-flap 520ms steps(2) infinite;
+  content: "";
+  will-change: translate;
 }
 
 .butterfly-friend.is-following {
@@ -42,18 +53,19 @@
   z-index: 80;
 }
 
-.butterfly-friend.is-following span {
+.butterfly-friend.is-following span::before {
+  width: var(--butterfly-side-sheet-width);
   background-image: url("/assets/butterflySideSheet.png");
-  background-size: 224px 42px;
+  background-size: var(--butterfly-side-sheet-width) 100%;
   animation: butterfly-side-flap 520ms steps(4) infinite;
 }
 
 .butterfly-friend.is-following.is-facing-right span {
-  transform: scaleX(-1);
+  scale: -1 1;
 }
 
 .butterfly-friend.is-following.is-facing-left span {
-  transform: scaleX(1);
+  scale: 1 1;
 }
 
 .butterfly-friend:focus-visible {
@@ -74,17 +86,28 @@
   background: transparent;
   cursor: pointer;
   image-rendering: pixelated;
+  overflow: hidden;
   transform: translate3d(var(--butterfly-x, 0px), var(--butterfly-y, 0px), 0);
+  will-change: transform;
 }
 
 .decor-butterfly span {
   display: block;
   width: 100%;
   height: 100%;
-  background: url("/assets/butterflyFrontSheet.png") 0 0 / 112px 42px no-repeat;
   image-rendering: pixelated;
-  animation: butterfly-front-flap 520ms steps(2) infinite;
+  overflow: hidden;
   pointer-events: none;
+}
+
+.decor-butterfly span::before {
+  display: block;
+  width: var(--butterfly-front-sheet-width);
+  height: 100%;
+  background: url("/assets/butterflyFrontSheet.png") 0 0 / var(--butterfly-front-sheet-width) 100% no-repeat;
+  animation: butterfly-front-flap 520ms steps(2) infinite;
+  content: "";
+  will-change: translate;
 }
 
 .decor-butterfly.is-following {
@@ -92,18 +115,19 @@
   transition: none;
 }
 
-.decor-butterfly.is-following span {
+.decor-butterfly.is-following span::before {
+  width: var(--butterfly-side-sheet-width);
   background-image: url("/assets/butterflySideSheet.png");
-  background-size: 224px 42px;
+  background-size: var(--butterfly-side-sheet-width) 100%;
   animation: butterfly-side-flap 520ms steps(4) infinite;
 }
 
 .decor-butterfly.is-following.is-facing-right span {
-  transform: scaleX(-1);
+  scale: -1 1;
 }
 
 .decor-butterfly.is-following.is-facing-left span {
-  transform: scaleX(1);
+  scale: 1 1;
 }
 
 .decor-butterfly:focus-visible {
@@ -148,21 +172,21 @@
 
 @keyframes butterfly-front-flap {
   from {
-    background-position-x: 0;
+    translate: 0 0;
   }
 
   to {
-    background-position-x: calc(-1 * var(--butterfly-front-sheet-width));
+    translate: calc(-1 * var(--butterfly-front-sheet-width)) 0;
   }
 }
 
 @keyframes butterfly-side-flap {
   from {
-    background-position-x: 0;
+    translate: 0 0;
   }
 
   to {
-    background-position-x: calc(-1 * var(--butterfly-side-sheet-width));
+    translate: calc(-1 * var(--butterfly-side-sheet-width)) 0;
   }
 }
 

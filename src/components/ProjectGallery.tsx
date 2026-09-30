@@ -48,7 +48,7 @@ export function ProjectGallery({ project }: ProjectGalleryProps) {
           <img src="assets/arrow.png?v=20260807-arrow-update" alt="" />
         </button>
       </div>
-      <div className="project-modal-image-dots" aria-label="Project image carousel" hidden={images.length <= 1}>
+      <div className="project-modal-image-dots" role="group" aria-label="Project image carousel" hidden={images.length <= 1}>
         {images.map((_, index) => (
           <button
             key={`${project.id}-${index}`}
