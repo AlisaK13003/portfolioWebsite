@@ -143,19 +143,9 @@
   display: none;
 }
 
-.project-card.is-active .project-island,
-.project-card.is-prev .project-island,
-.project-card.is-next .project-island {
+.project-card.is-active .project-island {
   animation: island-float 1800ms ease-in-out infinite;
   will-change: transform;
-}
-
-.project-card.is-prev .project-island {
-  animation-delay: -600ms;
-}
-
-.project-card.is-next .project-island {
-  animation-delay: -1200ms;
 }
 
 @media (hover: none), (pointer: coarse) {
