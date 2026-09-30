@@ -204,7 +204,7 @@ export const projects: Project[] = [
       {
         label: "GitHub",
         href: "https://github.com/AlisaK13003/pokemonNuzlockeCompanion",
-        ariaLabel: "View the Pokémon Platinum EV Tracker on GitHub",
+        ariaLabel: "View Pokemon Companion on GitHub",
         icon: "assets/githubIcon.png",
       },
     ],
