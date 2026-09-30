@@ -193,4 +193,21 @@ export const projects: Project[] = [
     ],
     caseStudy: projectCaseStudies.infolio,
   },
+  {
+    id: "platinum-ev-tracker",
+    title: "Pokemon Companion",
+    order: 7,
+    tags: ["Desktop Tool", "Python", "PySide6", "Pokémon Platinum"],
+    images: [],
+    hideModalTags: true,
+    actions: [
+      {
+        label: "GitHub",
+        href: "https://github.com/AlisaK13003/pokemonNuzlockeCompanion",
+        ariaLabel: "View the Pokémon Platinum EV Tracker on GitHub",
+        icon: "assets/githubIcon.png",
+      },
+    ],
+    caseStudy: projectCaseStudies["platinum-ev-tracker"],
+  },
 ];

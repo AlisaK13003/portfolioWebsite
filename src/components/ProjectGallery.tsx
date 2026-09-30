@@ -8,6 +8,10 @@ type ProjectGalleryProps = {
 export function ProjectGallery({ project }: ProjectGalleryProps) {
   const { activeImageIndex, activeLayer, images, layerImages, showManualImage } = useProjectGallery(project);
 
+  if (!project.images.length) {
+    return null;
+  }
+
   return (
     <>
       <div

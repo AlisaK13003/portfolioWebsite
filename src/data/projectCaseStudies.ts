@@ -376,4 +376,44 @@ export const projectCaseStudies = {
       },
     ],
   },
+  "platinum-ev-tracker": {
+    subtitle: "Real-time Pokémon Platinum EV tracking for BizHawk",
+    facts: [
+      { label: "Role", tags: ["Developer"] },
+      { label: "Team", tags: ["1 person"] },
+      { label: "Timeline", tags: ["1 week"] },
+      { label: "Tools", tags: ["BizHawk / EmuHawk", "Python", "PySide6", "Lua"] },
+    ],
+    sections: [
+      {
+        heading: "Overview",
+        paragraphs: [
+          "The Pokémon Platinum EV Tracker is a desktop companion that reads party data directly from BizHawk/EmuHawk's Nintendo DS memory. It displays decoded party records and actual EV values instead of estimating EVs from battles or screenshots.",
+          "It also includes Nuzlocke run tracking with advisory party-acquisition suggestions. The project currently supports Pokémon Platinum running in BizHawk/EmuHawk.",
+        ],
+      },
+      {
+        heading: "Implementation",
+        paragraphs: [
+          "A Lua RAM reader sends emulator data to a Python decoder over localhost TCP, with a temporary-file transport as a fallback. The decoded data feeds a PySide6 desktop interface. The app runs locally without a cloud service or runtime API dependency.",
+        ],
+      },
+      {
+        heading: "What I Built",
+        list: [
+          "Live party details including species, nicknames, levels, HP, held items, and EV values.",
+          "Per-Pokémon EV change history and configurable EV targets keyed to each Pokémon's PID.",
+          "Animated Pokémon sprites with static sprite fallbacks, plus held-item icons.",
+          "A compact always-on-top mode and RAM diagnostics for the emulator connection and decoded party records.",
+          "Nuzlocke run tracking with advisory suggestions for party acquisitions.",
+        ],
+      },
+      {
+        heading: "Current Scope",
+        paragraphs: [
+          "Automatic party-acquisition detection depends on a Pokémon appearing in the active party, so a capture sent directly to a PC box is not detected. The README lists Pokémon Platinum as the supported game; additional game integrations are not implemented yet.",
+        ],
+      },
+    ],
+  },
 } satisfies Record<string, ProjectCaseStudy>;

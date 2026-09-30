@@ -433,7 +433,7 @@
 .project-modal-fact-tags li {
   display: inline-flex;
   box-sizing: border-box;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   min-width: clamp(42px, 5vw, 60px);
   min-height: clamp(18px, 1.8vw, 23px);
