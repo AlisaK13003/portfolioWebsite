@@ -3,8 +3,10 @@ import { useEscapeKey } from "../hooks/useEscapeKey";
 import { usePortfolioNavigation } from "../hooks/usePortfolioNavigation";
 import { MobileMenu } from "./MobileMenu";
 import { NavLinks } from "./NavLinks";
+import { useTheme } from "./ThemeProvider";
 
 export function Header() {
+  const { isDarkMode, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
   const { activeSection, handleNavClick } = usePortfolioNavigation(closeMenu);
@@ -14,12 +16,14 @@ export function Header() {
   return (
     <header className={`site-header${isMenuOpen ? " is-open" : ""}`}>
       <nav className="portfolio-nav" aria-label="Primary navigation">
-        <img className="nav-board" src="/assets/navbar.png" alt="" />
+        <img className="nav-board theme-light-asset" src="/assets/navbar.png" alt="" />
+        <img className="nav-board theme-dark-asset" src="/assets/darkMode/navbarDark.png" alt="" />
         <button
           className="lantern-toggle"
           type="button"
-          aria-label="Dark mode coming soon"
-          disabled
+          aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          aria-pressed={isDarkMode}
+          onClick={toggleTheme}
         />
 
         <NavLinks

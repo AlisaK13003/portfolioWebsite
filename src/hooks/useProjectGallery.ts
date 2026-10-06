@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Project } from "../data/projects";
 
-const fallbackImage = "assets/island.png";
+const fallbackImage = "/assets/lightMode/island.png";
 const imageInterval = 2600;
 
 function preloadImage(src: string) {

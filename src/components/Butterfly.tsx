@@ -1,12 +1,14 @@
 import type { CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import { useFlyingButterfly } from "../hooks/useFlyingButterfly";
+import { useTheme } from "./ThemeProvider";
 
 type ButterflyButtonProps = {
   className?: string;
 };
 
 export function ButterflyButton({ className = "butterfly-friend" }: ButterflyButtonProps) {
+  const { isDarkMode } = useTheme();
   const { flyingButterfly, mode, playButterfly, restingButtonRef } = useFlyingButterfly(className);
 
   return (
@@ -15,11 +17,12 @@ export function ButterflyButton({ className = "butterfly-friend" }: ButterflyBut
         ref={restingButtonRef}
         className={[className, flyingButterfly ? "is-resting-hidden" : ""].filter(Boolean).join(" ")}
         type="button"
-        aria-label="Play with butterfly"
+        aria-label={isDarkMode ? "Play with firefly" : "Play with butterfly"}
         aria-hidden={mode !== "idle"}
         onClick={playButterfly}
       >
-        <span />
+        <span className="theme-light-asset" />
+        <span className="theme-dark-asset firefly-sprite" />
       </button>
       {flyingButterfly
         ? createPortal(
@@ -44,7 +47,8 @@ export function ButterflyButton({ className = "butterfly-friend" }: ButterflyBut
                 } as CSSProperties
               }
             >
-              <span />
+              <span className="theme-light-asset" />
+              <span className="theme-dark-asset firefly-sprite" />
             </button>,
             document.body,
           )

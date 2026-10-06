@@ -4,7 +4,6 @@ import {
   butterflyFollowEase,
   getDirectionToHome,
   getFacingFromMovement,
-  getMouseFriendlyInteraction,
   getReturnFlutter,
   getReturnTravelDistance,
   maxFrameSeconds,
@@ -159,10 +158,6 @@ export function useFlyingButterfly(className: string) {
   }, [cancelAnimation, clearReturnTimeout, renderFlyingButterfly, returnHome]);
 
   const playButterfly = (event: MouseEvent<HTMLButtonElement>) => {
-    if (!getMouseFriendlyInteraction()) {
-      return;
-    }
-
     const restingButton = restingButtonRef.current;
 
     if (!restingButton) {
@@ -182,7 +177,15 @@ export function useFlyingButterfly(className: string) {
 
     cancelAnimation();
     clearReturnTimeout();
-    updateTarget(event.pageX, event.pageY, rect.width, rect.height);
+    // Give every click a visible takeoff, including taps and keyboard activation.
+    // Subsequent pointer movement replaces this target with the cursor position.
+    if (event.detail > 0) {
+      updateTarget(event.pageX, event.pageY, rect.width, rect.height);
+    }
+    target.current = {
+      x: target.current.x + (rect.right + 32 < window.innerWidth ? 24 : -24),
+      y: target.current.y + (rect.top > 80 ? -72 : 72),
+    };
     setFlyingButterfly({
       className,
       facing: facing.current,

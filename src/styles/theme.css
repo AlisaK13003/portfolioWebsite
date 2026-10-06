@@ -1,0 +1,121 @@
+@property --page-bg-hero { syntax: "<color>"; inherits: true; initial-value: #fbf7ef; }
+@property --page-bg-projects { syntax: "<color>"; inherits: true; initial-value: #fcf3df; }
+@property --page-bg-experience { syntax: "<color>"; inherits: true; initial-value: #fbf4e8; }
+@property --page-bg-about { syntax: "<color>"; inherits: true; initial-value: #f7f3e8; }
+@property --page-bg-contact { syntax: "<color>"; inherits: true; initial-value: #fbf0dc; }
+@property --page-bg-footer { syntax: "<color>"; inherits: true; initial-value: #f8efe3; }
+@property --ink { syntax: "<color>"; inherits: true; initial-value: #5f4a35; }
+@property --brown-ink { syntax: "<color>"; inherits: true; initial-value: #473c2c; }
+
+:root {
+  --theme-duration: 500ms;
+  transition:
+    --page-bg-hero var(--theme-duration) ease-in-out,
+    --page-bg-projects var(--theme-duration) ease-in-out,
+    --page-bg-experience var(--theme-duration) ease-in-out,
+    --page-bg-about var(--theme-duration) ease-in-out,
+    --page-bg-contact var(--theme-duration) ease-in-out,
+    --page-bg-footer var(--theme-duration) ease-in-out,
+    --ink var(--theme-duration) ease-in-out,
+    --brown-ink var(--theme-duration) ease-in-out;
+}
+
+.theme-light-asset { opacity: 1; }
+.theme-dark-asset { opacity: 0; }
+.theme-light-asset,
+.theme-dark-asset {
+  transition: opacity var(--theme-duration) ease-in-out;
+}
+
+:root:has(.portfolio-root[data-theme="dark"]) .theme-light-asset { opacity: 0; }
+:root:has(.portfolio-root[data-theme="dark"]) .theme-dark-asset { opacity: 1; }
+
+.social-link img { grid-area: 1 / 1; }
+.social-link img.theme-light-asset,
+.social-link img.theme-dark-asset {
+  transition: opacity var(--theme-duration) ease-in-out, transform 160ms ease;
+}
+
+:is(.butterfly-friend, .decor-butterfly) span {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-island-sprite {
+  position: relative;
+  background: transparent;
+}
+
+.hero-island-sprite::before,
+.hero-island-sprite::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: url("/assets/lightMode/islandGirl-Sheet.png") var(--island-frame-position, 0%) center / 900% 100% no-repeat;
+  transition: opacity var(--theme-duration) ease-in-out;
+}
+
+.hero-island-sprite::after {
+  background-image: url("/assets/darkMode/islandGirl-Sheet.png");
+  opacity: 0;
+}
+
+:root:has(.portfolio-root[data-theme="dark"]) .hero-island-sprite::before { opacity: 0; }
+:root:has(.portfolio-root[data-theme="dark"]) .hero-island-sprite::after { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --theme-duration: 200ms; }
+}
+
+:root:has(.portfolio-root[data-theme="dark"]) {
+  color-scheme: dark;
+  --page-bg: #1b1714;
+  --page-bg-hero: #1b1714;
+  --page-bg-projects: #1b1714;
+  --page-bg-experience: #1b1714;
+  --page-bg-about: #1b1714;
+  --page-bg-contact: #1b1714;
+  --page-bg-footer: #1b1714;
+  --ink: #f1e3c9;
+  --brown-ink: #f1e3c9;
+  --wood-shadow: rgba(0, 0, 0, 0.4);
+  --menu-bg: rgba(43, 39, 31, 0.98);
+  --page-dim: rgba(0, 0, 0, 0.55);
+}
+
+/* Keep dark ink on the existing light paper assets until those are replaced. */
+:root:has(.portfolio-root[data-theme="dark"]) .resume-link,
+:root:has(.portfolio-root[data-theme="dark"]) .skill-cloud-cluster,
+:root:has(.portfolio-root[data-theme="dark"]) .project-modal,
+:root:has(.portfolio-root[data-theme="dark"]) .pokemon-case-study {
+  --ink: #5f4a35;
+  --brown-ink: #473c2c;
+}
+
+:is(.butterfly-friend, .decor-butterfly) span.firefly-sprite::before {
+  width: 100%;
+  background: url("/assets/darkMode/firefly1.png") center / contain no-repeat;
+  animation: firefly-flap 1200ms step-end infinite;
+  filter: drop-shadow(0 0 5px rgba(255, 225, 139, 0.65));
+  will-change: auto;
+}
+
+@keyframes firefly-flap {
+  0%, 100% { background-image: url("/assets/darkMode/firefly1.png"); }
+  25% { background-image: url("/assets/darkMode/firefly2.png"); }
+  50% { background-image: url("/assets/darkMode/firefly3.png"); }
+  75% { background-image: url("/assets/darkMode/firefly4.png"); }
+}
+
+:is(.butterfly-friend, .decor-butterfly).is-following span.firefly-sprite::before {
+  background-image: url("/assets/darkMode/fireflySide1.png");
+  animation-name: firefly-side-flap;
+}
+
+@keyframes firefly-side-flap {
+  0%, 100% { background-image: url("/assets/darkMode/fireflySide1.png"); }
+  25% { background-image: url("/assets/darkMode/fireflySide2.png"); }
+  50% { background-image: url("/assets/darkMode/fireflySide3.png"); }
+  75% { background-image: url("/assets/darkMode/fireflySide4.png"); }
+}

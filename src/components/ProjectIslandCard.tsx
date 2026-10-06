@@ -49,7 +49,7 @@ export function ProjectIslandCard({
           }
         }}
       >
-        <img src="assets/island.png" alt="" loading="lazy" decoding="async" />
+        <img src="/assets/lightMode/island.png" alt="" loading="lazy" decoding="async" />
         <div className="project-island-content">
           <h3>{project.title}</h3>
           <ul className="project-tags" aria-label="Project tags">

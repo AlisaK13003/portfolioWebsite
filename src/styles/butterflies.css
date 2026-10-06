@@ -136,8 +136,8 @@
 }
 
 .decor-butterfly-hero-ne {
-  top: clamp(126px, 15vw, 178px);
-  left: clamp(57%, 61vw, 68%);
+  top: calc(clamp(126px, 15vw, 178px) - 64px);
+  left: min(calc(clamp(57%, 61vw, 68%) + 288px), calc(100% - 56px));
 }
 
 .decor-butterfly-projects-east {

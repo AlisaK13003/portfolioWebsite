@@ -55,9 +55,6 @@ body {
       var(--page-bg-footer) 100%
     );
   font-family: var(--font-pixel);
-  transition:
-    background 220ms ease,
-    color 220ms ease;
 }
 
 a {

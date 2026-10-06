@@ -15,7 +15,12 @@ export function HeroActions() {
             rel={isResume || action.href.startsWith("http") ? "noopener noreferrer" : undefined}
             aria-label={action.ariaLabel}
           >
-            {action.icon ? <img src={action.icon} alt="" /> : null}
+            {action.icon ? (
+              <>
+                <img className="theme-light-asset" src={action.icon} alt="" />
+                <img className="theme-dark-asset" src={action.icon.replace("assets/", "/assets/darkMode/")} alt="" />
+              </>
+            ) : null}
             {action.text ? <span>{action.text}</span> : null}
           </a>
         );

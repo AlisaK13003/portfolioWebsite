@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 const animationFrameCount = 8;
 const frameDuration = 150;
@@ -35,7 +35,7 @@ export function HeroArt() {
         type="button"
         aria-label="Animate the pixel-art girl and koi fish on the floating island"
         onClick={playAnimation}
-        style={{ backgroundPositionX: `${(frame / animationFrameCount) * 100}%` }}
+        style={{ "--island-frame-position": `${(frame / animationFrameCount) * 100}%` } as CSSProperties}
       />
     </div>
   );

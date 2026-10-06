@@ -44,10 +44,6 @@
   cursor: pointer;
 }
 
-.lantern-toggle:disabled {
-  cursor: default;
-}
-
 .lantern-toggle:focus-visible {
   outline: 2px solid var(--main-yellow);
   outline-offset: 3px;

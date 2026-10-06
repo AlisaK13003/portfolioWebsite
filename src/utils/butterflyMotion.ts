@@ -14,10 +14,6 @@ export const butterflyReturnWobbleFrequency = 0.009;
 export const butterflyFollowEase = 0.14;
 export const maxFrameSeconds = 0.05;
 
-export function getMouseFriendlyInteraction() {
-  return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-}
-
 export function getFacingFromMovement(nextX: number, previousX: number, fallback: ButterflyFacing) {
   if (nextX > previousX + 1) {
     return "right";
