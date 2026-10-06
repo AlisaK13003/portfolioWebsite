@@ -14,7 +14,7 @@ export function Header() {
   return (
     <header className={`site-header${isMenuOpen ? " is-open" : ""}`}>
       <nav className="portfolio-nav" aria-label="Primary navigation">
-        <img className="nav-board" src="assets/navbar.png" alt="" />
+        <img className="nav-board" src="/assets/navbar.png" alt="" />
         <button
           className="lantern-toggle"
           type="button"
@@ -46,7 +46,7 @@ export function Header() {
             aria-controls="mobile-menu"
             onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
           >
-            <img src="assets/hamburgerIcon.png" alt="" />
+            <img src="/assets/hamburgerIcon.png" alt="" />
           </button>
         </div>
       </nav>

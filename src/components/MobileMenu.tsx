@@ -10,7 +10,7 @@ type MobileMenuProps = {
 export function MobileMenu({ activeSection, onNavigate }: MobileMenuProps) {
   return (
     <div className="mobile-menu" id="mobile-menu">
-      <img className="sidebar-board" src="assets/sidebar.png" alt="" />
+      <img className="sidebar-board" src="/assets/sidebar.png" alt="" />
       {navItems.map((item) => (
         <a
           key={item.href}

@@ -1,17 +1,42 @@
+import { useEffect, useRef, useState } from "react";
+
+const animationFrameCount = 8;
+const frameDuration = 150;
+
 export function HeroArt() {
+  const [frame, setFrame] = useState(0);
+  const timer = useRef<number | null>(null);
+
+  useEffect(() => () => {
+    if (timer.current !== null) window.clearInterval(timer.current);
+  }, []);
+
+  const playAnimation = () => {
+    if (timer.current !== null) window.clearInterval(timer.current);
+
+    let currentFrame = 1;
+    setFrame(currentFrame);
+    timer.current = window.setInterval(() => {
+      currentFrame += 1;
+      if (currentFrame > animationFrameCount) {
+        window.clearInterval(timer.current!);
+        timer.current = null;
+        setFrame(0);
+        return;
+      }
+      setFrame(currentFrame);
+    }, frameDuration);
+  };
+
   return (
     <div className="hero-art" data-node-id="246:40">
-      <picture>
-        <source srcSet="assets/islandGirl.webp" type="image/webp" />
-        <img
-          src="assets/islandGirl.png"
-          alt="Pixel-art girl sitting on a floating grassy island with a koi fish."
-          width="582"
-          height="581"
-          decoding="async"
-          fetchPriority="high"
-        />
-      </picture>
+      <button
+        className="hero-island-sprite"
+        type="button"
+        aria-label="Animate the pixel-art girl and koi fish on the floating island"
+        onClick={playAnimation}
+        style={{ backgroundPositionX: `${(frame / animationFrameCount) * 100}%` }}
+      />
     </div>
   );
 }

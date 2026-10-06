@@ -7,6 +7,7 @@ import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { ProjectModal } from "./components/ProjectModal";
 import { Projects } from "./components/Projects";
+import { Skills } from "./components/Skills";
 import { projects } from "./data/projects";
 import { useProjectSelection } from "./hooks/useProjectSelection";
 
@@ -32,6 +33,7 @@ export default function App() {
           onOpenProject={openProject}
         />
         <Experience />
+        <Skills />
         <About />
         <Contact />
         <Footer />

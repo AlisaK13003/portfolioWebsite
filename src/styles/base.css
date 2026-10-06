@@ -1,4 +1,6 @@
 :root {
+  --font-pixel: "Pixelify Sans", ui-monospace, "Cascadia Mono", monospace;
+  --font-body: "Nunito Sans", "Aptos", "Segoe UI", Arial, sans-serif;
   --page-bg: #fbf7ef;
   --page-bg-hero: #fbf7ef;
   --page-bg-projects: #fcf3df;
@@ -52,7 +54,7 @@ body {
       var(--page-bg-contact) 84%,
       var(--page-bg-footer) 100%
     );
-  font-family: "Pixelify Sans", ui-monospace, "Cascadia Mono", monospace;
+  font-family: var(--font-pixel);
   transition:
     background 220ms ease,
     color 220ms ease;
@@ -64,7 +66,7 @@ a {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  html body :is(.butterfly-friend, .decor-butterfly, .section-sign, .about-card-label, .footer-well-button):hover {
+  html body :is(.butterfly-friend, .decor-butterfly, .section-sign, .about-card-label, .footer-well-button, .hero-island-sprite):hover {
     cursor: url("/assets/koi-cursor.png") 14 16, pointer;
   }
 }

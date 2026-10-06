@@ -14,6 +14,8 @@
 
   .about-section {
     padding-inline: clamp(24px, 5vw, 48px);
+    --about-body-font-size: 1.08rem;
+    --about-body-line-height: 1.5;
   }
 
   .about-carousel-shell {
@@ -149,7 +151,7 @@
 
   .hero-intro {
     max-width: 430px;
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 }
 

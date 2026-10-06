@@ -78,8 +78,9 @@
 .hero-intro {
   max-width: 587px;
   color: var(--brown-ink);
-  font-size: clamp(1.05rem, 1.875vw, 1.5rem);
-  line-height: 1.2;
+  font-family: var(--font-body);
+  font-size: clamp(1.08rem, 1.25vw, 1.28rem);
+  line-height: 1.6;
 }
 
 .hero-actions {
@@ -158,16 +159,21 @@
   justify-self: center;
 }
 
-.hero-art picture,
-.hero-art img {
+.hero-island-sprite {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: transparent url("/assets/lightMode/islandGirl-Sheet.png") left center / 900% 100% no-repeat;
+  cursor: pointer;
+  animation: hero-island-float 4200ms ease-in-out infinite;
+  image-rendering: pixelated;
+  will-change: transform;
 }
 
-.hero-art img {
-  animation: hero-island-float 4200ms ease-in-out infinite;
-  image-rendering: auto;
-  will-change: transform;
+.hero-island-sprite:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 4px;
 }
 

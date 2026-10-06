@@ -14,7 +14,7 @@ export const heroActions: HeroAction[] = [
   {
     ariaLabel: "Open Alisa's resume PDF",
     className: "resume-link",
-    href: "assets/AlisaKatsionova_Resume.pdf",
+    href: "assets/AlisaKatsionova_ResumeSE.pdf",
     text: "Resume",
   },
   {

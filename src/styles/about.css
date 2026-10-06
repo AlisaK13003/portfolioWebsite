@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: center;
   gap: 48px;
-  --about-body-font-size: clamp(1rem, 1.7vw, 1.5rem);
-  --about-body-line-height: 1.18;
+  --about-body-font-size: 1.2rem;
+  --about-body-line-height: 1.55;
   padding: 64px 64px 112px;
   scroll-margin-top: 180px;
   content-visibility: auto;
@@ -17,6 +17,7 @@
   width: min(100%, 980px);
   gap: 18px;
   color: var(--brown-ink);
+  font-family: var(--font-body);
   font-size: var(--about-body-font-size);
   line-height: var(--about-body-line-height);
   text-align: left;
@@ -111,8 +112,9 @@
   padding: calc(var(--about-card-width) * 0.146) calc(var(--about-card-width) * 0.097);
   background: url("/assets/aboutMe_backgrounds.png") center / 100% 100% no-repeat;
   color: #473c2c;
-  font-size: 1.5rem;
-  line-height: 1.08;
+  font-family: var(--font-body);
+  font-size: var(--about-body-font-size);
+  line-height: var(--about-body-line-height);
   image-rendering: pixelated;
 }
 
